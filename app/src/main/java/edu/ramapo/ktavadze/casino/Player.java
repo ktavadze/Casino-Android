@@ -3,12 +3,12 @@ package edu.ramapo.ktavadze.casino;
 import java.util.ArrayList;
 
 public class Player {
-    private boolean mIsHuman;
-    private boolean mIsNext;
-    private boolean mCapturedLast;
-    private int mScore;
-    private Set mHand;
-    private Set mPile;
+    protected boolean mIsHuman;
+    protected boolean mIsNext;
+    protected boolean mCapturedLast;
+    protected int mScore;
+    protected Set mHand;
+    protected Set mPile;
 
     public Player() {}
 
@@ -107,7 +107,7 @@ public class Player {
      aTable, a Table instance passed by reference
      aCard, a Card instance passed by value
      **********************************************************************/
-    void captureLooseCard(Table aTable, Card aCard) {
+    protected void captureLooseCard(Table aTable, Card aCard) {
         // Add loose card to pile
         mPile.addCard(aCard);
 
@@ -122,7 +122,7 @@ public class Player {
      aTable, a Table instance passed by reference
      aBuild, a Build instance passed by value
      **********************************************************************/
-    void captureBuild(Table aTable, Build aBuild) {
+    protected void captureBuild(Table aTable, Build aBuild) {
         // Add build to pile
         for (Set set : aBuild.getSets()) {
             mPile.addSet(set);
@@ -139,7 +139,7 @@ public class Player {
      aTable, a Table instance passed by value
      Return Value: Whether the player can increase any builds, a boolean value
      **********************************************************************/
-    boolean canIncrease(Table aTable) {
+    protected boolean canIncrease(Table aTable) {
         for (Card playerCard : mHand.getCards()) {
             if (!reservedForCapture(aTable, playerCard)) {
                 // Check for possible increased builds
@@ -163,7 +163,7 @@ public class Player {
      aTable, a Table instance passed by value
      Return Value: Whether the player can extend any builds, a boolean value
      **********************************************************************/
-    boolean canExtend(Table aTable) {
+    protected boolean canExtend(Table aTable) {
         Set tableLooseSet = aTable.getLooseSet();
         ArrayList<Set> tableLooseSets = generateSetCombinations(tableLooseSet);
 
@@ -213,7 +213,7 @@ public class Player {
      aTable, a Table instance passed by value
      Return Value: Whether the player can create any builds, a boolean value
      **********************************************************************/
-    boolean canCreate(Table aTable) {
+    protected boolean canCreate(Table aTable) {
         Set tableLooseSet = aTable.getLooseSet();
         ArrayList<Set> tableLooseSets = generateSetCombinations(tableLooseSet);
 
@@ -245,7 +245,7 @@ public class Player {
      aTable, a Table instance passed by value
      Return Value: Whether the player can capture anything, a boolean value
      **********************************************************************/
-    boolean canCapture(Table aTable) {
+    protected boolean canCapture(Table aTable) {
         // Check loose set
         if (aTable.getLooseSet().getSize() > 0) {
             Set tableLooseSet = aTable.getLooseSet();
@@ -290,7 +290,7 @@ public class Player {
      aCard, a Card instance passed by value
      Return Value: Whether a card is reserved for capture, a boolean value
      **********************************************************************/
-    boolean reservedForCapture(Table aTable, Card aCard) {
+    protected boolean reservedForCapture(Table aTable, Card aCard) {
         for (Build build : aTable.getBuilds()) {
             if (build.getValue() == aCard.getValue() &build.isHuman() == mIsHuman) {
                 if (countCardsHeld(aCard.getValue()) < 2) {
@@ -309,7 +309,7 @@ public class Player {
      aTable, a Table instance passed by value
      Return Value: Whether the player owns any builds, a boolean value
      **********************************************************************/
-    boolean ownsBuild(Table aTable) {
+    protected boolean ownsBuild(Table aTable) {
         for (Build build : aTable.getBuilds()) {
             if (build.isHuman() == mIsHuman) {
                 return true;
@@ -326,7 +326,7 @@ public class Player {
      aValue, an integer
      Return Value: The number of cards of specified value in held, an integer value
      **********************************************************************/
-    int countCardsHeld(int aValue) {
+    protected int countCardsHeld(int aValue) {
         int count = 0;
 
         for (Card card : mHand.getCards()) {
@@ -345,7 +345,7 @@ public class Player {
      aTable, a Table instance passed by value
      Return Value: The best increased build, a Build instance
      **********************************************************************/
-    Build findBestIncrease(Table aTable) {
+    protected Build findBestIncrease(Table aTable) {
         // Find possible builds
         ArrayList<Build> possibleBuilds = new ArrayList<>();
 
@@ -388,7 +388,7 @@ public class Player {
      aTable, a Table instance passed by value
      Return Value: The best extended build, a Build instance
      **********************************************************************/
-    Build findBestExtend(Table aTable) {
+    protected Build findBestExtend(Table aTable) {
         // Find possible builds
         ArrayList<Build> possibleBuilds = new ArrayList<>();
 
@@ -456,7 +456,7 @@ public class Player {
      aTable, a Table instance passed by value
      Return Value: The best new build, a Build instance
      **********************************************************************/
-    Build findBestCreate(Table aTable) {
+    protected Build findBestCreate(Table aTable) {
         // Find possible builds
         ArrayList<Build> possibleBuilds = new ArrayList<>();
 
@@ -514,7 +514,7 @@ public class Player {
      aTable, a Table instance passed by value
      Return Value: The best capture set, a Set instance
      **********************************************************************/
-    Set findBestCapture(Table aTable) {
+    protected Set findBestCapture(Table aTable) {
         // Find possible capture sets
         ArrayList<Set> possibleCaptureSets = new ArrayList<>();
 
@@ -595,7 +595,7 @@ public class Player {
      aTable, a Table instance passed by value
      Return Value: The best trail card, a Card instance
      **********************************************************************/
-    Card findBestTrail(Table aTable) {
+    protected Card findBestTrail(Table aTable) {
         // Find best trail card
         Card bestTrailCard = new Card();
 
@@ -620,7 +620,7 @@ public class Player {
      aLooseSet, a Set instance passed by value
      Return Value: The possible set combinations, a ArrayList of Set instances
      **********************************************************************/
-    ArrayList<Set> generateSetCombinations(Set aLooseSet) {
+    private ArrayList<Set> generateSetCombinations(Set aLooseSet) {
         ArrayList<Set> looseSets = new ArrayList<>();
 
         // Generate doubles
