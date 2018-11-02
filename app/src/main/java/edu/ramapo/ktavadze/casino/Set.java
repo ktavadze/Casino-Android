@@ -27,23 +27,19 @@ public class Set {
         return mCards.get(mCards.size() - 1);
     }
 
-    public void addCard(Card aCard)
-    {
+    public void addCard(Card aCard) {
         mCards.add(aCard);
     }
 
-    public void removeCard(Card aCard)
-    {
+    public void removeCard(Card aCard) {
         mCards.remove(aCard);
     }
 
-    public void addSet(Set aSet)
-    {
+    public void addSet(Set aSet) {
         mCards.addAll(aSet.getCards());
     }
 
-    public void removeSet(Set aSet)
-    {
+    public void removeSet(Set aSet) {
         mCards.removeAll(aSet.getCards());
     }
 
@@ -64,12 +60,10 @@ public class Set {
      Purpose: To calculate the value of a set
      Return Value: The value of a set, an integer value
      **********************************************************************/
-    public int getValue()
-    {
+    public int getValue() {
         int value = 0;
 
-        for (Card card : mCards)
-        {
+        for (Card card : mCards) {
             value += card.getValue();
         }
 
@@ -81,12 +75,10 @@ public class Set {
      Purpose: To calculate the weight of a set
      Return Value: The weight of a set, an integer value
      **********************************************************************/
-    public int getWeight()
-    {
+    public int getWeight() {
         int weight = 0;
 
-        for (Card card : mCards)
-        {
+        for (Card card : mCards) {
             weight += card.getWeight();
         }
 
@@ -100,8 +92,7 @@ public class Set {
      aCard, a Card instance, passed by value
      Return Value: Whether the set contains a card, a boolean value
      **********************************************************************/
-    public boolean contains(Card aCard)
-    {
+    public boolean contains(Card aCard) {
         return mCards.contains(aCard);
     }
 
@@ -112,8 +103,7 @@ public class Set {
      aSet, a Set instance, passed by value
      Return Value: Whether the set contains another set, a boolean value
      **********************************************************************/
-    public boolean contains(Set aSet)
-    {
+    public boolean contains(Set aSet) {
         return mCards.containsAll(aSet.getCards());
     }
 
@@ -124,12 +114,9 @@ public class Set {
      aBuild, a Build instance, passed by value
      Return Value: Whether the set contains a build, a boolean value
      **********************************************************************/
-    public boolean contains(Build aBuild)
-    {
-        for (Set set : aBuild.getSets())
-        {
-            if (!mCards.containsAll(set.getCards()))
-            {
+    public boolean contains(Build aBuild) {
+        for (Set set : aBuild.getSets()) {
+            if (!mCards.containsAll(set.getCards())) {
                 return false;
             }
         }
@@ -145,8 +132,7 @@ public class Set {
      Return Value: Whether the set equals another set, a boolean value
      **********************************************************************/
     @Override
-    public boolean equals(Object aObject)
-    {
+    public boolean equals(Object aObject) {
         // Check instance
         if (aObject == this) {
             return true;
@@ -160,26 +146,22 @@ public class Set {
         Set aSet = (Set) aObject;
 
         // Check size
-        if (aSet.getSize() != mCards.size())
-        {
+        if (aSet.getSize() != mCards.size()) {
             return false;
         }
 
         return mCards.containsAll(aSet.getCards());
     }
 
-    public String stringify()
-    {
+    public String stringify() {
         StringBuilder data = new StringBuilder();
 
         int count = 0;
 
-        for (Card card : mCards)
-        {
+        for (Card card : mCards) {
             count++;
 
-            if (count > 1)
-            {
+            if (count > 1) {
                 data.append(" ");
             }
 

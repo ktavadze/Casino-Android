@@ -5,6 +5,12 @@ public class Card {
     private int mValue;
     private int mWeight;
 
+    public Card() {
+        mName = "UN";
+        mValue = 0;
+        mWeight = 0;
+    }
+
     public Card(String aName) {
         mName = aName;
 
@@ -54,20 +60,16 @@ public class Card {
         // Assign weight
         mWeight = 1;
 
-        if (aName.equals("DX"))
-        {
+        if (aName.equals("DX")) {
             mWeight += 8;
         }
-        else if (aName.equals("S2") || aName.equals("SA"))
-        {
+        else if (aName.equals("S2") || aName.equals("SA")) {
             mWeight += 6;
         }
-        else if (aName.charAt(1) == 'A')
-        {
+        else if (aName.charAt(1) == 'A') {
             mWeight += 4;
         }
-        else if (aName.charAt(0) == 'S')
-        {
+        else if (aName.charAt(0) == 'S') {
             mWeight += 2;
         }
     }
@@ -84,13 +86,11 @@ public class Card {
         return mWeight;
     }
 
-    public boolean isAce()
-    {
+    public boolean isAce() {
         return mName.charAt(1) == 'A';
     }
 
-    public boolean isSpade()
-    {
+    public boolean isSpade() {
         return mName.charAt(0) == 'S';
     }
 
@@ -102,8 +102,7 @@ public class Card {
      Return Value: Whether the card equals another card, a boolean value
      **********************************************************************/
     @Override
-    public boolean equals(Object aObject)
-    {
+    public boolean equals(Object aObject) {
         // Check instance
         if (aObject == this) {
             return true;

@@ -30,14 +30,11 @@ public class Build {
      Purpose: To calculate the value of the build
      Return Value: The value of the build, an integer value
      **********************************************************************/
-    public int getValue()
-    {
+    public int getValue() {
         int value = 0;
 
-        if (!mSets.isEmpty())
-        {
-            for (Card card : mSets.get(0).getCards())
-            {
+        if (!mSets.isEmpty()) {
+            for (Card card : mSets.get(0).getCards()) {
                 value += card.getValue();
             }
         }
@@ -50,12 +47,10 @@ public class Build {
      Purpose: To calculate the weight of the build
      Return Value: The weight of the build, an integer value
      **********************************************************************/
-    public int getWeight()
-    {
+    public int getWeight() {
         int weight = 0;
 
-        for (Set set : mSets)
-        {
+        for (Set set : mSets) {
             weight += set.getWeight();
         }
 
@@ -68,8 +63,7 @@ public class Build {
      Parameters:
      aCard, a Card instance passed by value
      **********************************************************************/
-    public void increase(Card aCard)
-    {
+    public void increase(Card aCard) {
         mSets.get(0).addCard(aCard);
     }
 
@@ -79,8 +73,7 @@ public class Build {
      Parameters:
      aSet, a Set instance passed by value
      **********************************************************************/
-    public void extend(Set aSet)
-    {
+    public void extend(Set aSet) {
         mSets.add(aSet);
     }
 
@@ -91,12 +84,9 @@ public class Build {
      aCard, a Card instance, passed by value
      Return Value: Whether the build contains a card, a boolean value
      **********************************************************************/
-    public boolean contains(Card aCard)
-    {
-        for (Set set : mSets)
-        {
-            if (set.contains(aCard))
-            {
+    public boolean contains(Card aCard) {
+        for (Set set : mSets) {
+            if (set.contains(aCard)) {
                 return true;
             }
         }
@@ -111,8 +101,7 @@ public class Build {
      aSet, a Set instance, passed by value
      Return Value: Whether the build contains a set, a boolean value
      **********************************************************************/
-    public boolean contains(Set aSet)
-    {
+    public boolean contains(Set aSet) {
         return mSets.contains(aSet);
     }
 
@@ -123,8 +112,7 @@ public class Build {
      aBuild, a Build instance, passed by value
      Return Value: Whether the build contains another build, a boolean value
      **********************************************************************/
-    public boolean contains(Build aBuild)
-    {
+    public boolean contains(Build aBuild) {
         return mSets.containsAll(aBuild.getSets());
     }
 
@@ -136,8 +124,7 @@ public class Build {
      Return Value: Whether the build equals another build, a boolean value
      **********************************************************************/
     @Override
-    public boolean equals(Object aObject)
-    {
+    public boolean equals(Object aObject) {
         // Check instance
         if (aObject == this) {
             return true;
@@ -151,28 +138,24 @@ public class Build {
         Build aBuild = (Build) aObject;
 
         // Check owner
-        if (aBuild.isHuman() != mIsHuman)
-        {
+        if (aBuild.isHuman() != mIsHuman) {
             return false;
         }
 
         // Check size
-        if (aBuild.getSets().size() != mSets.size())
-        {
+        if (aBuild.getSets().size() != mSets.size()) {
             return false;
         }
 
         return mSets.containsAll(aBuild.getSets());
     }
 
-    public String stringify()
-    {
+    public String stringify() {
         StringBuilder data = new StringBuilder();
 
         data.append("[");
 
-        for (Set set : mSets)
-        {
+        for (Set set : mSets) {
             data.append(" [");
             data.append(set.stringify());
             data.append("]");

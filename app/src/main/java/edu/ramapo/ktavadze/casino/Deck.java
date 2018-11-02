@@ -33,8 +33,7 @@ public class Deck {
         mCards = aCards;
     }
 
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return mCards.isEmpty();
     }
 
@@ -43,14 +42,11 @@ public class Deck {
      Purpose: To draw a set of four cards from the deck
      Return Value: The set of cards, a Set instance
      **********************************************************************/
-    public Set drawSet()
-    {
+    public Set drawSet() {
         Set set = new Set();
 
-        for (int i = 0; i < 4; i++)
-        {
-            if (!mCards.isEmpty())
-            {
+        for (int i = 0; i < 4; i++) {
+            if (!mCards.isEmpty()) {
                 set.addCard(mCards.get(0));
                 mCards.remove(0);
             }
@@ -59,18 +55,15 @@ public class Deck {
         return set;
     }
 
-    public String stringify()
-    {
+    public String stringify() {
         StringBuilder data = new StringBuilder();
 
         int count = 0;
 
-        for (Card card : mCards)
-        {
+        for (Card card : mCards) {
             count++;
 
-            if (count > 1)
-            {
+            if (count > 1) {
                 data.append(" ");
             }
 

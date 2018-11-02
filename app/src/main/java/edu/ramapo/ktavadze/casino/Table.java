@@ -50,8 +50,7 @@ public class Table {
      the build will be increased
      aIsHuman, a boolean. Represents the owner of the increased build
      **********************************************************************/
-    public void increaseBuild(int aIndex, Card aCard, boolean aIsHuman)
-    {
+    public void increaseBuild(int aIndex, Card aCard, boolean aIsHuman) {
         mBuilds.get(aIndex).increase(aCard);
         mBuilds.get(aIndex).isHuman(aIsHuman);
     }
@@ -65,32 +64,27 @@ public class Table {
      the build will be extended
      aIsHuman, a boolean. Represents the owner of the extended build
      **********************************************************************/
-    public void extendBuild(int aIndex, Set aSet, boolean aIsHuman)
-    {
+    public void extendBuild(int aIndex, Set aSet, boolean aIsHuman) {
         mBuilds.get(aIndex).extend(aSet);
         mBuilds.get(aIndex).isHuman(aIsHuman);
     }
 
-    public String stringify()
-    {
+    public String stringify() {
         StringBuilder data = new StringBuilder();
 
         int count = 0;
 
-        for (Build build : mBuilds)
-        {
+        for (Build build : mBuilds) {
             count++;
 
-            if (count > 1)
-            {
+            if (count > 1) {
                 data.append(" ");
             }
 
             data.append(build.stringify());
         }
 
-        if (count > 0)
-        {
+        if (count > 0) {
             data.append(" ");
         }
 
