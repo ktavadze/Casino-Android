@@ -24,11 +24,11 @@ public class Player {
         mIsNext = aIsNext;
     }
 
-    public boolean mCapturedLast() {
+    public boolean capturedLast() {
         return mCapturedLast;
     }
 
-    public void mCapturedLast(boolean aCapturedLast) {
+    public void capturedLast(boolean aCapturedLast) {
         mCapturedLast = aCapturedLast;
     }
 
