@@ -210,7 +210,7 @@ public class Human extends Player {
      **********************************************************************/
     private boolean processCapture(Table aTable) {
         // Check table
-        if (aTable.getLooseSet().isEmpty() &aTable.getBuilds().isEmpty()) {
+        if (aTable.getLooseSet().isEmpty() && aTable.getBuilds().isEmpty()) {
             // Console::displayMessage("ERROR: no cards to capture!");
 
             return false;
@@ -389,7 +389,7 @@ public class Human extends Player {
             }
 
             // Check loose sum
-            if (sum != 0 &sum != aCaptureCard.getValue()) {
+            if (sum != 0 && sum != aCaptureCard.getValue()) {
                 // Console::displayMessage("ERROR: cannot capture selected loose card(s)!");
 
                 return false;
@@ -414,7 +414,7 @@ public class Human extends Player {
             for (Build build : aTable.getBuilds()) {
                 if (build.getValue() == aCaptureCard.getValue()) {
                     // Check for matching owned builds
-                    if (build.isHuman() == mIsHuman &!aFirmSet.contains(build.getSets())) {
+                    if (build.isHuman() == mIsHuman && !aFirmSet.contains(build)) {
                         if (countCardsHeld(aCaptureCard.getValue()) < 2) {
                             // Console::displayMessage("ERROR: must capture matching owned build(s)!");
 
@@ -438,7 +438,7 @@ public class Human extends Player {
         }
         else {
             for (Build build : aTable.getBuilds()) {
-                if (build.getValue() == aCaptureCard.getValue() &build.isHuman() == mIsHuman) {
+                if (build.getValue() == aCaptureCard.getValue() && build.isHuman() == mIsHuman) {
                     if (countCardsHeld(aCaptureCard.getValue()) < 2) {
                         // Console::displayMessage("ERROR: must capture matching owned build(s)!");
 

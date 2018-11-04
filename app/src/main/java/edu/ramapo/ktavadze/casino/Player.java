@@ -144,7 +144,7 @@ public class Player {
             if (!reservedForCapture(aTable, playerCard)) {
                 // Check for possible increased builds
                 for (Build build : aTable.getBuilds()) {
-                    if (build.isHuman() != mIsHuman &build.getSets().size() == 1) {
+                    if (build.isHuman() != mIsHuman && build.getSets().size() == 1) {
                         if (countCardsHeld(build.getValue() + playerCard.getValue()) > 0) {
                             return true;
                         }
@@ -292,7 +292,7 @@ public class Player {
      **********************************************************************/
     protected boolean reservedForCapture(Table aTable, Card aCard) {
         for (Build build : aTable.getBuilds()) {
-            if (build.getValue() == aCard.getValue() &build.isHuman() == mIsHuman) {
+            if (build.getValue() == aCard.getValue() && build.isHuman() == mIsHuman) {
                 if (countCardsHeld(aCard.getValue()) < 2) {
                     return true;
                 }
@@ -356,7 +356,7 @@ public class Player {
             if (!reservedForCapture(aTable, playerCard)) {
                 // Find possible increased builds
                 for (Build build : aTable.getBuilds()) {
-                    if (build.isHuman() != mIsHuman &build.getSets().size() == 1) {
+                    if (build.isHuman() != mIsHuman && build.getSets().size() == 1) {
                         if (countCardsHeld(build.getValue() + playerCard.getValue()) > 0) {
                             build.increase(playerCard);
 
@@ -647,7 +647,7 @@ public class Player {
             for (int i = 0; i < aLooseSet.getSize(); i++) {
                 for (int j = 0; j < aLooseSet.getSize(); j++) {
                     for (int k = 0; k < aLooseSet.getSize(); k++) {
-                        if (i != j &i != k &j != k) {
+                        if (i != j && i != k && j != k) {
                             Set set = new Set();
                             set.addCard(aLooseSet.getCardAt(i));
                             set.addCard(aLooseSet.getCardAt(j));
