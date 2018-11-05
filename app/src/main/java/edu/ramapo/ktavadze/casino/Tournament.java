@@ -19,34 +19,46 @@ public class Tournament {
         mRound = aRound;
     }
 
+    public Computer getComputer() {
+        return mComputer;
+    }
+
+    public Human getHuman() {
+        return mHuman;
+    }
+
+    public Round getRound() {
+        return mRound;
+    }
+
     /**********************************************************************
      Function Name: start
      Purpose: To start the tournament
      **********************************************************************/
-    public void start() {
-        while (!isOver()) {
-            mRound.start(mComputer, mHuman);
-
-            // Console::displayTournamentScores(mComputer.getScore(), mHuman.getScore());
-
-            if (!isOver()) {
-                int roundNumber = mRound.getNumber() + 1;
-
-                if (mHuman.capturedLast()) {
-                    mHuman.isNext(true);
-                    mComputer.isNext(false);
-                }
-                else {
-                    mHuman.isNext(false);
-                    mComputer.isNext(true);
-                }
-
-                mRound = new Round(roundNumber);
-            }
-        }
-
-        // Console::displayTournamentResult(mComputer.getScore(), mHuman.getScore());
-    }
+//    public void start() {
+//        while (!isOver()) {
+//            mRound.start(mComputer, mHuman);
+//
+//            // Console::displayTournamentScores(mComputer.getScore(), mHuman.getScore());
+//
+//            if (!isOver()) {
+//                int roundNumber = mRound.getNumber() + 1;
+//
+//                if (mHuman.capturedLast()) {
+//                    mHuman.isNext(true);
+//                    mComputer.isNext(false);
+//                }
+//                else {
+//                    mHuman.isNext(false);
+//                    mComputer.isNext(true);
+//                }
+//
+//                mRound = new Round(roundNumber);
+//            }
+//        }
+//
+//        // Console::displayTournamentResult(mComputer.getScore(), mHuman.getScore());
+//    }
 
     /**********************************************************************
      Function Name: isOver

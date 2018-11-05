@@ -16,42 +16,21 @@ public class MainActivity extends AppCompatActivity {
 
         Deck deck = new Deck();
 
-        Log.d(TAG, "Deck: " + deck.stringify());
+        Human human = new Human();
+        human.setHand(deck.drawSet());
 
-        Card c3 = new Card("C3");
-        Card ha = new Card("HA");
-        Card s2 = new Card("S2");
-        Card dx = new Card("DX");
+        Computer computer = new Computer();
+        computer.setHand(deck.drawSet());
 
-        Card c2 = new Card("C2");
-        Card s8 = new Card("S8");
-
-        Card h4 = new Card("H4");
-        Card d3 = new Card("D3");
-
-        Set looseSet = new Set();
-        looseSet.addCard(c3);
-        looseSet.addCard(ha);
-        looseSet.addCard(s2);
-        looseSet.addCard(dx);
-
-        Set firstSet = new Set();
-        firstSet.addCard(c2);
-        firstSet.addCard(s8);
-
-        Set secondSet = new Set();
-        secondSet.addCard(h4);
-        secondSet.addCard(d3);
-
-        Build firstBuild = new Build(false, firstSet);
-        Build secondBuild = new Build(true, secondSet);
-
+        Set looseSet = deck.drawSet();
         ArrayList<Build> builds = new ArrayList<>();
-        builds.add(firstBuild);
-        builds.add(secondBuild);
 
         Table table = new Table(looseSet, builds);
 
         Log.d(TAG, "Table: " + table.stringify());
+
+        Round round = new Round(1, table, deck);
+
+        Log.d(TAG, "Round: " + round.stringify(computer, human));
     }
 }

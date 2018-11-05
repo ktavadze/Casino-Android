@@ -3,6 +3,9 @@ package edu.ramapo.ktavadze.casino;
 public class Computer extends Player {
     public Computer() {
         mIsHuman = false;
+        mScore = 0;
+        mHand = new Set();
+        mPile = new Set();
     }
 
     public Computer(boolean aIsNext, int aScore, Set aHand, Set aPile) {

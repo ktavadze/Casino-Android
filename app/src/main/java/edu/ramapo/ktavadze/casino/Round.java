@@ -1,9 +1,9 @@
 package edu.ramapo.ktavadze.casino;
 
 public class Round {
-    private int mNumber;
-    private Table mTable;
-    private Deck mDeck;
+    private int mNumber = 1;
+    private Table mTable = new Table();
+    private Deck mDeck = new Deck();
 
     public Round() {}
 
@@ -28,10 +28,10 @@ public class Round {
      aComputer, a Player instance passed by reference
      aHuman, a Player instance passed by reference
      **********************************************************************/
-    public void start(Player aComputer, Player aHuman) {
-        while (!isOver(aComputer, aHuman)) {
-            if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
-                // Seed deck
+//    public void start(Player aComputer, Player aHuman) {
+//        while (!isOver(aComputer, aHuman)) {
+//            if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
+//                // Seed deck
 //                if (aComputer.getPile().isEmpty() && aHuman.getPile().isEmpty()) {
 //                    if (mTable.getLooseSet().isEmpty() && mTable.getBuilds().isEmpty()) {
 //                        if (Console::processDeckSeed()) {
@@ -39,46 +39,46 @@ public class Round {
 //                        }
 //                    }
 //                }
-
-                // Deal players
-                aHuman.setHand(mDeck.drawSet());
-                aComputer.setHand(mDeck.drawSet());
-
-                if (aComputer.getPile().isEmpty() && aHuman.getPile().isEmpty()) {
-                    if (mTable.getLooseSet().isEmpty() && mTable.getBuilds().isEmpty()) {
-                        // Deal table
-                        mTable.setLooseSet(mDeck.drawSet());
-                    }
-                }
-            }
-
-            startTurn(aComputer, aHuman);
-        }
-
-        // Clear table
-        if (mTable.getLooseSet().getSize() > 0) {
-            for (Card card : mTable.getLooseSet().getCards()) {
-                // Check capture status
-                if (aHuman.capturedLast()) {
-                    // Add loose card to human pile
-                    aHuman.addToPile(card);
-                }
-                else {
-                    // Add loose card to computer pile
-                    aComputer.addToPile(card);
-                }
-
-                // Remove loose card from table
-                mTable.removeLooseCard(card);
-            }
-        }
-
-        updateScores(aComputer, aHuman);
-
-        // Clear piles
-        aHuman.clearPile();
-        aComputer.clearPile();
-    }
+//
+//                // Deal players
+//                aHuman.setHand(mDeck.drawSet());
+//                aComputer.setHand(mDeck.drawSet());
+//
+//                if (aComputer.getPile().isEmpty() && aHuman.getPile().isEmpty()) {
+//                    if (mTable.getLooseSet().isEmpty() && mTable.getBuilds().isEmpty()) {
+//                        // Deal table
+//                        mTable.setLooseSet(mDeck.drawSet());
+//                    }
+//                }
+//            }
+//
+//            startTurn(aComputer, aHuman);
+//        }
+//
+//        // Clear table
+//        if (mTable.getLooseSet().getSize() > 0) {
+//            for (Card card : mTable.getLooseSet().getCards()) {
+//                // Check capture status
+//                if (aHuman.capturedLast()) {
+//                    // Add loose card to human pile
+//                    aHuman.addToPile(card);
+//                }
+//                else {
+//                    // Add loose card to computer pile
+//                    aComputer.addToPile(card);
+//                }
+//
+//                // Remove loose card from table
+//                mTable.removeLooseCard(card);
+//            }
+//        }
+//
+//        updateScores(aComputer, aHuman);
+//
+//        // Clear piles
+//        aHuman.clearPile();
+//        aComputer.clearPile();
+//    }
 
     public String stringify(Player aComputer, Player aHuman) {
         String data = "";
@@ -139,67 +139,67 @@ public class Round {
      aComputer, a Player instance passed by reference
      aHuman, a Player instance passed by reference
      **********************************************************************/
-    private void startTurn(Player aComputer, Player aHuman) {
-        for (;;) {
-            // Console::displayMessage(stringify(aComputer, aHuman));
-
-            // int choice = Console::processTurnMenu(aHuman.isNext());
-
-            if (aHuman.isNext()) {
-                switch (choice) {
-                    case 1: {
-                        // String name = Console::processFileMenu();
-
-                        String state = stringify(aComputer, aHuman);
-
+//    private void startTurn(Player aComputer, Player aHuman) {
+//        for (;;) {
+//            Console::displayMessage(stringify(aComputer, aHuman));
+//
+//            int choice = Console::processTurnMenu(aHuman.isNext());
+//
+//            if (aHuman.isNext()) {
+//                switch (choice) {
+//                    case 1: {
+//                        String name = Console::processFileMenu();
+//
+//                        String state = stringify(aComputer, aHuman);
+//
 //                        if (Serialization::saveGame(name, state)) {
 //                            exit(0);
 //                        }
-
-                        break;
-                    }
-                    case 2:
-                        if (makeMove(aComputer, aHuman)) {
-                            aHuman.isNext(false);
-                            aComputer.isNext(true);
-
-                            return;
-                        }
-                        break;
-                    case 3:
-                        aHuman.askForHelp(mTable);
-                        break;
-                    case 4:
-                        // exit(0);
-                }
-            }
-            else {
-                switch (choice) {
-                    case 1: {
-                        // String name = Console::processFileMenu();
-
-                        String state = stringify(aComputer, aHuman);
-
+//
+//                        break;
+//                    }
+//                    case 2:
+//                        if (makeMove(aComputer, aHuman)) {
+//                            aHuman.isNext(false);
+//                            aComputer.isNext(true);
+//
+//                            return;
+//                        }
+//                        break;
+//                    case 3:
+//                        aHuman.askForHelp(mTable);
+//                        break;
+//                    case 4:
+//                        exit(0);
+//                }
+//            }
+//            else {
+//                switch (choice) {
+//                    case 1: {
+//                        String name = Console::processFileMenu();
+//
+//                        String state = stringify(aComputer, aHuman);
+//
 //                        if (Serialization::saveGame(name, state)) {
 //                            exit(0);
 //                        }
-
-                        break;
-                    }
-                    case 2:
-                        if (makeMove(aComputer, aHuman)) {
-                            aHuman.isNext(true);
-                            aComputer.isNext(false);
-
-                            return;
-                        }
-                        break;
-                    case 3:
-                        // exit(0);
-                }
-            }
-        }
-    }
+//
+//                        break;
+//                    }
+//                    case 2:
+//                        if (makeMove(aComputer, aHuman)) {
+//                            aHuman.isNext(true);
+//                            aComputer.isNext(false);
+//
+//                            return;
+//                        }
+//                        break;
+//                    case 3:
+//                        exit(0);
+//                }
+//            }
+//        }
+//    }
 
     /**********************************************************************
      Function Name: makeMove
