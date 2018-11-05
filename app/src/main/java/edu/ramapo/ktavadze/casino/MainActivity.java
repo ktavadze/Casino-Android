@@ -1,5 +1,7 @@
 package edu.ramapo.ktavadze.casino;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,5 +34,18 @@ public class MainActivity extends AppCompatActivity {
         Round round = new Round(1, table, deck);
 
         Log.d(TAG, "Round: " + round.stringify(computer, human));
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
+        if (fragment != null && !currentFragment.getClass().equals(fragment.getClass())) {
+            getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_container, fragment)
+                    .commit();
+            return true;
+        }
+        return false;
     }
 }
