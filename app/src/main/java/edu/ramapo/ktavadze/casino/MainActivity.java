@@ -1,3 +1,11 @@
+/*
+ ************************************************************
+ * Name: Konstantine Tavadze                                *
+ * Project: Casino - Milestone #1                           *
+ * Class: Organization of Programming Languages             *
+ * Date: 11/06/2018                                         *
+ ************************************************************
+ */
 package edu.ramapo.ktavadze.casino;
 
 import android.support.v4.app.Fragment;
