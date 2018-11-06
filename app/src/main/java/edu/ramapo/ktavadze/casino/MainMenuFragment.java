@@ -15,7 +15,10 @@ public class MainMenuFragment extends Fragment {
     private static final String TAG = "MainMenuFragment";
 
     private Context mContext;
-    private View mView;
+
+    private Button mButtonMenuStart;
+    private Button mButtonMenuLoad;
+    private Button mButtonMenuQuit;
 
     public MainMenuFragment() {
         // Required empty public constructor
@@ -33,9 +36,13 @@ public class MainMenuFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        mView = inflater.inflate(R.layout.fragment_main_menu, null);
+        View view = inflater.inflate(R.layout.fragment_main_menu, null);
 
-        return mView;
+        mButtonMenuStart = view.findViewById(R.id.button_menu_start);
+        mButtonMenuLoad = view.findViewById(R.id.button_menu_load);
+        mButtonMenuQuit = view.findViewById(R.id.button_menu_quit);
+
+        return view;
     }
 
     @Override
@@ -49,8 +56,7 @@ public class MainMenuFragment extends Fragment {
 
     private void addListeners() {
         // Add start listener
-        final Button buttonMenuStart = mView.findViewById(R.id.button_menu_start);
-        buttonMenuStart.setOnClickListener(new View.OnClickListener() {
+        mButtonMenuStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity)mContext).loadFragment(new CoinTossFragment());
@@ -58,8 +64,7 @@ public class MainMenuFragment extends Fragment {
         });
 
         // Add load listener
-        final Button buttonMenuLoad = mView.findViewById(R.id.button_menu_load);
-        buttonMenuLoad.setOnClickListener(new View.OnClickListener() {
+        mButtonMenuLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity)mContext).loadFragment(new MainMenuFragment());
@@ -67,8 +72,7 @@ public class MainMenuFragment extends Fragment {
         });
 
         // Add quit listener
-        final Button buttonMenuQuit = mView.findViewById(R.id.button_menu_quit);
-        buttonMenuQuit.setOnClickListener(new View.OnClickListener() {
+        mButtonMenuQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity)mContext).loadFragment(new MainMenuFragment());

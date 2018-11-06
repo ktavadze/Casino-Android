@@ -19,7 +19,6 @@ public class CoinTossFragment extends Fragment {
     private static final String TAG = "CoinTossFragment";
 
     private Context mContext;
-    private View mView;
 
     private Button mButtonTossHeads;
     private Button mButtonTossTails;
@@ -42,14 +41,14 @@ public class CoinTossFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        mView = inflater.inflate(R.layout.fragment_coin_toss, null);
+        View view = inflater.inflate(R.layout.fragment_coin_toss, null);
 
-        mButtonTossHeads = mView.findViewById(R.id.button_toss_heads);
-        mButtonTossTails = mView.findViewById(R.id.button_toss_tails);
-        mTextTossResult = mView.findViewById(R.id.text_toss_result);
-        mButtonTossContinue = mView.findViewById(R.id.button_toss_continue);
+        mButtonTossHeads = view.findViewById(R.id.button_toss_heads);
+        mButtonTossTails = view.findViewById(R.id.button_toss_tails);
+        mTextTossResult = view.findViewById(R.id.text_toss_result);
+        mButtonTossContinue = view.findViewById(R.id.button_toss_continue);
 
-        return mView;
+        return view;
     }
 
     @Override
