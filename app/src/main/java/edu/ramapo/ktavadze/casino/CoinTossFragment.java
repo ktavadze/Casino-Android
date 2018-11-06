@@ -81,7 +81,7 @@ public class CoinTossFragment extends Fragment {
         mButtonTossContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)mContext).loadFragment(new CoinTossFragment());
+                ((MainActivity)mContext).loadFragment(new SeedMenuFragment());
             }
         });
 
