@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CoinTossFragment">
+
+    <Button
+        android:id="@+id/button_toss_heads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
+        android:textSize="50dp"
+        android:text="Guess Heads" />
+
+    <Button
+        android:id="@+id/button_toss_tails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        android:textSize="50dp"
+        android:text="Guess Tails" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:textSize="50dp" />
+
+    <Button
+        android:id="@+id/button_toss_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:background="@color/colorAccent"
+        android:textSize="50dp"
+        android:text="Continue" />
+
+</LinearLayout>

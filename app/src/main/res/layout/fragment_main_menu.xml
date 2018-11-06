@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainMenuFragment">
+
+    <Button
+        android:id="@+id/button_menu_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorGreen"
+        android:textSize="50dp"
+        android:text="Start Game" />
+
+    <Button
+        android:id="@+id/button_menu_load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorYellow"
+        android:textSize="50dp"
+        android:text="Load Game" />
+
+    <Button
+        android:id="@+id/button_menu_quit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorRed"
+        android:textSize="50dp"
+        android:text="Quit Game" />
+
+</LinearLayout>
