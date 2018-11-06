@@ -81,7 +81,7 @@ public class CoinTossFragment extends Fragment {
         mButtonTossContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getContext()).loadFragment(new CoinTossFragment());
+                ((MainActivity)mContext).loadFragment(new CoinTossFragment());
             }
         });
 
@@ -115,10 +115,14 @@ public class CoinTossFragment extends Fragment {
         if (coin == guess) {
             final int colorGreen = ContextCompat.getColor(mContext, R.color.colorGreen);
             mTextTossResult.setBackgroundColor(colorGreen);
+
+            ((MainActivity)mContext).mTournament = new Tournament(true);
         }
         else {
             final int colorRed = ContextCompat.getColor(mContext, R.color.colorRed);
             mTextTossResult.setBackgroundColor(colorRed);
+
+            ((MainActivity)mContext).mTournament = new Tournament(false);
         }
     }
 }
