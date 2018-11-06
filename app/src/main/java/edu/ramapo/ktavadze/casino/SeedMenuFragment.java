@@ -57,7 +57,7 @@ public class SeedMenuFragment extends Fragment {
         mButtonMenuNewDeck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                ((MainActivity)mContext).loadFragment(new GameFragment());
             }
         });
 
