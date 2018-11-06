@@ -16,9 +16,9 @@ public class MainMenuFragment extends Fragment {
 
     private Context mContext;
 
-    private Button mButtonMenuStart;
-    private Button mButtonMenuLoad;
-    private Button mButtonMenuQuit;
+    private Button mButtonMenuStartGame;
+    private Button mButtonMenuLoadGame;
+    private Button mButtonMenuQuitGame;
 
     public MainMenuFragment() {
         // Required empty public constructor
@@ -38,9 +38,9 @@ public class MainMenuFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_main_menu, null);
 
-        mButtonMenuStart = view.findViewById(R.id.button_menu_start);
-        mButtonMenuLoad = view.findViewById(R.id.button_menu_load);
-        mButtonMenuQuit = view.findViewById(R.id.button_menu_quit);
+        mButtonMenuStartGame = view.findViewById(R.id.button_menu_start_game);
+        mButtonMenuLoadGame = view.findViewById(R.id.button_menu_load_game);
+        mButtonMenuQuitGame = view.findViewById(R.id.button_menu_quit_game);
 
         return view;
     }
@@ -55,24 +55,24 @@ public class MainMenuFragment extends Fragment {
     }
 
     private void addListeners() {
-        // Add start listener
-        mButtonMenuStart.setOnClickListener(new View.OnClickListener() {
+        // Add start game listener
+        mButtonMenuStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity)mContext).loadFragment(new CoinTossFragment());
             }
         });
 
-        // Add load listener
-        mButtonMenuLoad.setOnClickListener(new View.OnClickListener() {
+        // Add load game listener
+        mButtonMenuLoadGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity)mContext).loadFragment(new MainMenuFragment());
             }
         });
 
-        // Add quit listener
-        mButtonMenuQuit.setOnClickListener(new View.OnClickListener() {
+        // Add quit game listener
+        mButtonMenuQuitGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity)mContext).finish();

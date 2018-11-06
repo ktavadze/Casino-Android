@@ -9,7 +9,7 @@
     tools:context=".MainMenuFragment">
 
     <Button
-        android:id="@+id/button_menu_start"
+        android:id="@+id/button_menu_start_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -18,7 +18,7 @@
         android:text="Start Game" />
 
     <Button
-        android:id="@+id/button_menu_load"
+        android:id="@+id/button_menu_load_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -27,7 +27,7 @@
         android:text="Load Game" />
 
     <Button
-        android:id="@+id/button_menu_quit"
+        android:id="@+id/button_menu_quit_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"

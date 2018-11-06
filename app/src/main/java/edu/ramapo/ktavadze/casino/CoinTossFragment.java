@@ -20,8 +20,8 @@ public class CoinTossFragment extends Fragment {
 
     private Context mContext;
 
-    private Button mButtonTossHeads;
-    private Button mButtonTossTails;
+    private Button mButtonTossGuessHeads;
+    private Button mButtonTossGuessTails;
     private TextView mTextTossResult;
     private Button mButtonTossContinue;
 
@@ -43,8 +43,8 @@ public class CoinTossFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_coin_toss, null);
 
-        mButtonTossHeads = view.findViewById(R.id.button_toss_heads);
-        mButtonTossTails = view.findViewById(R.id.button_toss_tails);
+        mButtonTossGuessHeads = view.findViewById(R.id.button_toss_guess_heads);
+        mButtonTossGuessTails = view.findViewById(R.id.button_toss_guess_tails);
         mTextTossResult = view.findViewById(R.id.text_toss_result);
         mButtonTossContinue = view.findViewById(R.id.button_toss_continue);
 
@@ -61,16 +61,16 @@ public class CoinTossFragment extends Fragment {
     }
 
     private void addListeners() {
-        // Add heads listener
-        mButtonTossHeads.setOnClickListener(new View.OnClickListener() {
+        // Add guess heads listener
+        mButtonTossGuessHeads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 processGuess(0);
             }
         });
 
-        // Add tails listener
-        mButtonTossTails.setOnClickListener(new View.OnClickListener() {
+        // Add guess tails listener
+        mButtonTossGuessTails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 processGuess(1);
@@ -94,8 +94,8 @@ public class CoinTossFragment extends Fragment {
         int coin = rand.nextInt(2);
 
         // Hide guess buttons
-        mButtonTossHeads.setVisibility(View.GONE);
-        mButtonTossTails.setVisibility(View.GONE);
+        mButtonTossGuessHeads.setVisibility(View.GONE);
+        mButtonTossGuessTails.setVisibility(View.GONE);
 
         // Show result
         mTextTossResult.setVisibility(View.VISIBLE);
