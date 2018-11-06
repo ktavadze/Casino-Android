@@ -8,8 +8,8 @@ public class Tournament {
     public Tournament() {}
 
     public Tournament(boolean aHumanTurn) {
-        mComputer.isNext(!aHumanTurn);
-        mHuman.isNext(aHumanTurn);
+        mComputer = new Computer(aHumanTurn);
+        mHuman = new Human(aHumanTurn);
         mRound = new Round(1);
     }
 

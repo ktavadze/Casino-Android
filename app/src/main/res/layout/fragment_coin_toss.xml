@@ -29,10 +29,13 @@
         android:text="Guess Tails" />
 
     <TextView
+        android:id="@+id/text_toss_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:visibility="gone"
+        android:gravity="center"
+        android:textStyle="bold"
         android:textSize="50dp" />
 
     <Button

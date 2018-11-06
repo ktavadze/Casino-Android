@@ -1,5 +1,6 @@
 package edu.ramapo.ktavadze.casino;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,10 +14,18 @@ import android.widget.Button;
 public class MainMenuFragment extends Fragment {
     private static final String TAG = "MainMenuFragment";
 
+    private Context mContext;
     private View mView;
 
     public MainMenuFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        mContext = context;
     }
 
     @Nullable
@@ -44,7 +53,7 @@ public class MainMenuFragment extends Fragment {
         buttonMenuStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getContext()).loadFragment(new CoinTossFragment());
+                ((MainActivity)mContext).loadFragment(new CoinTossFragment());
             }
         });
 
@@ -53,7 +62,7 @@ public class MainMenuFragment extends Fragment {
         buttonMenuLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getContext()).loadFragment(new MainMenuFragment());
+                ((MainActivity)mContext).loadFragment(new MainMenuFragment());
             }
         });
 
@@ -62,7 +71,7 @@ public class MainMenuFragment extends Fragment {
         buttonMenuQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getContext()).loadFragment(new MainMenuFragment());
+                ((MainActivity)mContext).loadFragment(new MainMenuFragment());
             }
         });
 

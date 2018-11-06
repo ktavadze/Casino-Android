@@ -1,14 +1,16 @@
 package edu.ramapo.ktavadze.casino;
 
 public class Round {
-    private int mNumber = 1;
-    private Table mTable = new Table();
-    private Deck mDeck = new Deck();
+    private int mNumber;
+    private Table mTable;
+    private Deck mDeck;
 
     public Round() {}
 
     public Round(int aNumber) {
         mNumber = aNumber;
+        mTable = new Table();
+        mDeck = new Deck();
     }
 
     public Round(int aNumber, Table aTable, Deck aDeck) {
