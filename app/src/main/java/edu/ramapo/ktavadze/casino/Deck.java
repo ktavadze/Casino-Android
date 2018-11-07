@@ -6,14 +6,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class Deck {
-    private ArrayList<Card> mCards = new ArrayList<>();
+    private ArrayList<Card> mCards;
 
     public Deck() {
+        // Generate names
         List<String> suits = Arrays.asList("C", "D", "H", "S");
         List<String> values = Arrays.asList("2", "3", "4", "5", "6", "7", "8","9", "X", "J", "Q", "K", "A");
         ArrayList<String> names = new ArrayList<>();
 
-        // Generate names
         for (String suit : suits) {
             for (String value : values) {
                 names.add(suit + value);
@@ -23,7 +23,9 @@ public class Deck {
         // Shuffle names
         Collections.shuffle(names);
 
-        // Populate deck
+        // Generate deck
+        mCards = new ArrayList<>();
+
         for (String name : names) {
             mCards.add(new Card(name));
         }

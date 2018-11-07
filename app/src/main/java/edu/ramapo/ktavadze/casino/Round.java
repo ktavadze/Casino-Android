@@ -5,8 +5,6 @@ public class Round {
     private Table mTable;
     private Deck mDeck;
 
-    public Round() {}
-
     public Round(int aNumber) {
         mNumber = aNumber;
         mTable = new Table();

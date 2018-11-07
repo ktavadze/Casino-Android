@@ -5,8 +5,6 @@ public class Tournament {
     private Human mHuman;
     private Round mRound;
 
-    public Tournament() {}
-
     public Tournament(boolean aHumanTurn) {
         mComputer = new Computer(aHumanTurn);
         mHuman = new Human(aHumanTurn);

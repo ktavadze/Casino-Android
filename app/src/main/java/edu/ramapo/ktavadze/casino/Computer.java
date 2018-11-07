@@ -1,8 +1,6 @@
 package edu.ramapo.ktavadze.casino;
 
 public class Computer extends Player {
-    public Computer() {}
-
     public Computer(boolean aIsNext) {
         mIsHuman = false;
         mIsNext = aIsNext;

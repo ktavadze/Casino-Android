@@ -3,10 +3,13 @@ package edu.ramapo.ktavadze.casino;
 import java.util.ArrayList;
 
 public class Table {
-    private Set mLooseSet = new Set();
-    private ArrayList<Build> mBuilds = new ArrayList<>();
+    private Set mLooseSet;
+    private ArrayList<Build> mBuilds;
 
-    public Table() {}
+    public Table() {
+        mLooseSet = new Set();
+        mBuilds = new ArrayList<>();
+    }
 
     public Table(Set aLooseSet, ArrayList<Build> aBuilds) {
         mLooseSet = aLooseSet;

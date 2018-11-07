@@ -1,8 +1,6 @@
 package edu.ramapo.ktavadze.casino;
 
 public class Human extends Player {
-    public Human() {}
-
     public Human(boolean aIsNext) {
         mIsHuman = true;
         mIsNext = aIsNext;

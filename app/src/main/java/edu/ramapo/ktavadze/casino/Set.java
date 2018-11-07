@@ -3,9 +3,11 @@ package edu.ramapo.ktavadze.casino;
 import java.util.ArrayList;
 
 public class Set {
-    ArrayList<Card> mCards = new ArrayList<>();
+    private ArrayList<Card> mCards;
 
-    public Set() {}
+    public Set() {
+        mCards = new ArrayList<>();
+    }
 
     public Set(ArrayList<Card> aCards) {
         mCards = aCards;
