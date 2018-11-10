@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".GameFragment">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_computer_hand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
     <LinearLayout
         android:id="@+id/linear_start_menu"
         android:layout_width="match_parent"

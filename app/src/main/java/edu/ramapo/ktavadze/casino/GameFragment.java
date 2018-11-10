@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +96,15 @@ public class GameFragment extends Fragment {
         mRound.startTurn(mComputer, mHuman);
 
         Log.d(TAG, "ROUND: \n" + mRound.stringify(mComputer, mHuman));
+
+        initRecyclers();
+    }
+
+    private void initRecyclers() {
+        // Init computer hand recycler
+        final RecyclerView recyclerComputerHand = mView.findViewById(R.id.recycler_computer_hand);
+        recyclerComputerHand.setAdapter(new ComputerHandRecyclerAdapter(mContext, mComputer.getHand().getCards()));
+        recyclerComputerHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void addListeners() {
