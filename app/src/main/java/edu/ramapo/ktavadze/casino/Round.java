@@ -21,6 +21,30 @@ public class Round {
         return mNumber;
     }
 
+    public void startTurn(Player aComputer, Player aHuman) {
+        if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
+            // TODO: Seed deck
+//                if (aComputer.getPile().isEmpty() && aHuman.getPile().isEmpty()) {
+//                    if (mTable.getLooseSet().isEmpty() && mTable.getBuilds().isEmpty()) {
+//                        if (Console::processDeckSeed()) {
+//                            Serialization::seedDeck(mDeck);
+//                        }
+//                    }
+//                }
+
+            // Deal players
+            aHuman.setHand(mDeck.drawSet());
+            aComputer.setHand(mDeck.drawSet());
+
+            if (aComputer.getPile().isEmpty() && aHuman.getPile().isEmpty()) {
+                if (mTable.getLooseSet().isEmpty() && mTable.getBuilds().isEmpty()) {
+                    // Deal table
+                    mTable.setLooseSet(mDeck.drawSet());
+                }
+            }
+        }
+    }
+
     /**********************************************************************
      Function Name: start
      Purpose: To start the round
