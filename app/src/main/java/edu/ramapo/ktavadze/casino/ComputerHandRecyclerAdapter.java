@@ -2,11 +2,11 @@ package edu.ramapo.ktavadze.casino;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -26,12 +26,12 @@ public class ComputerHandRecyclerAdapter extends RecyclerView.Adapter<ComputerHa
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        CardView computerCard;
+        ImageView imageComputerCard;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            computerCard = itemView.findViewById(R.id.cardview_computer_card);
+            imageComputerCard = itemView.findViewById(R.id.image_computer_card);
         }
     }
 
@@ -46,12 +46,12 @@ public class ComputerHandRecyclerAdapter extends RecyclerView.Adapter<ComputerHa
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // Get card info
+        // Get card
         final Card card = mCards.get(position);
 
         // Set card image
         final String fileName = "card_" + card.getName().toLowerCase();
-        holder.computerCard.setBackgroundResource(mContext.getResources()
+        holder.imageComputerCard.setImageResource(mContext.getResources()
                 .getIdentifier(fileName, "drawable", mContext.getPackageName()));
     }
 

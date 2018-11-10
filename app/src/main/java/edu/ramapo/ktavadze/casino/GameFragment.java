@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -53,9 +52,15 @@ public class GameFragment extends Fragment {
         mContext = context;
 
         mTournament = ((MainActivity)mContext).mTournament;
-        mComputer = mTournament.getComputer();
-        mHuman = mTournament.getHuman();
-        mRound = mTournament.getRound();
+
+        if (mTournament == null) {
+            ((MainActivity)mContext).loadFragment(new MainMenuFragment());
+        }
+        else {
+            mComputer = mTournament.getComputer();
+            mHuman = mTournament.getHuman();
+            mRound = mTournament.getRound();
+        }
     }
 
     @Nullable
