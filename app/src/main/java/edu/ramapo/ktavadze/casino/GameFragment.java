@@ -25,17 +25,6 @@ public class GameFragment extends Fragment {
     private LinearLayout mLinearBuildMenu;
     private LinearLayout mLinearEndMenu;
 
-    private Button mButtonGetHelp;
-    private Button mButtonMakeMove;
-    private Button mButtonBuildMove;
-    private Button mButtonCaptureMove;
-    private Button mButtonTrailMove;
-    private Button mButtonIncreaseMove;
-    private Button mButtonExtendMove;
-    private Button mButtonCreateMove;
-    private Button mButtonCancelMove;
-    private Button mButtonSubmitMove;
-
     private Tournament mTournament;
     private Player mComputer;
     private Player mHuman;
@@ -75,18 +64,6 @@ public class GameFragment extends Fragment {
         mLinearBuildMenu = mView.findViewById(R.id.linear_build_menu);
         mLinearEndMenu = mView.findViewById(R.id.linear_end_menu);
 
-        mButtonMakeMove = mView.findViewById(R.id.button_make_move);
-        mButtonGetHelp = mView.findViewById(R.id.button_get_help);
-        mButtonGetHelp = mView.findViewById(R.id.button_get_help);
-        mButtonBuildMove = mView.findViewById(R.id.button_build_move);
-        mButtonCaptureMove = mView.findViewById(R.id.button_capture_move);
-        mButtonTrailMove = mView.findViewById(R.id.button_trail_move);
-        mButtonIncreaseMove = mView.findViewById(R.id.button_increase_move);
-        mButtonExtendMove = mView.findViewById(R.id.button_extend_move);
-        mButtonCreateMove = mView.findViewById(R.id.button_create_move);
-        mButtonCancelMove = mView.findViewById(R.id.button_cancel_move);
-        mButtonSubmitMove = mView.findViewById(R.id.button_submit_move);
-
         return mView;
     }
 
@@ -124,7 +101,8 @@ public class GameFragment extends Fragment {
 
     private void addListeners() {
         // Add get help listener
-        mButtonGetHelp.setOnClickListener(new View.OnClickListener() {
+        final Button buttonGetHelp = mView.findViewById(R.id.button_get_help);
+        buttonGetHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODO
@@ -132,7 +110,8 @@ public class GameFragment extends Fragment {
         });
 
         // Add make move listener
-        mButtonMakeMove.setOnClickListener(new View.OnClickListener() {
+        final Button buttonMakeMove = mView.findViewById(R.id.button_make_move);
+        buttonMakeMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLinearStartMenu.setVisibility(View.GONE);
@@ -141,7 +120,8 @@ public class GameFragment extends Fragment {
         });
 
         // Add build move listener
-        mButtonBuildMove.setOnClickListener(new View.OnClickListener() {
+        final Button buttonBuildMove = mView.findViewById(R.id.button_build_move);
+        buttonBuildMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLinearMoveMenu.setVisibility(View.GONE);
@@ -150,7 +130,8 @@ public class GameFragment extends Fragment {
         });
 
         // Add capture move listener
-        mButtonCaptureMove.setOnClickListener(new View.OnClickListener() {
+        final Button buttonCaptureMove = mView.findViewById(R.id.button_capture_move);
+        buttonCaptureMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLinearMoveMenu.setVisibility(View.GONE);
@@ -159,7 +140,8 @@ public class GameFragment extends Fragment {
         });
 
         // Add trail move listener
-        mButtonTrailMove.setOnClickListener(new View.OnClickListener() {
+        final Button buttonTrailMove = mView.findViewById(R.id.button_trail_move);
+        buttonTrailMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLinearMoveMenu.setVisibility(View.GONE);
@@ -168,7 +150,8 @@ public class GameFragment extends Fragment {
         });
 
         // Add increase move listener
-        mButtonIncreaseMove.setOnClickListener(new View.OnClickListener() {
+        final Button buttonIncreaseMove = mView.findViewById(R.id.button_increase_move);
+        buttonIncreaseMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLinearBuildMenu.setVisibility(View.GONE);
@@ -177,7 +160,8 @@ public class GameFragment extends Fragment {
         });
 
         // Add extend move listener
-        mButtonExtendMove.setOnClickListener(new View.OnClickListener() {
+        final Button buttonExtendMove = mView.findViewById(R.id.button_extend_move);
+        buttonExtendMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLinearBuildMenu.setVisibility(View.GONE);
@@ -186,7 +170,8 @@ public class GameFragment extends Fragment {
         });
 
         // Add create move listener
-        mButtonCreateMove.setOnClickListener(new View.OnClickListener() {
+        final Button buttonCreateMove = mView.findViewById(R.id.button_create_move);
+        buttonCreateMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLinearBuildMenu.setVisibility(View.GONE);
@@ -195,7 +180,8 @@ public class GameFragment extends Fragment {
         });
 
         // Add cancel move listener
-        mButtonCancelMove.setOnClickListener(new View.OnClickListener() {
+        final Button buttonCancelMove = mView.findViewById(R.id.button_cancel_move);
+        buttonCancelMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLinearEndMenu.setVisibility(View.GONE);
@@ -204,7 +190,8 @@ public class GameFragment extends Fragment {
         });
 
         // Add submit move listener
-        mButtonSubmitMove.setOnClickListener(new View.OnClickListener() {
+        final Button buttonSubmitMove = mView.findViewById(R.id.button_submit_move);
+        buttonSubmitMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLinearEndMenu.setVisibility(View.GONE);
