@@ -9,7 +9,7 @@
     tools:context=".CoinTossFragment">
 
     <Button
-        android:id="@+id/button_toss_guess_heads"
+        android:id="@+id/button_guess_heads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -19,7 +19,7 @@
         android:text="Guess Heads" />
 
     <Button
-        android:id="@+id/button_toss_guess_tails"
+        android:id="@+id/button_guess_tails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -27,25 +27,5 @@
         android:textColor="@android:color/white"
         android:textSize="50dp"
         android:text="Guess Tails" />
-
-    <TextView
-        android:id="@+id/text_toss_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:visibility="gone"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="50dp" />
-
-    <Button
-        android:id="@+id/button_toss_continue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:visibility="gone"
-        android:background="@color/colorAccent"
-        android:textSize="50dp"
-        android:text="Continue" />
 
 </LinearLayout>

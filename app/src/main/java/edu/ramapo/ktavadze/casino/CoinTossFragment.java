@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.Random;
 
@@ -20,10 +19,8 @@ public class CoinTossFragment extends Fragment {
 
     private Context mContext;
 
-    private Button mButtonTossGuessHeads;
-    private Button mButtonTossGuessTails;
-    private TextView mTextTossResult;
-    private Button mButtonTossContinue;
+    private Button mButtonGuessHeads;
+    private Button mButtonGuessTails;
 
     public CoinTossFragment() {
         // Required empty public constructor
@@ -43,10 +40,8 @@ public class CoinTossFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_coin_toss, null);
 
-        mButtonTossGuessHeads = view.findViewById(R.id.button_toss_guess_heads);
-        mButtonTossGuessTails = view.findViewById(R.id.button_toss_guess_tails);
-        mTextTossResult = view.findViewById(R.id.text_toss_result);
-        mButtonTossContinue = view.findViewById(R.id.button_toss_continue);
+        mButtonGuessHeads = view.findViewById(R.id.button_guess_heads);
+        mButtonGuessTails = view.findViewById(R.id.button_guess_tails);
 
         return view;
     }
@@ -61,27 +56,19 @@ public class CoinTossFragment extends Fragment {
     }
 
     private void addListeners() {
-        // Add guess heads listener
-        mButtonTossGuessHeads.setOnClickListener(new View.OnClickListener() {
+        // Add heads listener
+        mButtonGuessHeads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 processGuess(0);
             }
         });
 
-        // Add guess tails listener
-        mButtonTossGuessTails.setOnClickListener(new View.OnClickListener() {
+        // Add tails listener
+        mButtonGuessTails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 processGuess(1);
-            }
-        });
-
-        // Add continue listener
-        mButtonTossContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainActivity)mContext).loadFragment(new SeedMenuFragment());
             }
         });
 
@@ -91,38 +78,47 @@ public class CoinTossFragment extends Fragment {
     private void processGuess(int guess) {
         Random rand = new Random();
 
-        int coin = rand.nextInt(2);
-
-        // Hide guess buttons
-        mButtonTossGuessHeads.setVisibility(View.GONE);
-        mButtonTossGuessTails.setVisibility(View.GONE);
-
-        // Show result
-        mTextTossResult.setVisibility(View.VISIBLE);
-        mButtonTossContinue.setVisibility(View.VISIBLE);
-
-        String message = "";
-
-        if (coin == 0) {
-            message += "HEADS";
-        }
-        else {
-            message += "TAILS";
-        }
-
-        mTextTossResult.setText(message);
+        final int coin = rand.nextInt(2);
 
         if (coin == guess) {
             final int colorGreen = ContextCompat.getColor(mContext, R.color.colorGreen);
-            mTextTossResult.setBackgroundColor(colorGreen);
+
+            if (guess == 0) {
+                mButtonGuessHeads.setBackgroundColor(colorGreen);
+            }
+            else {
+                mButtonGuessTails.setBackgroundColor(colorGreen);
+            }
 
             ((MainActivity)mContext).mTournament = new Tournament(true);
         }
         else {
             final int colorRed = ContextCompat.getColor(mContext, R.color.colorRed);
-            mTextTossResult.setBackgroundColor(colorRed);
+
+            if (guess == 0) {
+                mButtonGuessHeads.setBackgroundColor(colorRed);
+            }
+            else {
+                mButtonGuessTails.setBackgroundColor(colorRed);
+            }
 
             ((MainActivity)mContext).mTournament = new Tournament(false);
         }
+
+        // Overwrite heads listener
+        mButtonGuessHeads.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)mContext).loadFragment(new SeedMenuFragment());
+            }
+        });
+
+        // Overwrite tails listener
+        mButtonGuessTails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)mContext).loadFragment(new SeedMenuFragment());
+            }
+        });
     }
 }
