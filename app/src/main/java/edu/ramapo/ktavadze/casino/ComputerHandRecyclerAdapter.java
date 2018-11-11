@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
@@ -26,12 +26,12 @@ public class ComputerHandRecyclerAdapter extends RecyclerView.Adapter<ComputerHa
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageComputerCard;
+        ImageButton imageButtonPlayerCard;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            imageComputerCard = itemView.findViewById(R.id.image_computer_card);
+            imageButtonPlayerCard = itemView.findViewById(R.id.imageButton_player_card);
         }
     }
 
@@ -39,7 +39,7 @@ public class ComputerHandRecyclerAdapter extends RecyclerView.Adapter<ComputerHa
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_computer_card, parent, false);
+                .inflate(R.layout.recycler_player_card, parent, false);
 
         return new ViewHolder(view);
     }
@@ -51,7 +51,7 @@ public class ComputerHandRecyclerAdapter extends RecyclerView.Adapter<ComputerHa
 
         // Set card image
         final String fileName = "card_" + card.getName().toLowerCase();
-        holder.imageComputerCard.setImageResource(mContext.getResources()
+        holder.imageButtonPlayerCard.setImageResource(mContext.getResources()
                 .getIdentifier(fileName, "drawable", mContext.getPackageName()));
     }
 

@@ -27,12 +27,12 @@ public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecy
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageButton imageButtonHumanCard;
+        ImageButton imageButtonPlayerCard;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            imageButtonHumanCard = itemView.findViewById(R.id.imageButton_human_card);
+            imageButtonPlayerCard = itemView.findViewById(R.id.imageButton_player_card);
         }
     }
 
@@ -40,7 +40,7 @@ public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecy
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_human_card, parent, false);
+                .inflate(R.layout.recycler_player_card, parent, false);
 
         return new ViewHolder(view);
     }
@@ -52,13 +52,13 @@ public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecy
 
         // Set card image
         final String fileName = "card_" + card.getName().toLowerCase();
-        holder.imageButtonHumanCard.setImageResource(mContext.getResources()
+        holder.imageButtonPlayerCard.setImageResource(mContext.getResources()
                 .getIdentifier(fileName, "drawable", mContext.getPackageName()));
 
-        holder.imageButtonHumanCard.setOnClickListener(new View.OnClickListener() {
+        holder.imageButtonPlayerCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.setBackgroundColor(mContext.getResources().getColor(R.color.colorGreen));
+                v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
 
                 Log.d(TAG, "onClick: Clicked on: " + card.getName());
             }
