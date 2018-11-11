@@ -12,18 +12,23 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 
 /**
- * HumanHandRecyclerAdapter Class to facilitate computer hand recycler functionality.
+ * HumanHandRecyclerAdapter Class to facilitate human hand recycler functionality.
  */
 
 public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecyclerAdapter.ViewHolder> {
     private static final String TAG = "HumanHandRecycler";
 
+
     private Context mContext;
     private ArrayList<Card> mCards;
+    private Card mSelectedCard;
+    private View mSelectedView;
 
-    public HumanHandRecyclerAdapter(Context context, ArrayList<Card> cards) {
+    public HumanHandRecyclerAdapter(Context context, ArrayList<Card> cards, Card selectedCard, View selectedView) {
         mContext = context;
         mCards = cards;
+        mSelectedCard = selectedCard;
+        mSelectedView = selectedView;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,7 +63,22 @@ public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecy
         holder.imageButtonPlayerCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+                if (card.equals(mSelectedCard)) {
+                    mSelectedCard = null;
+                    mSelectedView = null;
+
+                    v.setBackgroundColor(0);
+                }
+                else {
+                    if (mSelectedView != null) {
+                        mSelectedView.setBackgroundColor(0);
+                    }
+
+                    mSelectedCard = card;
+                    mSelectedView = v;
+
+                    v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+                }
 
                 Log.d(TAG, "onClick: Clicked on: " + card.getName());
             }

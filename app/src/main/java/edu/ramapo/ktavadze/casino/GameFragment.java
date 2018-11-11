@@ -30,6 +30,9 @@ public class GameFragment extends Fragment {
     private Player mHuman;
     private Round mRound;
 
+    private Card mSelectedPlayerCard = null;
+    private View mSelectedPlayerView = null;
+
     public GameFragment() {
         // Required empty public constructor
     }
@@ -105,7 +108,7 @@ public class GameFragment extends Fragment {
 
         // Init human hand recycler
         final RecyclerView recyclerHumanHand = mView.findViewById(R.id.recycler_human_hand);
-        recyclerHumanHand.setAdapter(new HumanHandRecyclerAdapter(mContext, mHuman.getHand().getCards()));
+        recyclerHumanHand.setAdapter(new HumanHandRecyclerAdapter(mContext, mHuman.getHand().getCards(), mSelectedPlayerCard, mSelectedPlayerView));
         recyclerHumanHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
         // Init human pile recycler
