@@ -88,6 +88,11 @@ public class GameFragment extends Fragment {
         recyclerDeck.setAdapter(new CardsRecyclerAdapter(mContext, mRound.getDeck().getCards()));
         recyclerDeck.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
+        // Init loose set recycler
+        final RecyclerView recyclerLooseSet = mView.findViewById(R.id.recycler_loose_set);
+        recyclerLooseSet.setAdapter(new LooseSetRecyclerAdapter(mContext, mRound.getTable().getLooseSet().getCards()));
+        recyclerLooseSet.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
         // Init computer hand recycler
         final RecyclerView recyclerComputerHand = mView.findViewById(R.id.recycler_computer_hand);
         recyclerComputerHand.setAdapter(new ComputerHandRecyclerAdapter(mContext, mComputer.getHand().getCards()));

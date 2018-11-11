@@ -3,35 +3,36 @@ package edu.ramapo.ktavadze.casino;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
 /**
- * CardsRecyclerAdapter Class to facilitate cards recycler functionality.
+ * LooseSetRecyclerAdapter Class to facilitate loose set recycler functionality.
  */
 
-public class CardsRecyclerAdapter extends RecyclerView.Adapter<CardsRecyclerAdapter.ViewHolder> {
-    private static final String TAG = "CardsRecycler";
+public class LooseSetRecyclerAdapter extends RecyclerView.Adapter<LooseSetRecyclerAdapter.ViewHolder> {
+    private static final String TAG = "LooseSetRecycler";
 
     private Context mContext;
     private ArrayList<Card> mCards;
 
-    public CardsRecyclerAdapter(Context context, ArrayList<Card> cards) {
+    public LooseSetRecyclerAdapter(Context context, ArrayList<Card> cards) {
         mContext = context;
         mCards = cards;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageCard;
+        ImageButton imageButtonLooseCard;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            imageCard = itemView.findViewById(R.id.image_card);
+            imageButtonLooseCard = itemView.findViewById(R.id.imageButton_loose_card);
         }
     }
 
@@ -39,7 +40,7 @@ public class CardsRecyclerAdapter extends RecyclerView.Adapter<CardsRecyclerAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_card, parent, false);
+                .inflate(R.layout.recycler_loose_card, parent, false);
 
         return new ViewHolder(view);
     }
@@ -51,8 +52,17 @@ public class CardsRecyclerAdapter extends RecyclerView.Adapter<CardsRecyclerAdap
 
         // Set card image
         final String fileName = "card_" + card.getName().toLowerCase();
-        holder.imageCard.setImageResource(mContext.getResources()
+        holder.imageButtonLooseCard.setImageResource(mContext.getResources()
                 .getIdentifier(fileName, "drawable", mContext.getPackageName()));
+
+        holder.imageButtonLooseCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+
+                Log.d(TAG, "onClick: Clicked on: " + card.getName());
+            }
+        });
     }
 
     @Override
