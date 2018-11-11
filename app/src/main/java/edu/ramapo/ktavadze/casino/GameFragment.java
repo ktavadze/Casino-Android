@@ -93,15 +93,25 @@ public class GameFragment extends Fragment {
         recyclerComputerHand.setAdapter(new ComputerHandRecyclerAdapter(mContext, mComputer.getHand().getCards()));
         recyclerComputerHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
+        // Init computer pile recycler
+        final RecyclerView recyclerComputerPile = mView.findViewById(R.id.recycler_computer_pile);
+        recyclerComputerPile.setAdapter(new CardsRecyclerAdapter(mContext, mComputer.getPile().getCards()));
+        recyclerComputerPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
         // Init loose set recycler
         final RecyclerView recyclerLooseSet = mView.findViewById(R.id.recycler_loose_set);
         recyclerLooseSet.setAdapter(new LooseSetRecyclerAdapter(mContext, mRound.getTable().getLooseSet().getCards()));
-        recyclerLooseSet.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, true));
+        recyclerLooseSet.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
         // Init human hand recycler
         final RecyclerView recyclerHumanHand = mView.findViewById(R.id.recycler_human_hand);
         recyclerHumanHand.setAdapter(new HumanHandRecyclerAdapter(mContext, mHuman.getHand().getCards()));
-        recyclerHumanHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, true));
+        recyclerHumanHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
+        // Init human pile recycler
+        final RecyclerView recyclerHumanPile = mView.findViewById(R.id.recycler_human_pile);
+        recyclerHumanPile.setAdapter(new CardsRecyclerAdapter(mContext, mHuman.getPile().getCards()));
+        recyclerHumanPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void addListeners() {

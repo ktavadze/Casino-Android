@@ -50,6 +50,14 @@ public class Round {
                     mTable.setLooseSet(mDeck.drawSet());
                 }
             }
+
+            // Populate piles for testing
+            aHuman.mPile.addSet(mDeck.drawSet());
+            aHuman.mPile.addSet(mDeck.drawSet());
+            aHuman.mPile.addSet(mDeck.drawSet());
+            aComputer.mPile.addSet(mDeck.drawSet());
+            aComputer.mPile.addSet(mDeck.drawSet());
+            aComputer.mPile.addSet(mDeck.drawSet());
         }
     }
 
