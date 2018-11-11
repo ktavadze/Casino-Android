@@ -10,8 +10,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_deck"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryLight">
+        android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -19,7 +18,16 @@
         android:id="@+id/recycler_computer_hand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_below="@+id/recycler_deck"
+        android:background="@color/colorPrimaryLight">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_human_hand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler_computer_hand"
         android:background="@color/colorPrimaryLight">
 
     </android.support.v7.widget.RecyclerView>

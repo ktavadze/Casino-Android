@@ -115,6 +115,11 @@ public class GameFragment extends Fragment {
         final RecyclerView recyclerComputerHand = mView.findViewById(R.id.recycler_computer_hand);
         recyclerComputerHand.setAdapter(new ComputerHandRecyclerAdapter(mContext, mComputer.getHand().getCards()));
         recyclerComputerHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
+        // Init human hand recycler
+        final RecyclerView recyclerHumanHand = mView.findViewById(R.id.recycler_human_hand);
+        recyclerHumanHand.setAdapter(new HumanHandRecyclerAdapter(mContext, mHuman.getHand().getCards()));
+        recyclerHumanHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void addListeners() {
