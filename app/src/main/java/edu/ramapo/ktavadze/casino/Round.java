@@ -21,6 +21,14 @@ public class Round {
         return mNumber;
     }
 
+    public Table getTable() {
+        return mTable;
+    }
+
+    public Deck getDeck() {
+        return mDeck;
+    }
+
     public void startTurn(Player aComputer, Player aHuman) {
         if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
             // TODO: Seed deck

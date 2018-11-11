@@ -35,6 +35,10 @@ public class Deck {
         mCards = aCards;
     }
 
+    public ArrayList<Card> getCards() {
+        return mCards;
+    }
+
     public boolean isEmpty() {
         return mCards.isEmpty();
     }

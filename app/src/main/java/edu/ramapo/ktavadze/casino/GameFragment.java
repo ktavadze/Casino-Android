@@ -106,6 +106,11 @@ public class GameFragment extends Fragment {
     }
 
     private void initRecyclers() {
+        // Init deck recycler
+        final RecyclerView recyclerDeck = mView.findViewById(R.id.recycler_deck);
+        recyclerDeck.setAdapter(new CardsRecyclerAdapter(mContext, mRound.getDeck().getCards()));
+        recyclerDeck.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
         // Init computer hand recycler
         final RecyclerView recyclerComputerHand = mView.findViewById(R.id.recycler_computer_hand);
         recyclerComputerHand.setAdapter(new ComputerHandRecyclerAdapter(mContext, mComputer.getHand().getCards()));
