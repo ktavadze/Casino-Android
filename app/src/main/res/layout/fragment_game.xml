@@ -16,20 +16,19 @@
     </android.support.v7.widget.RecyclerView>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_loose_set"
-        android:layout_width="match_parent"
+        android:id="@+id/recycler_computer_hand"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/recycler_deck">
 
     </android.support.v7.widget.RecyclerView>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_computer_hand"
-        android:layout_width="wrap_content"
+        android:id="@+id/recycler_loose_set"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="75dp">
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/recycler_human_hand">
 
     </android.support.v7.widget.RecyclerView>
 

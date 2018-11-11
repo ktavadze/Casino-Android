@@ -88,20 +88,20 @@ public class GameFragment extends Fragment {
         recyclerDeck.setAdapter(new CardsRecyclerAdapter(mContext, mRound.getDeck().getCards()));
         recyclerDeck.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
-        // Init loose set recycler
-        final RecyclerView recyclerLooseSet = mView.findViewById(R.id.recycler_loose_set);
-        recyclerLooseSet.setAdapter(new LooseSetRecyclerAdapter(mContext, mRound.getTable().getLooseSet().getCards()));
-        recyclerLooseSet.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-
         // Init computer hand recycler
         final RecyclerView recyclerComputerHand = mView.findViewById(R.id.recycler_computer_hand);
         recyclerComputerHand.setAdapter(new ComputerHandRecyclerAdapter(mContext, mComputer.getHand().getCards()));
         recyclerComputerHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
+        // Init loose set recycler
+        final RecyclerView recyclerLooseSet = mView.findViewById(R.id.recycler_loose_set);
+        recyclerLooseSet.setAdapter(new LooseSetRecyclerAdapter(mContext, mRound.getTable().getLooseSet().getCards()));
+        recyclerLooseSet.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, true));
+
         // Init human hand recycler
         final RecyclerView recyclerHumanHand = mView.findViewById(R.id.recycler_human_hand);
         recyclerHumanHand.setAdapter(new HumanHandRecyclerAdapter(mContext, mHuman.getHand().getCards()));
-        recyclerHumanHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+        recyclerHumanHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, true));
     }
 
     private void addListeners() {
