@@ -85,18 +85,20 @@
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:textSize="25sp"
             android:background="@color/colorYellow"
-            android:text="Get Help" />
+            android:textSize="25sp"
+            android:text="Get Help"
+            style="?borderlessButtonStyle" />
 
         <Button
             android:id="@+id/button_make_move"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:textSize="25sp"
             android:background="@color/colorGreen"
-            android:text="Make Move" />
+            android:textSize="25sp"
+            android:text="Make Move"
+            style="?borderlessButtonStyle" />
 
     </LinearLayout>
 
@@ -114,25 +116,28 @@
             android:layout_weight="1"
             android:textSize="25sp"
             android:background="@color/colorGreen"
-            android:text="Build" />
+            android:text="Build"
+            style="?borderlessButtonStyle" />
 
         <Button
             android:id="@+id/button_capture_move"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:textSize="25sp"
             android:background="@color/colorYellow"
-            android:text="Capture" />
+            android:textSize="25sp"
+            android:text="Capture"
+            style="?borderlessButtonStyle" />
 
         <Button
             android:id="@+id/button_trail_move"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:textSize="25sp"
             android:background="@color/colorRed"
-            android:text="Trail" />
+            android:textSize="25sp"
+            android:text="Trail"
+            style="?borderlessButtonStyle" />
 
     </LinearLayout>
 
@@ -148,27 +153,30 @@
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:textSize="25sp"
             android:background="@color/colorGreenDark"
-            android:text="Increase" />
+            android:textSize="25sp"
+            android:text="Increase"
+            style="?borderlessButtonStyle" />
 
         <Button
             android:id="@+id/button_extend_move"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:textSize="25sp"
             android:background="@color/colorGreen"
-            android:text="Extend" />
+            android:textSize="25sp"
+            android:text="Extend"
+            style="?borderlessButtonStyle" />
 
         <Button
             android:id="@+id/button_create_move"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:textSize="25sp"
             android:background="@color/colorGreenLight"
-            android:text="Create" />
+            android:textSize="25sp"
+            android:text="Create"
+            style="?borderlessButtonStyle" />
 
     </LinearLayout>
 
@@ -184,18 +192,20 @@
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:textSize="25sp"
             android:background="@color/colorRed"
-            android:text="Cancel" />
+            android:textSize="25sp"
+            android:text="Cancel"
+            style="?borderlessButtonStyle" />
 
         <Button
             android:id="@+id/button_submit_move"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:textSize="25sp"
             android:background="@color/colorGreen"
-            android:text="Submit" />
+            android:textSize="25sp"
+            android:text="Submit"
+            style="?borderlessButtonStyle" />
 
     </LinearLayout>
 

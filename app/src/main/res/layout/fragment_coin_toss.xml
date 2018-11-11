@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@android:color/white"
-        android:textColor="@android:color/black"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:text="Guess Heads" />
 
     <Button
@@ -23,9 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@android:color/black"
-        android:textColor="@android:color/white"
-        android:textSize="50dp"
+        android:background="@color/colorPrimaryLight"
+        android:textSize="50sp"
         android:text="Guess Tails" />
 
 </LinearLayout>
