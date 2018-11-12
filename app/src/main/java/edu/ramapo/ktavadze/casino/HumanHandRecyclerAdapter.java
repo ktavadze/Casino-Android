@@ -77,7 +77,7 @@ public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecy
                     v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
                 }
 
-                Log.d(TAG, "onClick: Clicked on: " + card.getName());
+                Log.d(TAG, "Clicked on: " + card.getName());
             }
         });
     }

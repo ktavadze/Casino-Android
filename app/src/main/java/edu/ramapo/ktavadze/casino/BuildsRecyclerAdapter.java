@@ -96,7 +96,7 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
                     v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
                 }
 
-                Log.d(TAG, "onClick: Clicked on: " + build.toString());
+                Log.d(TAG, "Clicked on: " + build.toString());
             }
         });
 

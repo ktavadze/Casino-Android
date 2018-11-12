@@ -73,7 +73,7 @@ public class LooseSetRecyclerAdapter extends RecyclerView.Adapter<LooseSetRecycl
                     v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
                 }
 
-                Log.d(TAG, "onClick: Clicked on: " + card.getName());
+                Log.d(TAG, "Clicked on: " + card.getName());
             }
         });
     }
