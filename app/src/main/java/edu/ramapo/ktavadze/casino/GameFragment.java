@@ -245,7 +245,7 @@ public class GameFragment extends Fragment {
 
         // Init loose set recycler
         final RecyclerView recyclerLooseSet = mView.findViewById(R.id.recycler_loose_set);
-        mLooseSetAdapter = new LooseSetRecyclerAdapter(mContext, mRound.getTable().getLooseSet().getCards());
+        mLooseSetAdapter = new LooseSetRecyclerAdapter(mContext, mRound.getTable().getLooseSet().getCards(), mMove);
         recyclerLooseSet.setAdapter(mLooseSetAdapter);
         recyclerLooseSet.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 

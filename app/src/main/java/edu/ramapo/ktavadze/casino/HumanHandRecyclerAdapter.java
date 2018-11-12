@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecyclerAdapter.ViewHolder> {
     private static final String TAG = "HumanHandRecycler";
 
-
     private Context mContext;
     private ArrayList<Card> mCards;
     private Move mMove;
@@ -61,7 +60,7 @@ public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecy
         holder.imageButtonPlayerCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (card.equals(mMove.getPlayerCard())) {
+                if (mMove.getPlayerCard().equals(card)) {
                     mMove.setPlayerCard(new Card());
                     mMove.setPlayerCardView(null);
 

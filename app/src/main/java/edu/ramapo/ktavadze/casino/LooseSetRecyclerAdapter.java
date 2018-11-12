@@ -20,10 +20,12 @@ public class LooseSetRecyclerAdapter extends RecyclerView.Adapter<LooseSetRecycl
 
     private Context mContext;
     private ArrayList<Card> mCards;
+    private Move mMove;
 
-    public LooseSetRecyclerAdapter(Context context, ArrayList<Card> cards) {
+    public LooseSetRecyclerAdapter(Context context, ArrayList<Card> cards, Move move) {
         mContext = context;
         mCards = cards;
+        mMove = move;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,7 +60,18 @@ public class LooseSetRecyclerAdapter extends RecyclerView.Adapter<LooseSetRecycl
         holder.imageButtonLooseCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+                if (mMove.getLooseSet().contains(card)) {
+                    mMove.getLooseSet().removeCard(card);
+                    mMove.getLooseSetViews().remove(v);
+
+                    v.setBackgroundColor(0);
+                }
+                else {
+                    mMove.getLooseSet().addCard(card);
+                    mMove.getLooseSetViews().add(v);
+
+                    v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+                }
 
                 Log.d(TAG, "onClick: Clicked on: " + card.getName());
             }
