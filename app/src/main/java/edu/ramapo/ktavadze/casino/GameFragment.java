@@ -89,7 +89,7 @@ public class GameFragment extends Fragment {
 
         mRound.startTurn(mComputer, mHuman);
 
-        Log.d(TAG, "ROUND: \n" + mRound.stringify(mComputer, mHuman));
+        Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
 
         initView();
     }
@@ -291,5 +291,7 @@ public class GameFragment extends Fragment {
         }
 
         mMove.clear();
+
+        Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 }

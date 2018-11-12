@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorPrimaryLight">#9E9E9E</color>
     <color name="colorYellow">#FFF176</color>
+    <color name="colorYellowDark">#FFEB3B</color>
+    <color name="colorYellowLight">#FFF9C4</color>
     <color name="colorGreen">#81C784</color>
     <color name="colorGreenDark">#4CAF50</color>
     <color name="colorGreenLight">#C8E6C9</color>

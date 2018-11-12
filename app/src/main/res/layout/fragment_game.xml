@@ -25,7 +25,8 @@
             android:id="@+id/recycler_computer_hand"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/colorRedLight">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -51,9 +52,10 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_loose_set"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linear_human_container">
+        android:layout_above="@+id/linear_human_container"
+        android:background="@color/colorYellowLight">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -68,7 +70,8 @@
             android:id="@+id/recycler_human_hand"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/colorGreenLight">
 
         </android.support.v7.widget.RecyclerView>
 
