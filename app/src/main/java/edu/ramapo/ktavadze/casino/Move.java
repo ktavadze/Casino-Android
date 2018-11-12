@@ -66,4 +66,16 @@ public class Move {
     public ArrayList<View> getBuildViews() {
         return mBuildViews;
     }
+
+    public void clear() {
+        mType = "";
+
+        mPlayerCard = new Card();
+        mLooseSet = new Set();
+        mFirmSet = new Set();
+
+        mPlayerCardView = null;
+        mLooseSetViews = new ArrayList<>();
+        mBuildViews = new ArrayList<>();
+    }
 }

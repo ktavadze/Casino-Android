@@ -6,7 +6,7 @@ public class Card {
     private int mWeight;
 
     public Card() {
-        mName = "UN";
+        mName = "JK";
         mValue = 0;
         mWeight = 0;
     }
@@ -93,6 +93,8 @@ public class Card {
     public boolean isSpade() {
         return mName.charAt(0) == 'S';
     }
+
+    public boolean isJoker() { return mName.equals("JK"); }
 
     /**********************************************************************
      Function Name: equals

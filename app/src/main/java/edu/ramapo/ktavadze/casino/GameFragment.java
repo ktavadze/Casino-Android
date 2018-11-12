@@ -199,7 +199,7 @@ public class GameFragment extends Fragment {
                 mLinearEndMenu.setVisibility(View.GONE);
                 mLinearStartMenu.setVisibility(View.VISIBLE);
 
-                mMove = new Move();
+                updateView();
             }
         });
 
@@ -208,11 +208,15 @@ public class GameFragment extends Fragment {
         buttonSubmitMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLinearEndMenu.setVisibility(View.GONE);
-                mLinearStartMenu.setVisibility(View.VISIBLE);
+                Log.d(TAG, "Fuck: " + mMove.getPlayerCard().getName());
 
-                if (mRound.processMove(mComputer, mHuman, mMove)) {
-                    updateView();
+                if (!mMove.getPlayerCard().isJoker()) {
+                    if (mRound.processMove(mComputer, mHuman, mMove)) {
+                        mLinearEndMenu.setVisibility(View.GONE);
+                        mLinearStartMenu.setVisibility(View.VISIBLE);
+
+                        updateView();
+                    }
                 }
             }
         });
@@ -265,5 +269,19 @@ public class GameFragment extends Fragment {
         mLooseSetAdapter.notifyDataSetChanged();
         mHumanHandAdapter.notifyDataSetChanged();
         mHumanPileAdapter.notifyDataSetChanged();
+
+        if (mMove.getPlayerCardView() != null) {
+            mMove.getPlayerCardView().setBackgroundColor(0);
+        }
+
+        for (View view : mMove.getLooseSetViews()) {
+            view.setBackgroundColor(0);
+        }
+
+        for (View view : mMove.getBuildViews()) {
+            view.setBackgroundColor(0);
+        }
+
+        mMove.clear();
     }
 }

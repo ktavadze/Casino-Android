@@ -62,7 +62,7 @@ public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecy
             @Override
             public void onClick(View v) {
                 if (card.equals(mMove.getPlayerCard())) {
-                    mMove.setPlayerCard(null);
+                    mMove.setPlayerCard(new Card());
                     mMove.setPlayerCardView(null);
 
                     v.setBackgroundColor(0);
