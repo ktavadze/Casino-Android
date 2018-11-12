@@ -72,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="100dp"
         android:background="@color/colorGreenLight">
 
         <android.support.v7.widget.RecyclerView
@@ -103,7 +103,7 @@
         <Button
             android:id="@+id/button_get_help"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="@color/colorYellow"
             android:textSize="25sp"
@@ -113,7 +113,7 @@
         <Button
             android:id="@+id/button_make_move"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="@color/colorGreen"
             android:textSize="25sp"
@@ -132,7 +132,7 @@
         <Button
             android:id="@+id/button_build_move"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:textSize="25sp"
             android:background="@color/colorGreen"
@@ -142,7 +142,7 @@
         <Button
             android:id="@+id/button_capture_move"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="@color/colorYellow"
             android:textSize="25sp"
@@ -152,7 +152,7 @@
         <Button
             android:id="@+id/button_trail_move"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:textSize="25sp"
@@ -171,7 +171,7 @@
         <Button
             android:id="@+id/button_increase_move"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="@color/colorGreenDark"
             android:textSize="25sp"
@@ -181,7 +181,7 @@
         <Button
             android:id="@+id/button_extend_move"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="@color/colorGreen"
             android:textSize="25sp"
@@ -191,7 +191,7 @@
         <Button
             android:id="@+id/button_create_move"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="@color/colorGreenLight"
             android:textSize="25sp"
@@ -210,7 +210,7 @@
         <Button
             android:id="@+id/button_cancel_move"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:textSize="25sp"
@@ -220,7 +220,7 @@
         <Button
             android:id="@+id/button_submit_move"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="@color/colorGreen"
             android:textSize="25sp"
