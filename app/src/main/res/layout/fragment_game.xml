@@ -19,14 +19,14 @@
         android:id="@+id/linear_computer_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/recycler_deck">
+        android:layout_below="@+id/recycler_deck"
+        android:background="@color/colorRedLight">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_computer_hand"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorRedLight">
+            android:layout_weight="1">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -52,7 +52,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_loose_set"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linear_human_container"
         android:background="@color/colorYellowLight">
@@ -64,14 +64,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="75dp">
+        android:layout_marginBottom="75dp"
+        android:background="@color/colorGreenLight">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_human_hand"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorGreenLight">
+            android:layout_weight="1">
 
         </android.support.v7.widget.RecyclerView>
 
