@@ -30,8 +30,7 @@ public class GameFragment extends Fragment {
     private Player mHuman;
     private Round mRound;
 
-    private Card mSelectedPlayerCard = null;
-    private View mSelectedPlayerView = null;
+    private Move mMove;
 
     public GameFragment() {
         // Required empty public constructor
@@ -52,6 +51,8 @@ public class GameFragment extends Fragment {
             mComputer = mTournament.getComputer();
             mHuman = mTournament.getHuman();
             mRound = mTournament.getRound();
+
+            mMove = new Move();
         }
     }
 
@@ -108,7 +109,7 @@ public class GameFragment extends Fragment {
 
         // Init human hand recycler
         final RecyclerView recyclerHumanHand = mView.findViewById(R.id.recycler_human_hand);
-        recyclerHumanHand.setAdapter(new HumanHandRecyclerAdapter(mContext, mHuman.getHand().getCards(), mSelectedPlayerCard, mSelectedPlayerView));
+        recyclerHumanHand.setAdapter(new HumanHandRecyclerAdapter(mContext, mHuman.getHand().getCards(), mMove));
         recyclerHumanHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
         // Init human pile recycler
@@ -154,6 +155,8 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
                 mLinearMoveMenu.setVisibility(View.GONE);
                 mLinearEndMenu.setVisibility(View.VISIBLE);
+
+                mMove.setType("capture");
             }
         });
 
@@ -164,6 +167,8 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
                 mLinearMoveMenu.setVisibility(View.GONE);
                 mLinearEndMenu.setVisibility(View.VISIBLE);
+
+                mMove.setType("trail");
             }
         });
 
@@ -174,6 +179,8 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
                 mLinearBuildMenu.setVisibility(View.GONE);
                 mLinearEndMenu.setVisibility(View.VISIBLE);
+
+                mMove.setType("increase");
             }
         });
 
@@ -184,6 +191,8 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
                 mLinearBuildMenu.setVisibility(View.GONE);
                 mLinearEndMenu.setVisibility(View.VISIBLE);
+
+                mMove.setType("extend");
             }
         });
 
@@ -194,6 +203,8 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
                 mLinearBuildMenu.setVisibility(View.GONE);
                 mLinearEndMenu.setVisibility(View.VISIBLE);
+
+                mMove.setType("create");
             }
         });
 
@@ -204,6 +215,8 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
                 mLinearEndMenu.setVisibility(View.GONE);
                 mLinearStartMenu.setVisibility(View.VISIBLE);
+
+                mMove = new Move();
             }
         });
 

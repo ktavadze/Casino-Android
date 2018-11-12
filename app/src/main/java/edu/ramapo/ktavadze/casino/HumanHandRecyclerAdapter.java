@@ -21,14 +21,12 @@ public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecy
 
     private Context mContext;
     private ArrayList<Card> mCards;
-    private Card mSelectedCard;
-    private View mSelectedView;
+    private Move mMove;
 
-    public HumanHandRecyclerAdapter(Context context, ArrayList<Card> cards, Card selectedCard, View selectedView) {
+    public HumanHandRecyclerAdapter(Context context, ArrayList<Card> cards, Move move) {
         mContext = context;
         mCards = cards;
-        mSelectedCard = selectedCard;
-        mSelectedView = selectedView;
+        mMove = move;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -63,19 +61,19 @@ public class HumanHandRecyclerAdapter extends RecyclerView.Adapter<HumanHandRecy
         holder.imageButtonPlayerCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (card.equals(mSelectedCard)) {
-                    mSelectedCard = null;
-                    mSelectedView = null;
+                if (card.equals(mMove.getPlayerCard())) {
+                    mMove.setPlayerCard(null);
+                    mMove.setPlayerCardView(null);
 
                     v.setBackgroundColor(0);
                 }
                 else {
-                    if (mSelectedView != null) {
-                        mSelectedView.setBackgroundColor(0);
+                    if (mMove.getPlayerCardView() != null) {
+                        mMove.getPlayerCardView().setBackgroundColor(0);
                     }
 
-                    mSelectedCard = card;
-                    mSelectedView = v;
+                    mMove.setPlayerCard(card);
+                    mMove.setPlayerCardView(v);
 
                     v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
                 }
