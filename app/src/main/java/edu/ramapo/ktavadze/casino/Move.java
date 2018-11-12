@@ -9,7 +9,7 @@ public class Move {
 
     private Card mPlayerCard;
     private Set mLooseSet;
-    private Set mFirmSet;
+    private ArrayList<Build> mBuilds;
 
     private View mPlayerCardView;
     private ArrayList<View> mLooseSetViews;
@@ -20,7 +20,7 @@ public class Move {
 
         mPlayerCard = new Card();
         mLooseSet = new Set();
-        mFirmSet = new Set();
+        mBuilds = new ArrayList<>();
 
         mPlayerCardView = null;
         mLooseSetViews = new ArrayList<>();
@@ -47,8 +47,8 @@ public class Move {
         return mLooseSet;
     }
 
-    public Set getFirmSet() {
-        return mFirmSet;
+    public ArrayList<Build> getBuilds() {
+        return mBuilds;
     }
 
     public View getPlayerCardView() {
@@ -72,7 +72,7 @@ public class Move {
 
         mPlayerCard = new Card();
         mLooseSet = new Set();
-        mFirmSet = new Set();
+        mBuilds = new ArrayList<>();
 
         mPlayerCardView = null;
         mLooseSetViews = new ArrayList<>();

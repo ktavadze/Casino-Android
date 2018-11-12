@@ -41,6 +41,15 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_builds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_computer_container"
+        android:layout_above="@+id/recycler_loose_set">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_loose_set"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

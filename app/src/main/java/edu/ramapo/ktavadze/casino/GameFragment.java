@@ -35,6 +35,7 @@ public class GameFragment extends Fragment {
     private CardsRecyclerAdapter mDeckAdapter;
     private ComputerHandRecyclerAdapter mComputerHandAdapter;
     private CardsRecyclerAdapter mComputerPileAdapter;
+    private BuildsRecyclerAdapter mBuildsAdapter;
     private LooseSetRecyclerAdapter mLooseSetAdapter;
     private HumanHandRecyclerAdapter mHumanHandAdapter;
     private CardsRecyclerAdapter mHumanPileAdapter;
@@ -243,6 +244,12 @@ public class GameFragment extends Fragment {
         recyclerComputerPile.setAdapter(mComputerPileAdapter);
         recyclerComputerPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
+        // Init builds recycler
+        final RecyclerView recyclerBuilds = mView.findViewById(R.id.recycler_builds);
+        mBuildsAdapter = new BuildsRecyclerAdapter(mContext, mRound.getTable().getBuilds(), mMove);
+        recyclerBuilds.setAdapter(mBuildsAdapter);
+        recyclerBuilds.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, true));
+
         // Init loose set recycler
         final RecyclerView recyclerLooseSet = mView.findViewById(R.id.recycler_loose_set);
         mLooseSetAdapter = new LooseSetRecyclerAdapter(mContext, mRound.getTable().getLooseSet().getCards(), mMove);
@@ -266,6 +273,7 @@ public class GameFragment extends Fragment {
         mDeckAdapter.notifyDataSetChanged();
         mComputerHandAdapter.notifyDataSetChanged();
         mComputerPileAdapter.notifyDataSetChanged();
+        mBuildsAdapter.notifyDataSetChanged();
         mLooseSetAdapter.notifyDataSetChanged();
         mHumanHandAdapter.notifyDataSetChanged();
         mHumanPileAdapter.notifyDataSetChanged();
