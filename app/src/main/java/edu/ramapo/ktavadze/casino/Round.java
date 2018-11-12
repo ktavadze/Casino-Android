@@ -48,20 +48,8 @@ public class Round {
                 if (mTable.getLooseSet().isEmpty() && mTable.getBuilds().isEmpty()) {
                     // Deal table
                     mTable.setLooseSet(mDeck.drawSet());
-
-                    // Add dummy builds for testing
-                    mTable.addBuild(new Build(true, mDeck.drawSet()));
-                    mTable.addBuild(new Build(true, mDeck.drawSet()));
-                    mTable.addBuild(new Build(false, mDeck.drawSet()));
-                    mTable.addBuild(new Build(false, mDeck.drawSet()));
                 }
             }
-
-            // Populate piles for testing
-            aHuman.mPile.addSet(mDeck.drawSet());
-            aHuman.mPile.addSet(mDeck.drawSet());
-            aComputer.mPile.addSet(mDeck.drawSet());
-            aComputer.mPile.addSet(mDeck.drawSet());
         }
     }
 
