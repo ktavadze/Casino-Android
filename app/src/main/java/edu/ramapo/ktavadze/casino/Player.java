@@ -1,8 +1,12 @@
 package edu.ramapo.ktavadze.casino;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Player {
+    private static final String TAG = "Player";
+
     protected boolean mIsHuman;
     protected boolean mIsNext;
     protected boolean mCapturedLast;
@@ -376,7 +380,7 @@ public class Player {
             }
         }
 
-        // Console::displayBestIncrease(bestBuild);
+        Log.d(TAG, "findBestIncrease: " + bestBuild.stringify());
 
         return bestBuild;
     }
@@ -444,7 +448,7 @@ public class Player {
             }
         }
 
-        // Console::displayBestExtend(bestBuild);
+        Log.d(TAG, "findBestExtend: " + bestBuild.stringify());
 
         return bestBuild;
     }
@@ -502,7 +506,7 @@ public class Player {
             }
         }
 
-        // Console::displayBestCreate(bestBuild);
+        Log.d(TAG, "findBestCreate: " + bestBuild.stringify());
 
         return bestBuild;
     }
@@ -583,7 +587,7 @@ public class Player {
             }
         }
 
-        // Console::displayBestCapture(bestCaptureSet);
+        Log.d(TAG, "findBestCapture: " + bestCaptureSet.stringify());
 
         return bestCaptureSet;
     }
@@ -608,7 +612,7 @@ public class Player {
             }
         }
 
-        // Console::displayBestTrail(bestTrailCard);
+        Log.d(TAG, "findBestTrail: " + bestTrailCard.getName());
 
         return bestTrailCard;
     }

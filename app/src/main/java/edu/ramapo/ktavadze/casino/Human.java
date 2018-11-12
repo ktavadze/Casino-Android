@@ -1,6 +1,10 @@
 package edu.ramapo.ktavadze.casino;
 
+import android.util.Log;
+
 public class Human extends Player {
+    private static final String TAG = "Human";
+    
     public Human(boolean aIsNext) {
         mIsHuman = true;
         mIsNext = aIsNext;
@@ -307,14 +311,14 @@ public class Human extends Player {
     private boolean canCreateBuild(Table aTable, Card aBuildCard, Set aLooseSet) {
         // Check build card
         if (reservedForCapture(aTable, aBuildCard)) {
-            // Console::displayMessage("ERROR: build card reserved for capture!");
+            Log.d(TAG, "canCreateBuild: ERROR: build card reserved for capture!");
 
             return false;
         }
 
         // Check build value
         if (countCardsHeld(aBuildCard.getValue() + aLooseSet.getValue()) == 0) {
-            // Console::displayMessage("ERROR: no card in hand matching build value!");
+            Log.d(TAG, "canCreateBuild: ERROR: no card in hand matching build value!");
 
             return false;
         }
@@ -334,28 +338,28 @@ public class Human extends Player {
     private boolean canIncreaseBuild(Table aTable, Build aSelectedBuild, Card aBuildCard) {
         // Check build card
         if (reservedForCapture(aTable, aBuildCard)) {
-            // Console::displayMessage("ERROR: build card reserved for capture!");
+            Log.d(TAG, "canIncreaseBuild: ERROR: build card reserved for capture!");
 
             return false;
         }
 
         // Check build owner
         if (aSelectedBuild.isHuman() == mIsHuman) {
-            // Console::displayMessage("ERROR: cannot increase own build!");
+            Log.d(TAG, "canIncreaseBuild: ERROR: cannot increase own build!");
 
             return false;
         }
 
         // Check build size
         if (aSelectedBuild.getSets().size() > 1) {
-            // Console::displayMessage("ERROR: cannot increase multi-builds!");
+            Log.d(TAG, "canIncreaseBuild: ERROR: cannot increase multi-builds!");
 
             return false;
         }
 
         // Check build value
         if (countCardsHeld(aBuildCard.getValue() + aSelectedBuild.getValue()) == 0) {
-            // Console::displayMessage("ERROR: no card in hand matching build value!");
+            Log.d(TAG, "canIncreaseBuild: ERROR: no card in hand matching build value!");
 
             return false;
         }
@@ -376,14 +380,14 @@ public class Human extends Player {
     private boolean canExtendBuild(Table aTable, Build aSelectedBuild, Card aBuildCard, Set aLooseSet) {
         // Check build card
         if (reservedForCapture(aTable, aBuildCard)) {
-            // Console::displayMessage("ERROR: build card reserved for capture!");
+            Log.d(TAG, "canExtendBuild: ERROR: build card reserved for capture!");
 
             return false;
         }
 
         // Check build value
         if (aBuildCard.getValue() + aLooseSet.getValue() != aSelectedBuild.getValue()) {
-            // Console::displayMessage("ERROR: build sum mismatch!");
+            Log.d(TAG, "canExtendBuild: ERROR: build sum mismatch!");
 
             return false;
         }
@@ -414,7 +418,7 @@ public class Human extends Player {
 
             // Check loose sum
             if (sum != 0 && sum != aCaptureCard.getValue()) {
-                // Console::displayMessage("ERROR: cannot capture selected loose card(s)!");
+                Log.d(TAG, "canCaptureSelection: ERROR: cannot capture selected loose card(s)!");
 
                 return false;
             }
@@ -424,7 +428,7 @@ public class Human extends Player {
         for (Card card : aTable.getLooseSet().getCards()) {
             if (card.getValue() == aCaptureCard.getValue()) {
                 if (!aLooseSet.contains(card)) {
-                    // Console::displayMessage("ERROR: must capture matching loose card(s)!");
+                    Log.d(TAG, "canCaptureSelection: ERROR: must capture matching loose card(s)!");
 
                     return false;
                 }
@@ -440,7 +444,7 @@ public class Human extends Player {
                     // Check for matching owned builds
                     if (build.isHuman() == mIsHuman && !aFirmSet.contains(build)) {
                         if (countCardsHeld(aCaptureCard.getValue()) < 2) {
-                            // Console::displayMessage("ERROR: must capture matching owned build(s)!");
+                            Log.d(TAG, "canCaptureSelection: ERROR: must capture matching owned build(s)!");
 
                             return false;
                         }
@@ -455,7 +459,7 @@ public class Human extends Player {
             }
 
             if (cardsFound != aFirmSet.getSize()) {
-                // Console::displayMessage("ERROR: cannot capture selected build card(s)!");
+                Log.d(TAG, "canCaptureSelection: ERROR: cannot capture selected build card(s)!");
 
                 return false;
             }
@@ -464,7 +468,7 @@ public class Human extends Player {
             for (Build build : aTable.getBuilds()) {
                 if (build.getValue() == aCaptureCard.getValue() && build.isHuman() == mIsHuman) {
                     if (countCardsHeld(aCaptureCard.getValue()) < 2) {
-                        // Console::displayMessage("ERROR: must capture matching owned build(s)!");
+                        Log.d(TAG, "canCaptureSelection: ERROR: must capture matching owned build(s)!");
 
                         return false;
                     }
@@ -486,14 +490,14 @@ public class Human extends Player {
     private boolean canTrail(Table aTable, Card aTrailCard) {
         // Check trail card
         if (reservedForCapture(aTable, aTrailCard)) {
-            // Console::displayMessage("ERROR: trail card reserved for capture!");
+            Log.d(TAG, "canTrail: ERROR: trail card reserved for capture!");
 
             return false;
         }
 
         // Check builds
         if (ownsBuild(aTable)) {
-            // Console::displayMessage("ERROR: cannot trail while owner of build(s)!");
+            Log.d(TAG, "canTrail: ERROR: cannot trail while owner of build(s)!");
 
             return false;
         }
@@ -501,7 +505,7 @@ public class Human extends Player {
         // Check loose set
         for (Card card : aTable.getLooseSet().getCards()) {
             if (card.getValue() == aTrailCard.getValue()) {
-                // Console::displayMessage("ERROR: must capture matching loose card(s)!");
+                Log.d(TAG, "canTrail: ERROR: must capture matching loose card(s)!");
 
                 return false;
             }
