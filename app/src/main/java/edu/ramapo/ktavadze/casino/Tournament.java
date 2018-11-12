@@ -6,7 +6,7 @@ public class Tournament {
     private Round mRound;
 
     public Tournament(boolean aHumanTurn) {
-        mComputer = new Computer(aHumanTurn);
+        mComputer = new Computer(!aHumanTurn);
         mHuman = new Human(aHumanTurn);
         mRound = new Round(1);
     }

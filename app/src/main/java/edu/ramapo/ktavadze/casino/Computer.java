@@ -26,24 +26,25 @@ public class Computer extends Player {
      (1 = capture; 0 = build/trail)
      **********************************************************************/
     @Override
-    public int makeMove(Table aTable) {
-        if (canIncrease(aTable)) {
-            processIncreaseBuild(aTable);
-        }
-        else if (canExtend(aTable)) {
-            processExtendBuild(aTable);
-        }
-        else if (canCreate(aTable)) {
-            processCreateBuild(aTable);
-        }
-        else if (canCapture(aTable)) {
-            processCapture(aTable);
-
-            return 1;
-        }
-        else {
-            processTrail(aTable);
-        }
+    public int makeMove(Table aTable, Move aMove) {
+//        if (canIncrease(aTable)) {
+//            processIncreaseBuild(aTable);
+//        }
+//        else if (canExtend(aTable)) {
+//            processExtendBuild(aTable);
+//        }
+//        else if (canCreate(aTable)) {
+//            processCreateBuild(aTable);
+//        }
+//        else if (canCapture(aTable)) {
+//            processCapture(aTable);
+//
+//            return 1;
+//        }
+//        else {
+//            processTrail(aTable);
+//        }
+        processTrail(aTable);
 
         return 0;
     }

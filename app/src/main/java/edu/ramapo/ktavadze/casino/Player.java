@@ -60,7 +60,7 @@ public class Player {
         mPile.clear();
     }
 
-    public int makeMove(Table aTable) {
+    public int makeMove(Table aTable, Move aMove) {
         return 0;
     }
 

@@ -25,6 +25,27 @@ public class Human extends Player {
      Return Value: The move code associated with made move, an integer value
      (1 = capture; 0 = build/trail; -1 = illegal)
      **********************************************************************/
+    @Override
+    public int makeMove(Table aTable, Move aMove) {
+        switch (aMove.getType()) {
+            case "trail":
+                if (processTrail(aTable, aMove)) {
+                    return 0;
+                }
+                break;
+        }
+
+        return -1;
+    }
+
+    /**********************************************************************
+     Function Name: makeMove
+     Purpose: To allow the human (virtual) to make a move
+     Parameters:
+     aTable, a Table instance passed by reference
+     Return Value: The move code associated with made move, an integer value
+     (1 = capture; 0 = build/trail; -1 = illegal)
+     **********************************************************************/
 //    @Override
 //    public int makeMove(Table aTable) {
 //        int choice = Console::processMoveMenu();
@@ -257,23 +278,22 @@ public class Human extends Player {
      aTable, a Table instance passed by reference
      Return Value: Whether a legal trail move was made, a boolean value
      **********************************************************************/
-//    private boolean processTrail(Table aTable) {
-//        // Select trail card
-//        int trailCardIndex = Console::pickPlayerCard(mHand) - 1;
-//        Card trailCard = mHand.getCardAt(trailCardIndex);
-//
-//        if (canTrail(aTable, trailCard)) {
-//            // Add trail card to table
-//            aTable.addLooseCard(trailCard);
-//
-//            // Remove trail card from hand
-//            mHand.removeCard(trailCard);
-//
-//            return true;
-//        }
-//
-//        return false;
-//    }
+    private boolean processTrail(Table aTable, Move aMove) {
+        // Select trail card
+        Card trailCard = aMove.getPlayerCard();
+
+        if (canTrail(aTable, trailCard)) {
+            // Add trail card to table
+            aTable.addLooseCard(trailCard);
+
+            // Remove trail card from hand
+            mHand.removeCard(trailCard);
+
+            return true;
+        }
+
+        return false;
+    }
 
     /**********************************************************************
      Function Name: canCreateBuild

@@ -62,6 +62,49 @@ public class Round {
     }
 
     /**********************************************************************
+     Function Name: makeMove
+     Purpose: To allow players to make a move
+     Parameters:
+     aComputer, a Player instance passed by reference
+     aHuman, a Player instance passed by reference
+     Return Value: Whether a legal move was made, a boolean value
+     **********************************************************************/
+    public boolean processMove(Player aComputer, Player aHuman, Move aMove) {
+        if (aHuman.isNext()) {
+            int moveCode = aHuman.makeMove(mTable, aMove);
+
+            switch (moveCode) {
+                case 1:
+                    aHuman.capturedLast(true);
+                    aComputer.capturedLast(false);
+                case 0:
+                    aHuman.isNext(false);
+                    aComputer.isNext(true);
+
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        else {
+            int moveCode = aComputer.makeMove(mTable, aMove);
+
+            switch (moveCode) {
+                case 1:
+                    aHuman.capturedLast(false);
+                    aComputer.capturedLast(true);
+                case 0:
+                    aHuman.isNext(true);
+                    aComputer.isNext(false);
+
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }
+
+    /**********************************************************************
      Function Name: start
      Purpose: To start the round
      Parameters:
@@ -240,43 +283,6 @@ public class Round {
 //            }
 //        }
 //    }
-
-    /**********************************************************************
-     Function Name: makeMove
-     Purpose: To allow players to make a move
-     Parameters:
-     aComputer, a Player instance passed by reference
-     aHuman, a Player instance passed by reference
-     Return Value: Whether a legal move was made, a boolean value
-     **********************************************************************/
-    private boolean makeMove(Player aComputer, Player aHuman) {
-        if (aHuman.isNext()) {
-            int moveCode = aHuman.makeMove(mTable);
-
-            switch (moveCode) {
-                case 1:
-                    aHuman.capturedLast(true);
-                    aComputer.capturedLast(false);
-                case 0:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-        else {
-            int moveCode = aComputer.makeMove(mTable);
-
-            switch (moveCode) {
-                case 1:
-                    aHuman.capturedLast(false);
-                    aComputer.capturedLast(true);
-                case 0:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-    }
 
     /**********************************************************************
      Function Name: updateScores

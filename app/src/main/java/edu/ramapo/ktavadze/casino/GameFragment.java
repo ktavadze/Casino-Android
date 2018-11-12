@@ -20,17 +20,24 @@ public class GameFragment extends Fragment {
     private Context mContext;
     private View mView;
 
-    private LinearLayout mLinearStartMenu;
-    private LinearLayout mLinearMoveMenu;
-    private LinearLayout mLinearBuildMenu;
-    private LinearLayout mLinearEndMenu;
-
     private Tournament mTournament;
     private Player mComputer;
     private Player mHuman;
     private Round mRound;
 
     private Move mMove;
+
+    private LinearLayout mLinearStartMenu;
+    private LinearLayout mLinearMoveMenu;
+    private LinearLayout mLinearBuildMenu;
+    private LinearLayout mLinearEndMenu;
+
+    private CardsRecyclerAdapter mDeckAdapter;
+    private ComputerHandRecyclerAdapter mComputerHandAdapter;
+    private CardsRecyclerAdapter mComputerPileAdapter;
+    private LooseSetRecyclerAdapter mLooseSetAdapter;
+    private HumanHandRecyclerAdapter mHumanHandAdapter;
+    private CardsRecyclerAdapter mHumanPileAdapter;
 
     public GameFragment() {
         // Required empty public constructor
@@ -83,39 +90,7 @@ public class GameFragment extends Fragment {
 
         Log.d(TAG, "ROUND: \n" + mRound.stringify(mComputer, mHuman));
 
-        initRecyclers();
-    }
-
-    private void initRecyclers() {
-        // Init deck recycler
-        final RecyclerView recyclerDeck = mView.findViewById(R.id.recycler_deck);
-        recyclerDeck.setAdapter(new CardsRecyclerAdapter(mContext, mRound.getDeck().getCards()));
-        recyclerDeck.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-
-        // Init computer hand recycler
-        final RecyclerView recyclerComputerHand = mView.findViewById(R.id.recycler_computer_hand);
-        recyclerComputerHand.setAdapter(new ComputerHandRecyclerAdapter(mContext, mComputer.getHand().getCards()));
-        recyclerComputerHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-
-        // Init computer pile recycler
-        final RecyclerView recyclerComputerPile = mView.findViewById(R.id.recycler_computer_pile);
-        recyclerComputerPile.setAdapter(new CardsRecyclerAdapter(mContext, mComputer.getPile().getCards()));
-        recyclerComputerPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-
-        // Init loose set recycler
-        final RecyclerView recyclerLooseSet = mView.findViewById(R.id.recycler_loose_set);
-        recyclerLooseSet.setAdapter(new LooseSetRecyclerAdapter(mContext, mRound.getTable().getLooseSet().getCards()));
-        recyclerLooseSet.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-
-        // Init human hand recycler
-        final RecyclerView recyclerHumanHand = mView.findViewById(R.id.recycler_human_hand);
-        recyclerHumanHand.setAdapter(new HumanHandRecyclerAdapter(mContext, mHuman.getHand().getCards(), mMove));
-        recyclerHumanHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-
-        // Init human pile recycler
-        final RecyclerView recyclerHumanPile = mView.findViewById(R.id.recycler_human_pile);
-        recyclerHumanPile.setAdapter(new CardsRecyclerAdapter(mContext, mHuman.getPile().getCards()));
-        recyclerHumanPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+        initView();
     }
 
     private void addListeners() {
@@ -133,6 +108,14 @@ public class GameFragment extends Fragment {
         buttonMakeMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mComputer.isNext()) {
+                    if (mRound.processMove(mComputer, mHuman, mMove)) {
+                        updateView();
+                    }
+
+                    return;
+                }
+
                 mLinearStartMenu.setVisibility(View.GONE);
                 mLinearMoveMenu.setVisibility(View.VISIBLE);
             }
@@ -227,9 +210,60 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
                 mLinearEndMenu.setVisibility(View.GONE);
                 mLinearStartMenu.setVisibility(View.VISIBLE);
+
+                if (mRound.processMove(mComputer, mHuman, mMove)) {
+                    updateView();
+                }
             }
         });
 
         Log.d(TAG, "addListeners: Listeners added");
+    }
+
+    private void initView() {
+        // Init deck recycler
+        final RecyclerView recyclerDeck = mView.findViewById(R.id.recycler_deck);
+        mDeckAdapter = new CardsRecyclerAdapter(mContext, mRound.getDeck().getCards());
+        recyclerDeck.setAdapter(mDeckAdapter);
+        recyclerDeck.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
+        // Init computer hand recycler
+        final RecyclerView recyclerComputerHand = mView.findViewById(R.id.recycler_computer_hand);
+        mComputerHandAdapter = new ComputerHandRecyclerAdapter(mContext, mComputer.getHand().getCards());
+        recyclerComputerHand.setAdapter(mComputerHandAdapter);
+        recyclerComputerHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
+        // Init computer pile recycler
+        final RecyclerView recyclerComputerPile = mView.findViewById(R.id.recycler_computer_pile);
+        mComputerPileAdapter = new CardsRecyclerAdapter(mContext, mComputer.getPile().getCards());
+        recyclerComputerPile.setAdapter(mComputerPileAdapter);
+        recyclerComputerPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
+        // Init loose set recycler
+        final RecyclerView recyclerLooseSet = mView.findViewById(R.id.recycler_loose_set);
+        mLooseSetAdapter = new LooseSetRecyclerAdapter(mContext, mRound.getTable().getLooseSet().getCards());
+        recyclerLooseSet.setAdapter(mLooseSetAdapter);
+        recyclerLooseSet.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
+        // Init human hand recycler
+        final RecyclerView recyclerHumanHand = mView.findViewById(R.id.recycler_human_hand);
+        mHumanHandAdapter = new HumanHandRecyclerAdapter(mContext, mHuman.getHand().getCards(), mMove);
+        recyclerHumanHand.setAdapter(mHumanHandAdapter);
+        recyclerHumanHand.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
+        // Init human pile recycler
+        final RecyclerView recyclerHumanPile = mView.findViewById(R.id.recycler_human_pile);
+        mHumanPileAdapter = new CardsRecyclerAdapter(mContext, mHuman.getPile().getCards());
+        recyclerHumanPile.setAdapter(mHumanPileAdapter);
+        recyclerHumanPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+    }
+
+    private void updateView() {
+        mDeckAdapter.notifyDataSetChanged();
+        mComputerHandAdapter.notifyDataSetChanged();
+        mComputerPileAdapter.notifyDataSetChanged();
+        mLooseSetAdapter.notifyDataSetChanged();
+        mHumanHandAdapter.notifyDataSetChanged();
+        mHumanPileAdapter.notifyDataSetChanged();
     }
 }
