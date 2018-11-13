@@ -67,9 +67,8 @@ public class Table {
      the build will be extended
      aIsHuman, a boolean. Represents the owner of the extended build
      **********************************************************************/
-    public void extendBuild(int aIndex, Set aSet, boolean aIsHuman) {
+    public void extendBuild(int aIndex, Set aSet) {
         mBuilds.get(aIndex).extend(aSet);
-        mBuilds.get(aIndex).isHuman(aIsHuman);
     }
 
     public String stringify() {

@@ -32,6 +32,11 @@ public class Human extends Player {
     @Override
     public int makeMove(Table aTable, Move aMove) {
         switch (aMove.getType()) {
+            case "create":
+                if (processCreateBuild(aTable, aMove)) {
+                    return 0;
+                }
+                break;
             case "trail":
                 if (processTrail(aTable, aMove)) {
                     return 0;
@@ -40,6 +45,75 @@ public class Human extends Player {
         }
 
         return -1;
+    }
+
+    /**********************************************************************
+     Function Name: processCreateBuild
+     Purpose: To allow the human to create a build
+     Parameters:
+     aTable, a Table instance passed by reference
+     Return Value: Whether a legal build was created, a boolean value
+     **********************************************************************/
+    private boolean processCreateBuild(Table aTable, Move aMove) {
+        // Check loose set
+        if (aTable.getLooseSet().isEmpty()) {
+            Log.d(TAG, "processCreateBuild: ERROR: no loose cards to build with!");
+
+            return false;
+        }
+
+        // Select build card
+        Card buildCard = aMove.getPlayerCard();
+
+        // Select loose set
+        Set looseSet = aMove.getLooseSet();
+
+        // Create build
+        if (canCreateBuild(aTable, buildCard, looseSet)) {
+            Set buildSet = new Set();
+            buildSet.addCard(buildCard);
+            buildSet.addSet(looseSet);
+
+            Build build = new Build(mIsHuman, buildSet);
+
+            aTable.addBuild(build);
+
+            // Remove loose set from table
+            for (Card card : looseSet.getCards()) {
+                aTable.removeLooseCard(card);
+            }
+
+            // Remove build card from hand
+            mHand.removeCard(buildCard);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**********************************************************************
+     Function Name: processTrail
+     Purpose: To allow the human to make a trail move
+     Parameters:
+     aTable, a Table instance passed by reference
+     Return Value: Whether a legal trail move was made, a boolean value
+     **********************************************************************/
+    private boolean processTrail(Table aTable, Move aMove) {
+        // Select trail card
+        Card trailCard = aMove.getPlayerCard();
+
+        if (canTrail(aTable, trailCard)) {
+            // Add trail card to table
+            aTable.addLooseCard(trailCard);
+
+            // Remove trail card from hand
+            mHand.removeCard(trailCard);
+
+            return true;
+        }
+
+        return false;
     }
 
     /**********************************************************************
@@ -87,7 +161,7 @@ public class Human extends Player {
 //
 //        switch (choice) {
 //            case 1:
-//                return processBuildCreate(aTable);
+//                return processCreateBuild(aTable);
 //            case 2:
 //                return processBuildIncrease(aTable);
 //            case 3:
@@ -95,52 +169,6 @@ public class Human extends Player {
 //            default:
 //                return false;
 //        }
-//    }
-
-    /**********************************************************************
-     Function Name: processBuildCreate
-     Purpose: To allow the human to create a build
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal build was created, a boolean value
-     **********************************************************************/
-//    private boolean processBuildCreate(Table aTable) {
-//        // Check loose set
-//        if (aTable.getLooseSet().isEmpty()) {
-//            Console::displayMessage("ERROR: no loose cards to build with!");
-//
-//            return false;
-//        }
-//
-//        // Select build card
-//        int buildCardIndex = Console::pickPlayerCard(mHand) - 1;
-//        Card buildCard = mHand.getCardAt(buildCardIndex);
-//
-//        // Select loose set
-//        Set looseSet = Console::pickLooseSet(aTable.getLooseSet());
-//
-//        // Create build
-//        if (canCreateBuild(aTable, buildCard, looseSet)) {
-//            Set buildSet = new Set();
-//            buildSet.addCard(buildCard);
-//            buildSet.addSet(looseSet);
-//
-//            Build build = new Build(mIsHuman, buildSet);
-//
-//            aTable.addBuild(build);
-//
-//            // Remove loose set from table
-//            for (Card card : looseSet.getCards()) {
-//                aTable.removeLooseCard(card);
-//            }
-//
-//            // Remove build card from hand
-//            mHand.removeCard(buildCard);
-//
-//            return true;
-//        }
-//
-//        return false;
 //    }
 
     /**********************************************************************
@@ -274,30 +302,6 @@ public class Human extends Player {
 //
 //        return false;
 //    }
-
-    /**********************************************************************
-     Function Name: processTrail
-     Purpose: To allow the human to make a trail move
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal trail move was made, a boolean value
-     **********************************************************************/
-    private boolean processTrail(Table aTable, Move aMove) {
-        // Select trail card
-        Card trailCard = aMove.getPlayerCard();
-
-        if (canTrail(aTable, trailCard)) {
-            // Add trail card to table
-            aTable.addLooseCard(trailCard);
-
-            // Remove trail card from hand
-            mHand.removeCard(trailCard);
-
-            return true;
-        }
-
-        return false;
-    }
 
     /**********************************************************************
      Function Name: canCreateBuild

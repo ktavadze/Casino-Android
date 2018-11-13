@@ -359,9 +359,10 @@ public class Player {
         for (Card playerCard : mHand.getCards()) {
             if (!reservedForCapture(aTable, playerCard)) {
                 // Find possible increased builds
-                for (Build build : aTable.getBuilds()) {
-                    if (build.isHuman() != mIsHuman && build.getSets().size() == 1) {
-                        if (countCardsHeld(build.getValue() + playerCard.getValue()) > 0) {
+                for (Build tableBuild : aTable.getBuilds()) {
+                    if (tableBuild.isHuman() != mIsHuman && tableBuild.getSets().size() == 1) {
+                        if (countCardsHeld(tableBuild.getValue() + playerCard.getValue()) > 0) {
+                            Build build = new Build(tableBuild);
                             build.increase(playerCard);
 
                             possibleBuilds.add(build);
@@ -410,10 +411,13 @@ public class Player {
 
                         // Find possible extended builds
                         for (Build tableBuild : aTable.getBuilds()) {
-                            if (tableBuild.getValue() == buildSet.getValue()) {
-                                tableBuild.extend(buildSet);
+                            if (tableBuild.isHuman() == mIsHuman) {
+                                if (tableBuild.getValue() == buildSet.getValue()) {
+                                    Build build = new Build(tableBuild);
+                                    build.extend(buildSet);
 
-                                possibleBuilds.add(tableBuild);
+                                    possibleBuilds.add(build);
+                                }
                             }
                         }
                     }
@@ -428,10 +432,13 @@ public class Player {
 
                         // Find possible extended builds
                         for (Build tableBuild : aTable.getBuilds()) {
-                            if (tableBuild.getValue() == buildSet.getValue()) {
-                                tableBuild.extend(buildSet);
+                            if (tableBuild.isHuman() == mIsHuman) {
+                                if (tableBuild.getValue() == buildSet.getValue()) {
+                                    Build build = new Build(tableBuild);
+                                    build.extend(buildSet);
 
-                                possibleBuilds.add(tableBuild);
+                                    possibleBuilds.add(build);
+                                }
                             }
                         }
                     }

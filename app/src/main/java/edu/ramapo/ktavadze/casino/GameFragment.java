@@ -209,8 +209,6 @@ public class GameFragment extends Fragment {
         buttonSubmitMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "Fuck: " + mMove.getPlayerCard().getName());
-
                 if (!mMove.getPlayerCard().isJoker()) {
                     if (mRound.processMove(mComputer, mHuman, mMove)) {
                         mLinearEndMenu.setVisibility(View.GONE);

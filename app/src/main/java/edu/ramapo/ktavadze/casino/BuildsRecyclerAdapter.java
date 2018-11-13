@@ -50,6 +50,8 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.linearBuildContainer.removeAllViews();
+
         // Get build
         final Build build = mBuilds.get(position);
 

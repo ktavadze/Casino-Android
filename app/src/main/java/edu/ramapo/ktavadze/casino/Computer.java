@@ -1,6 +1,10 @@
 package edu.ramapo.ktavadze.casino;
 
+import java.util.ArrayList;
+
 public class Computer extends Player {
+    private static final String TAG = "Computer";
+
     public Computer(boolean aIsNext) {
         mIsHuman = false;
         mIsNext = aIsNext;
@@ -27,24 +31,23 @@ public class Computer extends Player {
      **********************************************************************/
     @Override
     public int makeMove(Table aTable, Move aMove) {
-//        if (canIncrease(aTable)) {
-//            processIncreaseBuild(aTable);
-//        }
-//        else if (canExtend(aTable)) {
-//            processExtendBuild(aTable);
-//        }
-//        else if (canCreate(aTable)) {
-//            processCreateBuild(aTable);
-//        }
-//        else if (canCapture(aTable)) {
-//            processCapture(aTable);
-//
-//            return 1;
-//        }
-//        else {
-//            processTrail(aTable);
-//        }
-        processTrail(aTable);
+        if (canIncrease(aTable)) {
+            processIncreaseBuild(aTable);
+        }
+        else if (canExtend(aTable)) {
+            processExtendBuild(aTable);
+        }
+        else if (canCreate(aTable)) {
+            processCreateBuild(aTable);
+        }
+        else if (canCapture(aTable)) {
+            processCapture(aTable);
+
+            return 1;
+        }
+        else {
+            processTrail(aTable);
+        }
 
         return 0;
     }
@@ -146,26 +149,14 @@ public class Computer extends Player {
         mHand.removeCard(buildSet.getFirstCard());
 
         // Remove loose set from table
-        for (Card card : aTable.getLooseSet().getCards()) {
-            if (buildSet.contains(card)) {
-                aTable.removeLooseCard(card);
-            }
-        }
-
-        Set extendedSet = new Set();
-
-        for (Build build : aTable.getBuilds()) {
-            for (Set set : build.getSets()) {
-                extendedSet.addSet(set);
-            }
-        }
+        aTable.getLooseSet().removeSet(buildSet);
 
         // Extend build
         for (int i = 0; i < aTable.getBuilds().size(); i++) {
             Build build = aTable.getBuilds().get(i);
 
-            if (extendedSet.contains(build)) {
-                aTable.extendBuild(i, buildSet, mIsHuman);
+            if (aBuild.contains(build)) {
+                aTable.extendBuild(i, buildSet);
             }
         }
     }
@@ -184,11 +175,7 @@ public class Computer extends Player {
         mHand.removeCard(buildSet.getFirstCard());
 
         // Remove loose set from table
-        for (Card card : aTable.getLooseSet().getCards()) {
-            if (buildSet.contains(card)) {
-                aTable.removeLooseCard(card);
-            }
-        }
+        aTable.getLooseSet().removeSet(buildSet);
 
         // Add build to table
         aTable.addBuild(aBuild);
@@ -209,17 +196,29 @@ public class Computer extends Player {
         mPile.addCard(aCaptureSet.getFirstCard());
 
         // Capture loose set
+        Set capturedLooseSet = new Set();
+
         for (Card card : aTable.getLooseSet().getCards()) {
             if (aCaptureSet.contains(card)) {
-                captureLooseCard(aTable, card);
+                capturedLooseSet.addCard(card);
             }
         }
 
+        for (Card card : capturedLooseSet.getCards()) {
+            captureLooseCard(aTable, card);
+        }
+
         // Capture builds
+        ArrayList<Build> capturedBuilds = new ArrayList<>();
+
         for (Build build : aTable.getBuilds()) {
             if (aCaptureSet.contains(build)) {
-                captureBuild(aTable, build);
+                capturedBuilds.add(build);
             }
+        }
+
+        for (Build build : capturedBuilds) {
+            captureBuild(aTable, build);
         }
     }
 

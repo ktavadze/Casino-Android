@@ -13,6 +13,11 @@ public class Build {
         mSets.add(aSet);
     }
 
+    public Build(Build aBuild) {
+        mIsHuman = aBuild.isHuman();
+        mSets = new ArrayList<>(aBuild.getSets());
+    }
+
     public boolean isHuman() {
         return mIsHuman;
     }
