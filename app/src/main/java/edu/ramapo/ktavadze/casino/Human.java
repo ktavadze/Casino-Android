@@ -32,6 +32,16 @@ public class Human extends Player {
     @Override
     public int makeMove(Table aTable, Move aMove) {
         switch (aMove.getType()) {
+            case "increase":
+                if (processIncreaseBuild(aTable, aMove)) {
+                    return 0;
+                }
+                break;
+            case "extend":
+                if (processExtendBuild(aTable, aMove)) {
+                    return 0;
+                }
+                break;
             case "create":
                 if (processCreateBuild(aTable, aMove)) {
                     return 0;
@@ -45,6 +55,89 @@ public class Human extends Player {
         }
 
         return -1;
+    }
+
+    /**********************************************************************
+     Function Name: processIncreaseBuild
+     Purpose: To allow the human to increase a build
+     Parameters:
+     aTable, a Table instance passed by reference
+     Return Value: Whether a legal build was increased, a boolean value
+     **********************************************************************/
+    private boolean processIncreaseBuild(Table aTable, Move aMove) {
+        // Check builds
+        if (aTable.getBuilds().isEmpty()) {
+            Log.d(TAG, "processIncreaseBuild: ERROR: no builds to increase!");
+
+            return false;
+        }
+
+        // Select build
+        Build selectedBuild = aMove.getBuilds().get(0);
+        int selectedBuildIndex = aTable.getBuilds().indexOf(selectedBuild);
+
+        // Select build card
+        Card buildCard = aMove.getPlayerCard();
+
+        // Increase build
+        if (canIncreaseBuild(aTable, selectedBuild, buildCard)) {
+            aTable.increaseBuild(selectedBuildIndex, buildCard, mIsHuman);
+
+            // Remove build card from hand
+            mHand.removeCard(buildCard);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**********************************************************************
+     Function Name: processExtendBuild
+     Purpose: To allow the human to extend a build
+     Parameters:
+     aTable, a Table instance passed by reference
+     Return Value: Whether a legal build was extended, a boolean value
+     **********************************************************************/
+    private boolean processExtendBuild(Table aTable, Move aMove) {
+        // Check builds
+        if (aTable.getBuilds().isEmpty()) {
+            Log.d(TAG, "processExtendBuild: ERROR: no builds to extend!");
+
+            return false;
+        }
+
+        // Select build
+        Build selectedBuild = aMove.getBuilds().get(0);
+        int selectedBuildIndex = aTable.getBuilds().indexOf(selectedBuild);
+
+        // Select build card
+        Card buildCard = aMove.getPlayerCard();
+
+        // Select loose set
+        Set looseSet = new Set();
+
+        if (selectedBuild.getValue() != buildCard.getValue()) {
+            looseSet = aMove.getLooseSet();
+        }
+
+        if (canExtendBuild(aTable, selectedBuild, buildCard, looseSet)) {
+            Set buildSet = new Set();
+            buildSet.addCard(buildCard);
+            buildSet.addSet(looseSet);
+
+            aTable.extendBuild(selectedBuildIndex, buildSet);
+
+            // Remove loose set from table
+            aTable.getLooseSet().removeSet(looseSet);
+
+            // Remove build card from hand
+            mHand.removeCard(buildCard);
+
+            return true;
+        }
+
+        return false;
     }
 
     /**********************************************************************
@@ -169,93 +262,6 @@ public class Human extends Player {
 //            default:
 //                return false;
 //        }
-//    }
-
-    /**********************************************************************
-     Function Name: processBuildIncrease
-     Purpose: To allow the human to increase a build
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal build was increased, a boolean value
-     **********************************************************************/
-//    private boolean processBuildIncrease(Table aTable) {
-//        // Check builds
-//        if (aTable.getBuilds().isEmpty()) {
-//            Console::displayMessage("ERROR: no builds to increase!");
-//
-//            return false;
-//        }
-//
-//        // Select build
-//        int selectedBuildIndex = Console::pickBuild(aTable.getBuilds()) - 1;
-//        Build selectedBuild = aTable.getBuilds().get(selectedBuildIndex);
-//
-//        // Select build card
-//        int buildCardIndex = Console::pickPlayerCard(mHand) - 1;
-//        Card buildCard = mHand.getCardAt(buildCardIndex);
-//
-//        // Increase build
-//        if (canIncreaseBuild(aTable, selectedBuild, buildCard)) {
-//            aTable.increaseBuild(selectedBuildIndex, buildCard, mIsHuman);
-//
-//            // Remove build card from hand
-//            mHand.removeCard(buildCard);
-//
-//            return true;
-//        }
-//
-//        return false;
-//    }
-
-    /**********************************************************************
-     Function Name: processBuildExtend
-     Purpose: To allow the human to extend a build
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal build was extended, a boolean value
-     **********************************************************************/
-//    private boolean processBuildExtend(Table aTable) {
-//        // Check builds
-//        if (aTable.getBuilds().isEmpty()) {
-//            Console::displayMessage("ERROR: no builds to extend!");
-//
-//            return false;
-//        }
-//
-//        // Select build
-//        int selectedBuildIndex = Console::pickBuild(aTable.getBuilds()) - 1;
-//        Build selectedBuild = aTable.getBuilds().get(selectedBuildIndex);
-//
-//        // Select build card
-//        int buildCardIndex = Console::pickPlayerCard(mHand) - 1;
-//        Card buildCard = mHand.getCardAt(buildCardIndex);
-//
-//        // Select loose set
-//        Set looseSet = new Set();
-//
-//        if (selectedBuild.getValue() != buildCard.getValue()) {
-//            looseSet = Console::pickLooseSet(aTable.getLooseSet());
-//        }
-//
-//        if (canExtendBuild(aTable, selectedBuild, buildCard, looseSet)) {
-//            Set buildSet = new Set();
-//            buildSet.addCard(buildCard);
-//            buildSet.addSet(looseSet);
-//
-//            aTable.extendBuild(selectedBuildIndex, buildSet, mIsHuman);
-//
-//            // Remove loose set from table
-//            for (Card card : looseSet.getCards()) {
-//                aTable.removeLooseCard(card);
-//            }
-//
-//            // Remove build card from hand
-//            mHand.removeCard(buildCard);
-//
-//            return true;
-//        }
-//
-//        return false;
 //    }
 
     /**********************************************************************

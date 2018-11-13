@@ -209,7 +209,7 @@ public class GameFragment extends Fragment {
         buttonSubmitMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!mMove.getPlayerCard().isJoker()) {
+                if (validSelection()) {
                     if (mRound.processMove(mComputer, mHuman, mMove)) {
                         mLinearEndMenu.setVisibility(View.GONE);
                         mLinearStartMenu.setVisibility(View.VISIBLE);
@@ -291,5 +291,48 @@ public class GameFragment extends Fragment {
         mMove.clear();
 
         Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
+    }
+
+    private boolean validSelection() {
+        // Check player card
+        if (mMove.getPlayerCard().isJoker()) {
+            Log.d(TAG, "validSelection: ERROR: please select player card!");
+
+            return false;
+        }
+
+        // Check the rest
+        switch (mMove.getType()) {
+            case "increase":
+                if (mMove.getBuilds().size() != 1) {
+                    Log.d(TAG, "validSelection: ERROR: please select one build to increase!");
+
+                    return false;
+                }
+                break;
+            case "extend":
+                if (mMove.getBuilds().size() != 1) {
+                    Log.d(TAG, "validSelection: ERROR: please select one build to extend!");
+
+                    return false;
+                }
+                break;
+            case "create":
+                if (mMove.getLooseSet().isEmpty()) {
+                    Log.d(TAG, "validSelection: ERROR: please select loose card(s) to create!");
+
+                    return false;
+                }
+                break;
+            case "capture":
+                if (mMove.getLooseSet().isEmpty() && mMove.getBuilds().isEmpty()) {
+                    Log.d(TAG, "validSelection: ERROR: please select something to capture!");
+
+                    return false;
+                }
+                break;
+        }
+
+        return true;
     }
 }
