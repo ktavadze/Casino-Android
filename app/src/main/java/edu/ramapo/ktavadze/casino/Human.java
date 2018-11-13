@@ -47,6 +47,11 @@ public class Human extends Player {
                     return 0;
                 }
                 break;
+            case "capture":
+                if (processCapture(aTable, aMove)) {
+                    return 0;
+                }
+                break;
             case "trail":
                 if (processTrail(aTable, aMove)) {
                     return 0;
@@ -186,6 +191,46 @@ public class Human extends Player {
     }
 
     /**********************************************************************
+     Function Name: processCapture
+     Purpose: To allow the human to make a capture move
+     Parameters:
+     aTable, a Table instance passed by reference
+     Return Value: Whether a legal capture move was made, a boolean value
+     **********************************************************************/
+    private boolean processCapture(Table aTable, Move aMove) {
+        // Check table
+        if (aTable.getLooseSet().isEmpty() && aTable.getBuilds().isEmpty()) {
+            Log.d(TAG, "processCapture: ERROR: no cards to capture!");;
+
+            return false;
+        }
+
+        // Select capture card
+        Card captureCard = aMove.getPlayerCard();
+
+        // Select loose set
+        Set looseSet = aMove.getLooseSet();
+
+        // Select firm set
+        Set firmSet = new Set();
+
+        for (Build build : aMove.getBuilds()) {
+            for (Set set : build.getSets()) {
+                firmSet.addSet(set);
+            }
+        }
+
+        // Capture
+        if (canCaptureSelection(aTable, captureCard, looseSet, firmSet)) {
+            capture(aTable, captureCard, looseSet, firmSet);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**********************************************************************
      Function Name: processTrail
      Purpose: To allow the human to make a trail move
      Parameters:
@@ -207,133 +252,6 @@ public class Human extends Player {
         }
 
         return false;
-    }
-
-    /**********************************************************************
-     Function Name: makeMove
-     Purpose: To allow the human (virtual) to make a move
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: The move code associated with made move, an integer value
-     (1 = capture; 0 = build/trail; -1 = illegal)
-     **********************************************************************/
-//    @Override
-//    public int makeMove(Table aTable) {
-//        int choice = Console::processMoveMenu();
-//
-//        switch (choice) {
-//            case 1:
-//                if (processBuild(aTable)) {
-//                    return 0;
-//                }
-//                break;
-//            case 2:
-//                if (processCapture(aTable)) {
-//                    return 1;
-//                }
-//                break;
-//            case 3:
-//                if (processTrail(aTable)) {
-//                    return 0;
-//                }
-//                break;
-//        }
-//
-//        return -1;
-//    }
-
-    /**********************************************************************
-     Function Name: processBuild
-     Purpose: To allow the human to make a build move
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal build move was made, a boolean value
-     **********************************************************************/
-//    private boolean processBuild(Table aTable) {
-//        int choice = Console::processBuildMenu();
-//
-//        switch (choice) {
-//            case 1:
-//                return processCreateBuild(aTable);
-//            case 2:
-//                return processBuildIncrease(aTable);
-//            case 3:
-//                return processBuildExtend(aTable);
-//            default:
-//                return false;
-//        }
-//    }
-
-    /**********************************************************************
-     Function Name: processCapture
-     Purpose: To allow the human to make a capture move
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal capture move was made, a boolean value
-     **********************************************************************/
-//    private boolean processCapture(Table aTable) {
-//        // Check table
-//        if (aTable.getLooseSet().isEmpty() && aTable.getBuilds().isEmpty()) {
-//            Console::displayMessage("ERROR: no cards to capture!");
-//
-//            return false;
-//        }
-//
-//        // Select capture card
-//        int captureCardIndex = Console::pickPlayerCard(mHand) - 1;
-//        Card captureCard = mHand.getCardAt(captureCardIndex);
-//
-//        // Select table set
-//        Set tableSet = Console::pickTableSet(aTable);
-//
-//        // Classify
-//        Set looseSet = new Set();
-//        Set firmSet = new Set();
-//
-//        for (Card card : tableSet.getCards()) {
-//            if (aTable.getLooseSet().contains(card)) {
-//                looseSet.addCard(card);
-//            }
-//            else {
-//                firmSet.addCard(card);
-//            }
-//        }
-//
-//        // Capture
-//        if (canCaptureSelection(aTable, captureCard, looseSet, firmSet)) {
-//            capture(aTable, captureCard, looseSet, firmSet);
-//
-//            return true;
-//        }
-//
-//        return false;
-//    }
-
-    /**********************************************************************
-     Function Name: canCreateBuild
-     Purpose: To determine whether the human can create specified build
-     Parameters:
-     aTable, a Table instance passed by value
-     aBuildCard, a Card instance passed by value
-     aLooseSet, a Set instance passed by value
-     Return Value: Whether the human can create specified build, a boolean value
-     **********************************************************************/
-    private boolean canCreateBuild(Table aTable, Card aBuildCard, Set aLooseSet) {
-        // Check build card
-        if (reservedForCapture(aTable, aBuildCard)) {
-            Log.d(TAG, "canCreateBuild: ERROR: build card reserved for capture!");
-
-            return false;
-        }
-
-        // Check build value
-        if (countCardsHeld(aBuildCard.getValue() + aLooseSet.getValue()) == 0) {
-            Log.d(TAG, "canCreateBuild: ERROR: no card in hand matching build value!");
-
-            return false;
-        }
-
-        return true;
     }
 
     /**********************************************************************
@@ -398,6 +316,33 @@ public class Human extends Player {
         // Check build value
         if (aBuildCard.getValue() + aLooseSet.getValue() != aSelectedBuild.getValue()) {
             Log.d(TAG, "canExtendBuild: ERROR: build sum mismatch!");
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**********************************************************************
+     Function Name: canCreateBuild
+     Purpose: To determine whether the human can create specified build
+     Parameters:
+     aTable, a Table instance passed by value
+     aBuildCard, a Card instance passed by value
+     aLooseSet, a Set instance passed by value
+     Return Value: Whether the human can create specified build, a boolean value
+     **********************************************************************/
+    private boolean canCreateBuild(Table aTable, Card aBuildCard, Set aLooseSet) {
+        // Check build card
+        if (reservedForCapture(aTable, aBuildCard)) {
+            Log.d(TAG, "canCreateBuild: ERROR: build card reserved for capture!");
+
+            return false;
+        }
+
+        // Check build value
+        if (countCardsHeld(aBuildCard.getValue() + aLooseSet.getValue()) == 0) {
+            Log.d(TAG, "canCreateBuild: ERROR: no card in hand matching build value!");
 
             return false;
         }
