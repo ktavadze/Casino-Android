@@ -310,7 +310,7 @@ public class Human extends Player {
     private boolean canExtendBuild(Table aTable, Build aSelectedBuild, Card aBuildCard, Set aLooseSet) {
         // Check build owner
         if (aSelectedBuild.isHuman() != mIsHuman) {
-            Log.d(TAG, "canExtendBuild: cannot extend opponent's build!");
+            Log.d(TAG, "canExtendBuild: ERROR: cannot extend opponent's build!");
 
             return false;
         }

@@ -84,6 +84,13 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
             holder.linearBuildContainer.addView(linearSet);
         }
 
+        if (build.isHuman()) {
+            holder.linearBuildContainer.setBackgroundColor(mContext.getResources().getColor(R.color.colorGreenLight));
+        }
+        else {
+            holder.linearBuildContainer.setBackgroundColor(mContext.getResources().getColor(R.color.colorRedLight));
+        }
+
         holder.linearBuildContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +98,12 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
                     mMove.getBuilds().remove(build);
                     mMove.getBuildViews().remove(v);
 
-                    v.setBackgroundColor(0);
+                    if (build.isHuman()) {
+                        v.setBackgroundColor(mContext.getResources().getColor(R.color.colorGreenLight));
+                    }
+                    else {
+                        v.setBackgroundColor(mContext.getResources().getColor(R.color.colorRedLight));
+                    }
                 }
                 else {
                     mMove.getBuilds().add(build);
