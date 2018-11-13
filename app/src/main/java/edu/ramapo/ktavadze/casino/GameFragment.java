@@ -87,7 +87,7 @@ public class GameFragment extends Fragment {
 
         addListeners();
 
-        mRound.startTurn(mComputer, mHuman);
+        mRound.start(mComputer, mHuman);
 
         initView();
 
@@ -214,7 +214,12 @@ public class GameFragment extends Fragment {
                         mLinearEndMenu.setVisibility(View.GONE);
                         mLinearStartMenu.setVisibility(View.VISIBLE);
 
-                        mRound.startTurn(mComputer, mHuman);
+                        if (mRound.isOver(mComputer, mHuman)) {
+                            // TODO
+                        }
+                        else {
+                            mRound.update(mComputer, mHuman);
+                        }
 
                         updateView();
                     }

@@ -41,14 +41,22 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_builds"
+    <RelativeLayout
+        android:id="@+id/relative_builds_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linear_computer_container"
         android:layout_above="@+id/relative_loose_set_container">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_builds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relative_loose_set_container"

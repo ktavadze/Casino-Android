@@ -29,7 +29,7 @@ public class Round {
         return mDeck;
     }
 
-    public void startTurn(Player aComputer, Player aHuman) {
+    public void start(Player aComputer, Player aHuman) {
         if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
             // TODO: Seed deck
 //                if (aComputer.getPile().isEmpty() && aHuman.getPile().isEmpty()) {
@@ -44,12 +44,20 @@ public class Round {
             aHuman.setHand(mDeck.drawSet());
             aComputer.setHand(mDeck.drawSet());
 
+            // Deal table
             if (aComputer.getPile().isEmpty() && aHuman.getPile().isEmpty()) {
                 if (mTable.getLooseSet().isEmpty() && mTable.getBuilds().isEmpty()) {
-                    // Deal table
                     mTable.setLooseSet(mDeck.drawSet());
                 }
             }
+        }
+    }
+
+    public void update(Player aComputer, Player aHuman) {
+        if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
+            // Deal players
+            aHuman.getHand().addSet(mDeck.drawSet());
+            aComputer.getHand().addSet(mDeck.drawSet());
         }
     }
 
@@ -94,6 +102,24 @@ public class Round {
                     return false;
             }
         }
+    }
+
+    /**********************************************************************
+     Function Name: isOver
+     Purpose: To determine whether the round is over
+     Parameters:
+     aComputer, a Player instance passed by value
+     aHuman, a Player instance passed by value
+     Return Value: Whether the round is over, a boolean value
+     **********************************************************************/
+    public boolean isOver(Player aComputer, Player aHuman) {
+        if (mDeck.isEmpty()) {
+            if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**********************************************************************
@@ -187,24 +213,6 @@ public class Round {
         }
 
         return data;
-    }
-
-    /**********************************************************************
-     Function Name: isOver
-     Purpose: To determine whether the round is over
-     Parameters:
-     aComputer, a Player instance passed by value
-     aHuman, a Player instance passed by value
-     Return Value: Whether the round is over, a boolean value
-     **********************************************************************/
-    private boolean isOver(Player aComputer, Player aHuman) {
-        if (mDeck.isEmpty()) {
-            if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**********************************************************************
