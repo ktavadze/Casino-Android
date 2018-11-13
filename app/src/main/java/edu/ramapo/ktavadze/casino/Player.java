@@ -182,8 +182,10 @@ public class Player {
 
                         // Check for possible extended builds
                         for (Build tableBuild : aTable.getBuilds()) {
-                            if (tableBuild.getValue() == buildSet.getValue()) {
-                                return true;
+                            if (tableBuild.isHuman() == mIsHuman) {
+                                if (tableBuild.getValue() == buildSet.getValue()) {
+                                    return true;
+                                }
                             }
                         }
                     }
@@ -198,8 +200,10 @@ public class Player {
 
                         // Check for possible extended builds
                         for (Build tableBuild : aTable.getBuilds()) {
-                            if (tableBuild.getValue() == buildSet.getValue()) {
-                                return true;
+                            if (tableBuild.isHuman() == mIsHuman) {
+                                if (tableBuild.getValue() == buildSet.getValue()) {
+                                    return true;
+                                }
                             }
                         }
                     }
