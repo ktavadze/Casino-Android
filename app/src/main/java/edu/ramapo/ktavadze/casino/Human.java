@@ -2,6 +2,8 @@ package edu.ramapo.ktavadze.casino;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class Human extends Player {
     private static final String TAG = "Human";
     
@@ -491,10 +493,16 @@ public class Human extends Player {
         }
 
         // Capture firm set
+        ArrayList<Build> capturedBuilds = new ArrayList<>();
+
         for (Build build : aTable.getBuilds()) {
             if (aFirmSet.contains(build)) {
-                captureBuild(aTable, build);
+                capturedBuilds.add(build);
             }
+        }
+
+        for (Build build : capturedBuilds) {
+            captureBuild(aTable, build);
         }
     }
 }

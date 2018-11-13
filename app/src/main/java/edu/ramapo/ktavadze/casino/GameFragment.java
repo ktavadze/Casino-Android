@@ -89,9 +89,9 @@ public class GameFragment extends Fragment {
 
         mRound.startTurn(mComputer, mHuman);
 
-        Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
-
         initView();
+
+        Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 
     private void addListeners() {
@@ -213,6 +213,8 @@ public class GameFragment extends Fragment {
                     if (mRound.processMove(mComputer, mHuman, mMove)) {
                         mLinearEndMenu.setVisibility(View.GONE);
                         mLinearStartMenu.setVisibility(View.VISIBLE);
+
+                        mRound.startTurn(mComputer, mHuman);
 
                         updateView();
                     }

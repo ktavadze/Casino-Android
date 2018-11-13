@@ -189,11 +189,11 @@ public class Computer extends Player {
      aCaptureSet, a Set instance passed by value
      **********************************************************************/
     private void capture(Table aTable, Set aCaptureSet) {
-        // Remove capture card from hand
-        mHand.removeCard(aCaptureSet.getFirstCard());
-
         // Add capture card to pile
         mPile.addCard(aCaptureSet.getFirstCard());
+
+        // Remove capture card from hand
+        mHand.removeCard(aCaptureSet.getFirstCard());
 
         // Capture loose set
         Set capturedLooseSet = new Set();
