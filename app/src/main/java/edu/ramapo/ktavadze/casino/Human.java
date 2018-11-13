@@ -308,6 +308,13 @@ public class Human extends Player {
      Return Value: Whether the human can extend specified build, a boolean value
      **********************************************************************/
     private boolean canExtendBuild(Table aTable, Build aSelectedBuild, Card aBuildCard, Set aLooseSet) {
+        // Check build owner
+        if (aSelectedBuild.isHuman() != mIsHuman) {
+            Log.d(TAG, "canExtendBuild: cannot extend opponent's build!");
+
+            return false;
+        }
+
         // Check build card
         if (reservedForCapture(aTable, aBuildCard)) {
             Log.d(TAG, "canExtendBuild: ERROR: build card reserved for capture!");

@@ -15,7 +15,17 @@ public class Build {
 
     public Build(Build aBuild) {
         mIsHuman = aBuild.isHuman();
-        mSets = new ArrayList<>(aBuild.getSets());
+        mSets = new ArrayList<>();
+
+        for (Set set : aBuild.getSets()) {
+            Set newSet = new Set();
+
+            for (Card card : set.getCards()) {
+                newSet.addCard(new Card(card.getName()));
+            }
+
+            mSets.add(newSet);
+        }
     }
 
     public boolean isHuman() {

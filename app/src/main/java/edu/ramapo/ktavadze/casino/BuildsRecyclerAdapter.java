@@ -65,6 +65,8 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
             );
             linearSet.setLayoutParams(linearSetParams);
 
+            linearSet.setPadding(12, 0, 12, 0);
+
             for (Card card : set.getCards()) {
                 ImageView imageCard = new ImageView(mContext);
 
