@@ -18,7 +18,7 @@
     <LinearLayout
         android:id="@+id/linear_computer_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="96dp"
         android:layout_below="@+id/recycler_deck"
         android:background="@color/colorRedLight">
 
@@ -78,7 +78,7 @@
     <LinearLayout
         android:id="@+id/linear_human_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="96dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:background="@color/colorGreenLight">
