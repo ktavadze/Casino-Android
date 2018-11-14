@@ -1,9 +1,9 @@
 /*
  ************************************************************
  * Name: Konstantine Tavadze                                *
- * Project: Casino - Milestone #1                           *
+ * Project: Casino - Milestone #2                           *
  * Class: Organization of Programming Languages             *
- * Date: 11/06/2018                                         *
+ * Date: 11/13/2018                                         *
  ************************************************************
  */
 package edu.ramapo.ktavadze.casino;
