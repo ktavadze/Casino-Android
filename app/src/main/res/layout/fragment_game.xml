@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="96dp"
         android:layout_below="@+id/recycler_deck"
-        android:background="@color/colorRedLight">
+        android:background="@color/colorRed">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_computer_hand"
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linear_human_container"
-        android:background="@color/colorYellowLight">
+        android:background="@color/colorYellow">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_loose_set"
@@ -80,8 +80,8 @@
         android:layout_width="match_parent"
         android:layout_height="96dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:background="@color/colorGreenLight">
+        android:layout_marginBottom="96dp"
+        android:background="@color/colorGreen">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_human_hand"
@@ -105,15 +105,15 @@
     <LinearLayout
         android:id="@+id/linear_start_menu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="96dp"
         android:layout_alignParentBottom="true">
 
         <Button
             android:id="@+id/button_get_help"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorYellow"
+            android:background="@color/colorYellowDark"
             android:textSize="25sp"
             android:text="Get Help"
             style="?borderlessButtonStyle" />
@@ -121,9 +121,9 @@
         <Button
             android:id="@+id/button_make_move"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorGreen"
+            android:background="@color/colorGreenDark"
             android:textSize="25sp"
             android:text="Make Move"
             style="?borderlessButtonStyle" />
@@ -133,26 +133,26 @@
     <LinearLayout
         android:id="@+id/linear_move_menu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="96dp"
         android:layout_alignParentBottom="true"
         android:visibility="gone">
 
         <Button
             android:id="@+id/button_build_move"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="25sp"
-            android:background="@color/colorGreen"
+            android:background="@color/colorGreenDark"
             android:text="Build"
             style="?borderlessButtonStyle" />
 
         <Button
             android:id="@+id/button_capture_move"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorYellow"
+            android:background="@color/colorYellowDark"
             android:textSize="25sp"
             android:text="Capture"
             style="?borderlessButtonStyle" />
@@ -162,7 +162,7 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:background="@color/colorRed"
+            android:background="@color/colorRedDark"
             android:textSize="25sp"
             android:text="Trail"
             style="?borderlessButtonStyle" />
@@ -172,14 +172,14 @@
     <LinearLayout
         android:id="@+id/linear_build_menu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="96dp"
         android:layout_alignParentBottom="true"
         android:visibility="gone">
 
         <Button
             android:id="@+id/button_increase_move"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorGreenDark"
             android:textSize="25sp"
@@ -189,7 +189,7 @@
         <Button
             android:id="@+id/button_extend_move"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorGreen"
             android:textSize="25sp"
@@ -199,7 +199,7 @@
         <Button
             android:id="@+id/button_create_move"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorGreenLight"
             android:textSize="25sp"
@@ -211,16 +211,16 @@
     <LinearLayout
         android:id="@+id/linear_end_menu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="96dp"
         android:layout_alignParentBottom="true"
         android:visibility="gone">
 
         <Button
             android:id="@+id/button_cancel_move"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorRed"
+            android:background="@color/colorRedDark"
             android:textSize="25sp"
             android:text="Cancel"
             style="?borderlessButtonStyle" />
@@ -228,9 +228,9 @@
         <Button
             android:id="@+id/button_submit_move"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorGreen"
+            android:background="@color/colorGreenDark"
             android:textSize="25sp"
             android:text="Submit"
             style="?borderlessButtonStyle" />

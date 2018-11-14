@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/colorGreen"
+        android:background="@color/colorGreenDark"
         android:textSize="50sp"
         android:text="New Deck" />
 
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/colorYellow"
+        android:background="@color/colorYellowDark"
         android:textSize="50sp"
         android:text="Seed Deck" />
 
