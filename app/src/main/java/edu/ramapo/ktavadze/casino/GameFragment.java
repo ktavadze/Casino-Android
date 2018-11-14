@@ -27,6 +27,7 @@ public class GameFragment extends Fragment {
 
     private Move mMove;
 
+    private Button mButtonMakeMove;
     private LinearLayout mLinearStartMenu;
     private LinearLayout mLinearMoveMenu;
     private LinearLayout mLinearBuildMenu;
@@ -71,6 +72,7 @@ public class GameFragment extends Fragment {
 
         mView = inflater.inflate(R.layout.fragment_game, null);
 
+        mButtonMakeMove = mView.findViewById(R.id.button_make_move);
         mLinearStartMenu = mView.findViewById(R.id.linear_start_menu);
         mLinearMoveMenu = mView.findViewById(R.id.linear_move_menu);
         mLinearBuildMenu = mView.findViewById(R.id.linear_build_menu);
@@ -105,8 +107,7 @@ public class GameFragment extends Fragment {
         });
 
         // Add make move listener
-        final Button buttonMakeMove = mView.findViewById(R.id.button_make_move);
-        buttonMakeMove.setOnClickListener(new View.OnClickListener() {
+        mButtonMakeMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mComputer.isNext()) {
@@ -272,6 +273,14 @@ public class GameFragment extends Fragment {
         mHumanPileAdapter = new CardsRecyclerAdapter(mContext, mHuman.getPile().getCards());
         recyclerHumanPile.setAdapter(mHumanPileAdapter);
         recyclerHumanPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+
+        if (mHuman.isNext()) {
+            mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
+        }
+        else {
+
+            mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
+        }
     }
 
     private void updateView() {
@@ -282,6 +291,14 @@ public class GameFragment extends Fragment {
         mLooseSetAdapter.notifyDataSetChanged();
         mHumanHandAdapter.notifyDataSetChanged();
         mHumanPileAdapter.notifyDataSetChanged();
+
+        if (mHuman.isNext()) {
+            mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
+        }
+        else {
+
+            mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
+        }
 
         if (mMove.getPlayerCardView() != null) {
             mMove.getPlayerCardView().setBackgroundColor(0);

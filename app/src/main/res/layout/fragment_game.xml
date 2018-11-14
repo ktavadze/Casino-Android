@@ -115,7 +115,7 @@
             android:layout_weight="1"
             android:background="@color/colorYellowDark"
             android:textSize="25sp"
-            android:text="Get Help"
+            android:text="Help"
             style="?borderlessButtonStyle" />
 
         <Button
@@ -123,9 +123,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorGreenDark"
             android:textSize="25sp"
-            android:text="Make Move"
+            android:text="Move"
             style="?borderlessButtonStyle" />
 
     </LinearLayout>
