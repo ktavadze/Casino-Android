@@ -13,6 +13,7 @@ public class Player {
     protected int mScore;
     protected Set mHand;
     protected Set mPile;
+    protected String mMessage = "";
 
     public Player() {}
 
@@ -56,12 +57,8 @@ public class Player {
         return mPile;
     }
 
-    public void addToPile(Card aCard) {
-        mPile.addCard(aCard);
-    }
-
-    public void clearPile() {
-        mPile.clear();
+    public String getMessage() {
+        return mMessage;
     }
 
     public int makeMove(Table aTable, Move aMove) {
@@ -385,6 +382,8 @@ public class Player {
             }
         }
 
+        mMessage = "Increase: " + bestBuild.stringify();
+
         Log.d(TAG, "findBestIncrease: " + bestBuild.stringify());
 
         return bestBuild;
@@ -459,6 +458,8 @@ public class Player {
             }
         }
 
+        mMessage = "Extend: " + bestBuild.stringify();
+
         Log.d(TAG, "findBestExtend: " + bestBuild.stringify());
 
         return bestBuild;
@@ -516,6 +517,8 @@ public class Player {
                 bestBuild = build;
             }
         }
+
+        mMessage = "Create: " + bestBuild.stringify();
 
         Log.d(TAG, "findBestCreate: " + bestBuild.stringify());
 
@@ -598,6 +601,8 @@ public class Player {
             }
         }
 
+        mMessage = "Capture: " + bestCaptureSet.stringify();
+
         Log.d(TAG, "findBestCapture: " + bestCaptureSet.stringify());
 
         return bestCaptureSet;
@@ -622,6 +627,8 @@ public class Player {
                 bestTrailCard = card;
             }
         }
+
+        mMessage = "Trail: " + bestTrailCard.getName();
 
         Log.d(TAG, "findBestTrail: " + bestTrailCard.getName());
 

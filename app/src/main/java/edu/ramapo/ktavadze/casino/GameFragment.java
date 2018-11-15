@@ -230,6 +230,9 @@ public class GameFragment extends Fragment {
                             updateView();
                         }
                     }
+                    else if (mHuman.isNext()) {
+                        logMessage(mHuman.getMessage());
+                    }
                 }
             }
         });
@@ -340,7 +343,9 @@ public class GameFragment extends Fragment {
     private boolean validSelection() {
         // Check player card
         if (mMove.getPlayerCard().isJoker()) {
-            Log.d(TAG, "validSelection: ERROR: please select player card!");
+            logMessage("Please select which card to play");
+
+            Log.d(TAG, "validSelection: Please select which card to play");
 
             return false;
         }
@@ -349,28 +354,36 @@ public class GameFragment extends Fragment {
         switch (mMove.getType()) {
             case "increase":
                 if (mMove.getBuilds().size() != 1) {
-                    Log.d(TAG, "validSelection: ERROR: please select one build to increase!");
+                    logMessage("Please select which build to increase");
+
+                    Log.d(TAG, "validSelection: Please select which build to increase");
 
                     return false;
                 }
                 break;
             case "extend":
                 if (mMove.getBuilds().size() != 1) {
-                    Log.d(TAG, "validSelection: ERROR: please select one build to extend!");
+                    logMessage("Please select which build to extend");
+
+                    Log.d(TAG, "validSelection: Please select which build to extend");
 
                     return false;
                 }
                 break;
             case "create":
                 if (mMove.getLooseSet().isEmpty()) {
-                    Log.d(TAG, "validSelection: ERROR: please select loose card(s) to create!");
+                    logMessage("Please select loose card(s) to create");
+
+                    Log.d(TAG, "validSelection: Please select loose card(s) to create");
 
                     return false;
                 }
                 break;
             case "capture":
                 if (mMove.getLooseSet().isEmpty() && mMove.getBuilds().isEmpty()) {
-                    Log.d(TAG, "validSelection: ERROR: please select something to capture!");
+                    logMessage("Please select something to capture");
+
+                    Log.d(TAG, "validSelection: Please select something to capture");
 
                     return false;
                 }
