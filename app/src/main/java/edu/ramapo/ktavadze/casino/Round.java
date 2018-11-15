@@ -53,14 +53,6 @@ public class Round {
         }
     }
 
-    public void update(Player aComputer, Player aHuman) {
-        if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
-            // Deal players
-            aHuman.getHand().addSet(mDeck.drawSet());
-            aComputer.getHand().addSet(mDeck.drawSet());
-        }
-    }
-
     /**********************************************************************
      Function Name: makeMove
      Purpose: To allow players to make a move
@@ -81,6 +73,8 @@ public class Round {
                     aHuman.isNext(false);
                     aComputer.isNext(true);
 
+                    update(aComputer, aHuman);
+
                     return true;
                 default:
                     return false;
@@ -96,6 +90,8 @@ public class Round {
                 case 0:
                     aHuman.isNext(true);
                     aComputer.isNext(false);
+
+                    update(aComputer, aHuman);
 
                     return true;
                 default:
@@ -283,6 +279,34 @@ public class Round {
 //            }
 //        }
 //    }
+
+    private void update(Player aComputer, Player aHuman) {
+        if (isOver(aComputer, aHuman)) {
+            // Clear loose set
+            if (!mTable.getLooseSet().isEmpty()) {
+                if (aHuman.capturedLast()) {
+                    aHuman.getPile().addSet(mTable.getLooseSet());
+                }
+                else {
+                    aComputer.getPile().addSet(mTable.getLooseSet());
+                }
+
+                mTable.getLooseSet().clear();
+            }
+
+            // Update scores
+            updateScores(aComputer, aHuman);
+
+            // Clear piles
+            aHuman.clearPile();
+            aComputer.clearPile();
+        }
+        else if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
+            // Deal players
+            aHuman.getHand().addSet(mDeck.drawSet());
+            aComputer.getHand().addSet(mDeck.drawSet());
+        }
+    }
 
     /**********************************************************************
      Function Name: updateScores

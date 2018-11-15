@@ -116,10 +116,8 @@ public class GameFragment extends Fragment {
                             // TODO
                         }
                         else {
-                            mRound.update(mComputer, mHuman);
+                            updateView();
                         }
-
-                        updateView();
                     }
 
                     return;
@@ -226,10 +224,8 @@ public class GameFragment extends Fragment {
                             // TODO
                         }
                         else {
-                            mRound.update(mComputer, mHuman);
+                            updateView();
                         }
-
-                        updateView();
                     }
                 }
             }
