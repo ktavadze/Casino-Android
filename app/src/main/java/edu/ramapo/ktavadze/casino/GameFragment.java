@@ -315,7 +315,7 @@ public class GameFragment extends Fragment {
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
         }
         else {
-            logMessage("Human turn");
+            logMessage("Computer turn");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }
