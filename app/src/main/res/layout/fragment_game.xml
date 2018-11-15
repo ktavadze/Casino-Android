@@ -41,11 +41,21 @@
 
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/edit_message_log"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_below="@id/linear_computer_container"
+        android:gravity="center"
+        android:inputType="textMultiLine"
+        android:textColor="@color/colorPrimaryLight"
+        android:background="@null" />
+
     <RelativeLayout
         android:id="@+id/relative_builds_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_computer_container"
+        android:layout_below="@+id/edit_message_log"
         android:layout_above="@+id/relative_loose_set_container">
 
         <android.support.v7.widget.RecyclerView

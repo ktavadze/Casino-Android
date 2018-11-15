@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 public class GameFragment extends Fragment {
@@ -27,6 +28,7 @@ public class GameFragment extends Fragment {
 
     private Move mMove;
 
+    private EditText mEditMessageLog;
     private Button mButtonMakeMove;
     private LinearLayout mLinearStartMenu;
     private LinearLayout mLinearMoveMenu;
@@ -72,6 +74,7 @@ public class GameFragment extends Fragment {
 
         mView = inflater.inflate(R.layout.fragment_game, null);
 
+        mEditMessageLog = mView.findViewById(R.id.edit_message_log);
         mButtonMakeMove = mView.findViewById(R.id.button_make_move);
         mLinearStartMenu = mView.findViewById(R.id.linear_start_menu);
         mLinearMoveMenu = mView.findViewById(R.id.linear_move_menu);
@@ -234,6 +237,10 @@ public class GameFragment extends Fragment {
         Log.d(TAG, "addListeners: Listeners added");
     }
 
+    private void logMessage(String aMessage) {
+        mEditMessageLog.append(aMessage + "\n");
+    }
+
     private void initView() {
         // Init deck recycler
         final RecyclerView recyclerDeck = mView.findViewById(R.id.recycler_deck);
@@ -277,10 +284,17 @@ public class GameFragment extends Fragment {
         recyclerHumanPile.setAdapter(mHumanPileAdapter);
         recyclerHumanPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
+        mEditMessageLog.setKeyListener(null);
+
+        logMessage("Round " + mRound.getNumber());
+
         if (mHuman.isNext()) {
+            logMessage("Human turn");
+
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
         }
         else {
+            logMessage("Computer turn");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }
@@ -296,9 +310,12 @@ public class GameFragment extends Fragment {
         mHumanPileAdapter.notifyDataSetChanged();
 
         if (mHuman.isNext()) {
+            logMessage("Human turn");
+
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
         }
         else {
+            logMessage("Human turn");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }
