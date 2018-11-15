@@ -112,6 +112,13 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
                 if (mComputer.isNext()) {
                     if (mRound.processMove(mComputer, mHuman, mMove)) {
+                        if (mRound.isOver(mComputer, mHuman)) {
+                            // TODO
+                        }
+                        else {
+                            mRound.update(mComputer, mHuman);
+                        }
+
                         updateView();
                     }
 
