@@ -1,6 +1,7 @@
 package edu.ramapo.ktavadze.casino;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -81,25 +82,27 @@ public class CoinTossFragment extends Fragment {
         final int coin = rand.nextInt(2);
 
         if (coin == guess) {
-            final int colorGreen = ContextCompat.getColor(mContext, R.color.colorGreen);
+            final int colorGreenDark = getResources().getColor(R.color.colorGreenDark);
 
             if (guess == 0) {
-                mButtonGuessHeads.setBackgroundColor(colorGreen);
+                mButtonGuessHeads.setBackgroundColor(colorGreenDark);
             }
             else {
-                mButtonGuessTails.setBackgroundColor(colorGreen);
+                mButtonGuessTails.setBackgroundColor(colorGreenDark);
+                mButtonGuessTails.setTextColor(Color.BLACK);
             }
 
             ((MainActivity)mContext).mTournament = new Tournament(true);
         }
         else {
-            final int colorRed = ContextCompat.getColor(mContext, R.color.colorRed);
+            final int colorRedDark = getResources().getColor(R.color.colorRedDark);
 
             if (guess == 0) {
-                mButtonGuessHeads.setBackgroundColor(colorRed);
+                mButtonGuessHeads.setBackgroundColor(colorRedDark);
             }
             else {
-                mButtonGuessTails.setBackgroundColor(colorRed);
+                mButtonGuessTails.setBackgroundColor(colorRedDark);
+                mButtonGuessTails.setTextColor(Color.BLACK);
             }
 
             ((MainActivity)mContext).mTournament = new Tournament(false);
