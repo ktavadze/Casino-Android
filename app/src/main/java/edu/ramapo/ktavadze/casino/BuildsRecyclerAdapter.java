@@ -73,7 +73,7 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
                 imageCard.setAdjustViewBounds(true);
                 imageCard.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 imageCard.setMaxHeight(128);
-                imageCard.setPadding(12, 12, 12, 12);
+                imageCard.setPadding(0, 12, 0, 12);
 
                 final String fileName = "card_" + card.getName().toLowerCase();
                 imageCard.setImageResource(mContext.getResources()
