@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.HashMap;
 
 public class RoundResultsFragment extends Fragment {
-    private static final String TAG = "RoundResultsFragment";
+    private static final String TAG = "RoundResults";
 
     private Context mContext;
     private View mView;
@@ -101,7 +101,7 @@ public class RoundResultsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (mTournament.isOver()) {
-                    // TODO
+                    ((MainActivity)mContext).loadFragment(new TournamentResultFragment());
                 }
                 else {
                     mTournament.update();
