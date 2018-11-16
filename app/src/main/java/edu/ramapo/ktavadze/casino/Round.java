@@ -303,10 +303,6 @@ public class Round {
 
             // Update scores
             updateScores(aComputer, aHuman);
-
-            // Clear piles
-//            aHuman.getPile().clear();
-//            aComputer.getPile().clear();
         }
         else if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
             // Deal players

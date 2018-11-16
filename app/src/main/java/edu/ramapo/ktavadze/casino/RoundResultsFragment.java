@@ -100,7 +100,14 @@ public class RoundResultsFragment extends Fragment {
         mButtonRoundContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                if (mTournament.isOver()) {
+                    // TODO
+                }
+                else {
+                    mTournament.update();
+
+                    ((MainActivity)mContext).loadFragment(new GameFragment());
+                }
             }
         });
 

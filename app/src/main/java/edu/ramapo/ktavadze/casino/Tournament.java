@@ -29,6 +29,24 @@ public class Tournament {
         return mRound;
     }
 
+    public void update() {
+        // Clear piles
+        mHuman.getPile().clear();
+        mComputer.getPile().clear();
+
+        // Set turn
+        if (mHuman.capturedLast()) {
+            mHuman.isNext(true);
+            mComputer.isNext(false);
+        }
+        else {
+            mHuman.isNext(false);
+            mComputer.isNext(true);
+        }
+
+        mRound = new Round(mRound.getNumber() + 1);
+    }
+
     /**********************************************************************
      Function Name: start
      Purpose: To start the tournament
@@ -63,7 +81,7 @@ public class Tournament {
      Purpose: To determine whether the tournament is over
      Return Value: Whether the tournament is over, a boolean value
      **********************************************************************/
-    private boolean isOver() {
+    public boolean isOver() {
         if (mComputer.getScore() >= 21 || mHuman.getScore() >= 21) {
             return true;
         }
