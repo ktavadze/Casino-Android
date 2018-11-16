@@ -95,6 +95,8 @@ public class Human extends Player {
             // Remove build card from hand
             mHand.removeCard(buildCard);
 
+            mMessage = "Increase: " + selectedBuild.stringify();
+
             return true;
         }
 
@@ -145,6 +147,8 @@ public class Human extends Player {
             // Remove build card from hand
             mHand.removeCard(buildCard);
 
+            mMessage = "Extend: " + selectedBuild.stringify();
+
             return true;
         }
 
@@ -192,6 +196,8 @@ public class Human extends Player {
             // Remove build card from hand
             mHand.removeCard(buildCard);
 
+            mMessage = "Create: " + build.stringify();
+
             return true;
         }
 
@@ -234,6 +240,8 @@ public class Human extends Player {
         if (canCaptureSelection(aTable, captureCard, looseSet, firmSet)) {
             capture(aTable, captureCard, looseSet, firmSet);
 
+            mMessage = "Capture: " + captureCard.getName() + " " + looseSet.stringify() + " " + firmSet.stringify();
+
             return true;
         }
 
@@ -257,6 +265,8 @@ public class Human extends Player {
 
             // Remove trail card from hand
             mHand.removeCard(trailCard);
+
+            mMessage = "Trail: " + trailCard.getName();
 
             return true;
         }

@@ -48,6 +48,7 @@
         android:layout_below="@id/linear_computer_container"
         android:gravity="center"
         android:inputType="textMultiLine"
+        android:textSize="15sp"
         android:textColor="@color/colorPrimaryLight"
         android:background="@null" />
 

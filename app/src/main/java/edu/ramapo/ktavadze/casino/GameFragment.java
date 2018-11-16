@@ -208,8 +208,6 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
                 mLinearEndMenu.setVisibility(View.GONE);
                 mLinearStartMenu.setVisibility(View.VISIBLE);
-
-                updateView();
             }
         });
 
@@ -292,12 +290,12 @@ public class GameFragment extends Fragment {
         logMessage("Round " + mRound.getNumber());
 
         if (mHuman.isNext()) {
-            logMessage("Human turn");
+            logMessage("\nHuman turn");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
         }
         else {
-            logMessage("Computer turn");
+            logMessage("\nComputer turn");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }
@@ -313,12 +311,14 @@ public class GameFragment extends Fragment {
         mHumanPileAdapter.notifyDataSetChanged();
 
         if (mHuman.isNext()) {
-            logMessage("Human turn");
+            logMessage(mComputer.getMessage());
+            logMessage("\nHuman turn");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
         }
         else {
-            logMessage("Computer turn");
+            logMessage(mHuman.getMessage());
+            logMessage("\nComputer turn");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }
