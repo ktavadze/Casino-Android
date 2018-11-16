@@ -105,7 +105,16 @@ public class GameFragment extends Fragment {
         buttonGetHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                if (mHuman.isNext()) {
+                    mHuman.askForHelp(mRound.getTable());
+
+                    logMessage(mHuman.getMessage());
+                }
+                else {
+                    mComputer.askForHelp(mRound.getTable());
+
+                    logMessage(mComputer.getMessage());
+                }
             }
         });
 
