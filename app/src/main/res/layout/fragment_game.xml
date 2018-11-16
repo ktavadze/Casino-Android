@@ -192,7 +192,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorGreenDark"
+            android:background="@color/colorYellowDark"
             android:textSize="25sp"
             android:text="Increase"
             style="?borderlessButtonStyle" />
@@ -202,7 +202,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorGreen"
+            android:background="@color/colorYellow"
             android:textSize="25sp"
             android:text="Extend"
             style="?borderlessButtonStyle" />
@@ -212,7 +212,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorGreenLight"
+            android:background="@color/colorYellowLight"
             android:textSize="25sp"
             android:text="Create"
             style="?borderlessButtonStyle" />
