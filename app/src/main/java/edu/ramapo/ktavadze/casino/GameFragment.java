@@ -299,12 +299,12 @@ public class GameFragment extends Fragment {
         logMessage("Round " + mRound.getNumber());
 
         if (mHuman.isNext()) {
-            logMessage("\nHuman turn");
+            logMessage("\nHuman " + mHuman.getScore());
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
         }
         else {
-            logMessage("\nComputer turn");
+            logMessage("\nComputer " + mComputer.getScore());
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }
@@ -321,13 +321,13 @@ public class GameFragment extends Fragment {
 
         if (mHuman.isNext()) {
             logMessage(mComputer.getMessage());
-            logMessage("\nHuman turn");
+            logMessage("\nHuman " + mHuman.getScore());
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
         }
         else {
             logMessage(mHuman.getMessage());
-            logMessage("\nComputer turn");
+            logMessage("\nComputer " + mComputer.getScore());
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }

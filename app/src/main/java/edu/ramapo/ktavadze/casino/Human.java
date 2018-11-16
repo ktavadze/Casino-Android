@@ -240,7 +240,15 @@ public class Human extends Player {
         if (canCaptureSelection(aTable, captureCard, looseSet, firmSet)) {
             capture(aTable, captureCard, looseSet, firmSet);
 
-            mMessage = "Capture: " + captureCard.getName() + " " + looseSet.stringify() + " " + firmSet.stringify();
+            mMessage = "Capture: " + captureCard.getName();
+
+            if (!looseSet.isEmpty()) {
+                mMessage += " " + looseSet.stringify();
+            }
+
+            if (!firmSet.isEmpty()) {
+                mMessage += " " + firmSet.stringify();
+            }
 
             return true;
         }
