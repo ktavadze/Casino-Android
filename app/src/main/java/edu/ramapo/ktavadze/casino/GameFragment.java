@@ -125,7 +125,7 @@ public class GameFragment extends Fragment {
                 if (mComputer.isNext()) {
                     if (mRound.processMove(mComputer, mHuman, mMove)) {
                         if (mRound.isOver(mComputer, mHuman)) {
-                            // TODO
+                            ((MainActivity)mContext).loadFragment(new RoundResultsFragment());
                         }
                         else {
                             updateView();
@@ -231,7 +231,7 @@ public class GameFragment extends Fragment {
                         mLinearStartMenu.setVisibility(View.VISIBLE);
 
                         if (mRound.isOver(mComputer, mHuman)) {
-                            // TODO
+                            ((MainActivity)mContext).loadFragment(new RoundResultsFragment());
                         }
                         else {
                             updateView();

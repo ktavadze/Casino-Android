@@ -1,9 +1,12 @@
 package edu.ramapo.ktavadze.casino;
 
+import java.util.HashMap;
+
 public class Round {
     private int mNumber;
     private Table mTable;
     private Deck mDeck;
+    private HashMap<String, Integer> mResults = new HashMap<>();
 
     public Round(int aNumber) {
         mNumber = aNumber;
@@ -27,6 +30,10 @@ public class Round {
 
     public Deck getDeck() {
         return mDeck;
+    }
+
+    public HashMap<String, Integer> getResults() {
+        return mResults;
     }
 
     public void start(Player aComputer, Player aHuman) {
@@ -298,8 +305,8 @@ public class Round {
             updateScores(aComputer, aHuman);
 
             // Clear piles
-            aHuman.getPile().clear();
-            aComputer.getPile().clear();
+//            aHuman.getPile().clear();
+//            aComputer.getPile().clear();
         }
         else if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
             // Deal players
@@ -391,6 +398,12 @@ public class Round {
         aComputer.setScore(aComputer.getScore() + computerScore);
         aHuman.setScore(aHuman.getScore() + humanScore);
 
-        // Console::displayRoundResults(computerPile, humanPile, computerSpades, humanSpades, computerScore, humanScore);
+        // Update results
+        mResults.put("computerPile", computerPile.getSize());
+        mResults.put("computerSpades", computerSpades);
+        mResults.put("computerScore", computerScore);
+        mResults.put("humanPile", humanPile.getSize());
+        mResults.put("humanSpades", humanSpades);
+        mResults.put("humanScore", humanScore);
     }
 }
