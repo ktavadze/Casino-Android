@@ -1,6 +1,8 @@
 package edu.ramapo.ktavadze.casino;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,11 +11,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 
 public class GameFragment extends Fragment {
     private static final String TAG = "GameFragment";
@@ -90,6 +98,8 @@ public class GameFragment extends Fragment {
 
         getActivity().setTitle("Game");
 
+        setHasOptionsMenu(true);
+
         addListeners();
 
         mRound.start(mComputer, mHuman);
@@ -97,6 +107,28 @@ public class GameFragment extends Fragment {
         initView();
 
         Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_game, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_save_game:
+                actionSaveGame();
+
+                return true;
+            case R.id.action_quit_game:
+                ((MainActivity)mContext).loadFragment(new MainMenuFragment());
+
+                return true;
+            default:
+                // Invoke superclass to handle unrecognized action.
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void addListeners() {
@@ -400,5 +432,53 @@ public class GameFragment extends Fragment {
         }
 
         return true;
+    }
+
+    private void actionSaveGame() {
+        // Build save game dialog
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_save_game, null);
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.setTitle("Save Game");
+
+        // Define fields
+        final EditText editSaveName = dialogView.findViewById(R.id.edit_save_name);
+
+        // Define responses
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // Set name
+                String saveName = editSaveName.getText().toString().trim();
+
+                if (saveName.isEmpty()) {
+                    saveName = "game.txt";
+                }
+
+                // Save
+                try {
+                    FileOutputStream outFile = mContext.openFileOutput(saveName, Context.MODE_PRIVATE);
+                    OutputStreamWriter outWriter = new OutputStreamWriter(outFile);
+                    outWriter.write(mRound.stringify(mComputer, mHuman));
+                    outWriter.close();
+
+                    Log.d(TAG, "actionSaveGame: Game saved");
+
+                    ((MainActivity)mContext).loadFragment(new MainMenuFragment());
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // TODO
+            }
+        });
+
+        // Show save game dialog
+        AlertDialog dialogSaveGame = dialogBuilder.create();
+        dialogSaveGame.show();
     }
 }
