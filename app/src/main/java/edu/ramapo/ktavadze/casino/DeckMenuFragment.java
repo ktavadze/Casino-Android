@@ -11,15 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class SeedMenuFragment extends Fragment {
-    private static final String TAG = "SeedMenuFragment";
+public class DeckMenuFragment extends Fragment {
+    private static final String TAG = "DeckMenuFragment";
 
     private Context mContext;
 
     private Button mButtonMenuNewDeck;
     private Button mButtonMenuSeedDeck;
 
-    public SeedMenuFragment() {
+    public DeckMenuFragment() {
         // Required empty public constructor
     }
 
@@ -35,7 +35,7 @@ public class SeedMenuFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.fragment_seed_menu, null);
+        View view = inflater.inflate(R.layout.fragment_deck_menu, null);
 
         mButtonMenuNewDeck = view.findViewById(R.id.button_menu_new_deck);
         mButtonMenuSeedDeck = view.findViewById(R.id.button_menu_seed_deck);
@@ -47,7 +47,7 @@ public class SeedMenuFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        getActivity().setTitle("Seed Menu");
+        getActivity().setTitle("Deck Menu");
 
         addListeners();
     }
@@ -57,7 +57,7 @@ public class SeedMenuFragment extends Fragment {
         mButtonMenuNewDeck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)mContext).loadFragment(new GameFragment());
+                ((MainActivity)mContext).loadFragment(new RoundFragment());
             }
         });
 

@@ -23,8 +23,8 @@ import android.widget.LinearLayout;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
-public class GameFragment extends Fragment {
-    private static final String TAG = "GameFragment";
+public class RoundFragment extends Fragment {
+    private static final String TAG = "RoundFragment";
 
     private Context mContext;
     private View mView;
@@ -51,7 +51,7 @@ public class GameFragment extends Fragment {
     private HumanHandRecyclerAdapter mHumanHandAdapter;
     private CardsRecyclerAdapter mHumanPileAdapter;
 
-    public GameFragment() {
+    public RoundFragment() {
         // Required empty public constructor
     }
 
@@ -80,7 +80,7 @@ public class GameFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        mView = inflater.inflate(R.layout.fragment_game, null);
+        mView = inflater.inflate(R.layout.fragment_round, null);
 
         mEditMessageLog = mView.findViewById(R.id.edit_message_log);
         mButtonMakeMove = mView.findViewById(R.id.button_make_move);
@@ -96,7 +96,7 @@ public class GameFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        getActivity().setTitle("Game");
+        getActivity().setTitle("Round " + mRound.getNumber());
 
         setHasOptionsMenu(true);
 

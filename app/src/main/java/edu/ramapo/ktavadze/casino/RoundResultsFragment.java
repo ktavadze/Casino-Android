@@ -106,7 +106,7 @@ public class RoundResultsFragment extends Fragment {
                 else {
                     mTournament.update();
 
-                    ((MainActivity)mContext).loadFragment(new GameFragment());
+                    ((MainActivity)mContext).loadFragment(new RoundFragment());
                 }
             }
         });

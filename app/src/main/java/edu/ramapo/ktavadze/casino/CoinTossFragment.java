@@ -112,7 +112,7 @@ public class CoinTossFragment extends Fragment {
         mButtonGuessHeads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)mContext).loadFragment(new SeedMenuFragment());
+                ((MainActivity)mContext).loadFragment(new DeckMenuFragment());
             }
         });
 
@@ -120,7 +120,7 @@ public class CoinTossFragment extends Fragment {
         mButtonGuessTails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)mContext).loadFragment(new SeedMenuFragment());
+                ((MainActivity)mContext).loadFragment(new DeckMenuFragment());
             }
         });
     }
