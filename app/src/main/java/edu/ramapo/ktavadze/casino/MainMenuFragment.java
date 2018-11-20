@@ -67,7 +67,7 @@ public class MainMenuFragment extends Fragment {
         mButtonMenuLoadGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                ((MainActivity)mContext).loadFragment(new FilesFragment());
             }
         });
 
