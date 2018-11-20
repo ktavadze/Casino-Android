@@ -55,7 +55,7 @@ public class FilesRecyclerAdapter extends RecyclerView.Adapter<FilesRecyclerAdap
         holder.textFileName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mFilesFragment.actionLoadGame(fileName);
+                mFilesFragment.actionLoadFile(fileName);
 
                 Log.d(TAG, "Clicked on: " + fileName);
             }

@@ -18,6 +18,7 @@ import android.widget.Button;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -84,15 +85,15 @@ public class FilesFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_case_one:
-                actionLoadGame("case1");
+                actionLoadAsset("case1.txt");
 
                 return true;
             case R.id.action_case_two:
-                actionLoadGame("case2");
+                actionLoadAsset("case2.txt");
 
                 return true;
             case R.id.action_case_three:
-                actionLoadGame("case3");
+                actionLoadAsset("case3.txt");
 
                 return true;
             default:
@@ -130,16 +131,15 @@ public class FilesFragment extends Fragment {
     }
 
     /**********************************************************************
-     Function Name: actionLoadGame
-     Purpose: To load game state
+     Function Name: actionLoadAsset
+     Purpose: To load an asset
      Parameters:
-     aFile, a String
-     Return Value: Whether the game was successfully loaded, a boolean value
+     aName, a String
      **********************************************************************/
-    public void actionLoadGame(String aFile) {
+    public void actionLoadAsset(String aName) {
         // Load
         try {
-            FileInputStream inFile = mContext.openFileInput(aFile);
+            InputStream inFile = mContext.getAssets().open(aName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inFile));
 
             int roundNumber = 0;
@@ -250,12 +250,11 @@ public class FilesFragment extends Fragment {
                     }
                 }
                 else if (line.contains("Next Player")) {
-                    int index = line.indexOf(":");
-
-                    String nextPlayer = line.substring(index + 2);
-
-                    if (nextPlayer == "Computer") {
+                    if (line.contains("Computer")) {
                         humanIsNext = false;
+                    }
+                    else {
+                        humanIsNext = true;
                     }
                 }
 
@@ -279,15 +278,155 @@ public class FilesFragment extends Fragment {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-        // List
-        String [] list = mContext.fileList();
+    /**********************************************************************
+     Function Name: actionLoadFile
+     Purpose: To load a file
+     Parameters:
+     aName, a String
+     **********************************************************************/
+    public void actionLoadFile(String aName) {
+        // Load
+        try {
+            FileInputStream inFile = mContext.openFileInput(aName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inFile));
 
-        if (list.length == 0) {
-            Log.d(TAG, "actionLoadGame: List empty");
+            int roundNumber = 0;
+            int computerScore = 0;
+            Set computerHand = new Set();
+            Set computerPile = new Set();
+            int humanScore = 0;
+            Set humanHand = new Set();
+            Set humanPile = new Set();
+            Set looseSet = new Set();
+            ArrayList<Build> builds = new ArrayList<>();
+            ArrayList<Card> deckCards = new ArrayList<>();
+            boolean humanIsNext = true;
+
+            boolean readComputer = true;
+
+            String line = reader.readLine();
+
+            while (line != null) {
+                if (line.contains("Round")) {
+                    int index = line.indexOf(":");
+
+                    roundNumber = Integer.parseInt(line.substring(index + 2));
+                }
+                else if (line.contains("Score")) {
+                    int index = line.indexOf(":");
+
+                    if (readComputer) {
+                        computerScore = Integer.parseInt(line.substring(index + 2));
+                    }
+                    else {
+                        humanScore = Integer.parseInt(line.substring(index + 2));
+                    }
+                }
+                else if (line.contains("Hand")) {
+                    if (line.length() > 9) {
+                        int index = line.indexOf(":");
+
+                        if (readComputer) {
+                            String computerHandString = line.substring(index + 2);
+
+                            String [] computerHandTokens = computerHandString.split(" ");
+
+                            computerHand = generateSet(computerHandTokens);
+                        }
+                        else {
+                            String humanHandString = line.substring(index + 2);
+
+                            String [] humanHandTokens = humanHandString.split(" ");
+
+                            humanHand = generateSet(humanHandTokens);
+                        }
+                    }
+                }
+                else if (line.contains("Pile")) {
+                    int index = line.indexOf(":");
+
+                    if (readComputer) {
+                        if (line.length() > 9) {
+                            String computerPileString = line.substring(index + 2);
+
+                            String [] computerPileTokens = computerPileString.split(" ");
+
+                            computerPile = generateSet(computerPileTokens);
+                        }
+
+                        readComputer = false;
+                    }
+                    else {
+                        if (line.length() > 9) {
+                            String humanPileString = line.substring(index + 2);
+
+                            String [] humanPileTokens = humanPileString.split(" ");
+
+                            humanPile = generateSet(humanPileTokens);
+                        }
+                    }
+                }
+                else if (line.contains("Table")) {
+                    int looseSetStartIndex = 7;
+
+                    if (line.contains("[")) {
+                        looseSetStartIndex = line.lastIndexOf("]") + 2;
+                    }
+
+                    String looseSetString = line.substring(looseSetStartIndex);
+
+                    String [] looseSetTokens = looseSetString.split(" ");
+
+                    looseSet = generateSet(looseSetTokens);
+                }
+                else if (line.contains("Build Owner")) {
+                    Build build = generateBuild(line);
+
+                    builds.add(build);
+                }
+                else if (line.contains("Deck")) {
+                    if (line.length() > 6) {
+                        int index = line.indexOf(":");
+
+                        String deckString = line.substring(index + 2);
+
+                        String [] deckTokens = deckString.split(" ");
+
+                        for (String token : deckTokens) {
+                            deckCards.add(new Card(token));
+                        }
+                    }
+                }
+                else if (line.contains("Next Player")) {
+                    if (line.contains("Computer")) {
+                        humanIsNext = false;
+                    }
+                    else {
+                        humanIsNext = true;
+                    }
+                }
+
+                line = reader.readLine();
+            }
+
+            reader.close();
+
+            Computer computer = new Computer(!humanIsNext, computerScore, computerHand, computerPile);
+            Human human = new Human(humanIsNext, humanScore, humanHand, humanPile);
+
+            Table table = new Table(looseSet, builds);
+            Deck deck = new Deck(deckCards);
+
+            Round round = new Round(roundNumber, table, deck);
+
+            ((MainActivity)mContext).mTournament = new Tournament(computer, human, round);
+
+            ((MainActivity)mContext).loadFragment(new RoundFragment());
         }
-        else {
-            Log.d(TAG, "actionLoadGame: " + Arrays.toString(list));
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
