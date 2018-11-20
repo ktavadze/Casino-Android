@@ -48,6 +48,7 @@ public class FilesFragment extends Fragment {
 
         mFiles = new ArrayList<>();
         mFiles.addAll(Arrays.asList(mContext.fileList()));
+        mFiles.remove("instant-run");
     }
 
     @Nullable
@@ -115,7 +116,7 @@ public class FilesFragment extends Fragment {
         mButtonFilesClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                clearFiles();
             }
         });
 
@@ -428,6 +429,20 @@ public class FilesFragment extends Fragment {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void clearFiles() {
+        String [] list = mContext.fileList();
+
+        for (String file : list) {
+            if (!file.equals("instant-run")) {
+                mFiles.remove(file);
+
+                mContext.deleteFile(file);
+            }
+        }
+
+        mFilesAdapter.notifyDataSetChanged();
     }
 
     /**********************************************************************
