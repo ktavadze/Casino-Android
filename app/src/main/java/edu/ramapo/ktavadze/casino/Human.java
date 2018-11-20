@@ -51,7 +51,7 @@ public class Human extends Player {
                 break;
             case "capture":
                 if (processCapture(aTable, aMove)) {
-                    return 0;
+                    return 1;
                 }
                 break;
             case "trail":
