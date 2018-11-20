@@ -328,15 +328,16 @@ public class RoundFragment extends Fragment {
 
         mEditMessageLog.setKeyListener(null);
 
-        logMessage("Round " + mRound.getNumber());
+        logMessage("Computer: " + mComputer.getScore());
+        logMessage("Human: " + mHuman.getScore());
 
         if (mHuman.isNext()) {
-            logMessage("\nHuman " + mHuman.getScore());
+            logMessage("\nHuman");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
         }
         else {
-            logMessage("\nComputer " + mComputer.getScore());
+            logMessage("\nComputer");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }
@@ -353,13 +354,13 @@ public class RoundFragment extends Fragment {
 
         if (mHuman.isNext()) {
             logMessage(mComputer.getMessage());
-            logMessage("\nHuman " + mHuman.getScore());
+            logMessage("\nHuman");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorGreenDark));
         }
         else {
             logMessage(mHuman.getMessage());
-            logMessage("\nComputer " + mComputer.getScore());
+            logMessage("\nComputer");
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }

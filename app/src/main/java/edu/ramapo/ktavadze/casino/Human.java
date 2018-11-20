@@ -96,6 +96,7 @@ public class Human extends Player {
             mHand.removeCard(buildCard);
 
             mMessage = "Increase: " + selectedBuild.stringify();
+            mMessage += "\nHeuristic: " + selectedBuild.getWeight();
 
             return true;
         }
@@ -148,6 +149,7 @@ public class Human extends Player {
             mHand.removeCard(buildCard);
 
             mMessage = "Extend: " + selectedBuild.stringify();
+            mMessage += "\nHeuristic: " + selectedBuild.getWeight();
 
             return true;
         }
@@ -197,6 +199,7 @@ public class Human extends Player {
             mHand.removeCard(buildCard);
 
             mMessage = "Create: " + build.stringify();
+            mMessage += "\nHeuristic: " + build.getWeight();
 
             return true;
         }
@@ -250,6 +253,8 @@ public class Human extends Player {
                 mMessage += " " + firmSet.stringify();
             }
 
+            mMessage += "\nHeuristic: " + (captureCard.getWeight() + looseSet.getWeight() + firmSet.getWeight());
+
             return true;
         }
 
@@ -275,6 +280,7 @@ public class Human extends Player {
             mHand.removeCard(trailCard);
 
             mMessage = "Trail: " + trailCard.getName();
+            mMessage += "\nHeuristic: " + trailCard.getWeight();
 
             return true;
         }

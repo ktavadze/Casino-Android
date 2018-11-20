@@ -383,6 +383,7 @@ public class Player {
         }
 
         mMessage = "Increase: " + bestBuild.stringify();
+        mMessage += "\nHeuristic: " + bestBuild.getWeight();
 
         Log.d(TAG, "findBestIncrease: " + bestBuild.stringify());
 
@@ -459,6 +460,7 @@ public class Player {
         }
 
         mMessage = "Extend: " + bestBuild.stringify();
+        mMessage += "\nHeuristic: " + bestBuild.getWeight();
 
         Log.d(TAG, "findBestExtend: " + bestBuild.stringify());
 
@@ -519,6 +521,7 @@ public class Player {
         }
 
         mMessage = "Create: " + bestBuild.stringify();
+        mMessage += "\nHeuristic: " + bestBuild.getWeight();
 
         Log.d(TAG, "findBestCreate: " + bestBuild.stringify());
 
@@ -602,6 +605,7 @@ public class Player {
         }
 
         mMessage = "Capture: " + bestCaptureSet.stringify();
+        mMessage += "\nHeuristic: " + bestCaptureSet.getWeight();
 
         Log.d(TAG, "findBestCapture: " + bestCaptureSet.stringify());
 
@@ -629,6 +633,7 @@ public class Player {
         }
 
         mMessage = "Trail: " + bestTrailCard.getName();
+        mMessage += "\nHeuristic: " + bestTrailCard.getWeight();
 
         Log.d(TAG, "findBestTrail: " + bestTrailCard.getName());
 
