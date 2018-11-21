@@ -9,9 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -35,7 +37,6 @@ public class RoundResultsFragment extends Fragment {
     private TextView mTextRoundHumanSpades;
     private TextView mTextRoundHumanEarned;
     private TextView mTextRoundHumanTotal;
-    private Button mButtonRoundContinue;
 
     private CardsRecyclerAdapter mComputerPileAdapter;
     private CardsRecyclerAdapter mHumanPileAdapter;
@@ -77,7 +78,6 @@ public class RoundResultsFragment extends Fragment {
         mTextRoundHumanSpades = mView.findViewById(R.id.text_round_human_spades);
         mTextRoundHumanEarned = mView.findViewById(R.id.text_round_human_earned);
         mTextRoundHumanTotal = mView.findViewById(R.id.text_round_human_total);
-        mButtonRoundContinue = mView.findViewById(R.id.button_round_continue);
 
         return mView;
     }
@@ -88,18 +88,26 @@ public class RoundResultsFragment extends Fragment {
 
         getActivity().setTitle("Round Results");
 
-        addListener();
+        setHasOptionsMenu(true);
 
         initView();
 
         Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 
-    private void addListener() {
-        // Add continue listener
-        mButtonRoundContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.add(0, 0, 0, "Close Results")
+                .setIcon(R.drawable.ic_quit)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 0:
                 if (mTournament.isOver()) {
                     ((MainActivity)mContext).loadFragment(new TournamentResultFragment());
                 }
@@ -108,10 +116,12 @@ public class RoundResultsFragment extends Fragment {
 
                     ((MainActivity)mContext).loadFragment(new RoundFragment());
                 }
-            }
-        });
 
-        Log.d(TAG, "addListener: Listener added");
+                return true;
+            default:
+                // Invoke superclass to handle unrecognized action.
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void initView() {

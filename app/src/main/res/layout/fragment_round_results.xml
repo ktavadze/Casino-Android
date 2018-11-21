@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/colorRed">
+            android:background="@color/colorRedDark">
 
             <TextView
                 android:id="@+id/text_round_computer_pile"
@@ -36,7 +36,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="25sp" />
+                android:textSize="50sp" />
 
             <TextView
                 android:id="@+id/text_round_computer_spades"
@@ -45,7 +45,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="25sp" />
+                android:textSize="50sp" />
 
             <TextView
                 android:id="@+id/text_round_computer_earned"
@@ -54,7 +54,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="25sp" />
+                android:textSize="50sp" />
 
             <TextView
                 android:id="@+id/text_round_computer_total"
@@ -63,7 +63,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="25sp" />
+                android:textSize="50sp" />
 
         </LinearLayout>
 
@@ -72,15 +72,17 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorYellowDark">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/colorPrimaryLight"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
                 android:textSize="25sp"
+                android:textStyle="bold"
                 android:text="Pile" />
 
             <TextView
@@ -88,8 +90,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/colorPrimaryLight"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
                 android:textSize="25sp"
+                android:textStyle="bold"
                 android:text="Spades" />
 
             <TextView
@@ -97,8 +101,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/colorPrimaryLight"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
                 android:textSize="25sp"
+                android:textStyle="bold"
                 android:text="Earned" />
 
             <TextView
@@ -106,8 +112,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/colorPrimaryLight"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
                 android:textSize="25sp"
+                android:textStyle="bold"
                 android:text="Total" />
 
         </LinearLayout>
@@ -117,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/colorGreen">
+            android:background="@color/colorGreenDark">
 
             <TextView
                 android:id="@+id/text_round_human_pile"
@@ -126,7 +134,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="25sp" />
+                android:textSize="50sp" />
 
             <TextView
                 android:id="@+id/text_round_human_spades"
@@ -135,7 +143,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="25sp" />
+                android:textSize="50sp" />
 
             <TextView
                 android:id="@+id/text_round_human_earned"
@@ -144,7 +152,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="25sp" />
+                android:textSize="50sp" />
 
             <TextView
                 android:id="@+id/text_round_human_total"
@@ -153,7 +161,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="25sp" />
+                android:textSize="50sp" />
 
         </LinearLayout>
 
@@ -163,18 +171,8 @@
         android:id="@+id/recycler_round_human_pile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button_round_continue">
+        android:layout_alignParentBottom="true">
 
     </android.support.v7.widget.RecyclerView>
-
-    <Button
-        android:id="@+id/button_round_continue"
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
-        android:textSize="25sp"
-        android:text="Continue"
-        style="?borderlessButtonStyle" />
 
 </RelativeLayout>

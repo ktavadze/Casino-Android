@@ -44,7 +44,7 @@
     <EditText
         android:id="@+id/edit_message_log"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="150dp"
         android:layout_below="@id/linear_computer_container"
         android:gravity="center"
         android:inputType="textMultiLine"

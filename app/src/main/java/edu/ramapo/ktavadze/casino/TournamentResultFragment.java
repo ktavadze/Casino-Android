@@ -7,9 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class TournamentResultFragment extends Fragment {
@@ -26,7 +28,6 @@ public class TournamentResultFragment extends Fragment {
     private TextView mTextTournamentComputerTotal;
     private TextView mTextTournamentResult;
     private TextView mTextTournamentHumanTotal;
-    private Button mButtonTournamentContinue;
 
     public TournamentResultFragment() {
         // Required empty public constructor
@@ -60,7 +61,6 @@ public class TournamentResultFragment extends Fragment {
         mTextTournamentComputerTotal = mView.findViewById(R.id.text_tournament_computer_total);
         mTextTournamentResult = mView.findViewById(R.id.text_tournament_result);
         mTextTournamentHumanTotal = mView.findViewById(R.id.text_tournament_human_total);
-        mButtonTournamentContinue = mView.findViewById(R.id.button_tournament_continue);
 
         return mView;
     }
@@ -71,23 +71,33 @@ public class TournamentResultFragment extends Fragment {
 
         getActivity().setTitle("Tournament Result");
 
-        addListener();
+        setHasOptionsMenu(true);
 
         initView();
 
         Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 
-    private void addListener() {
-        // Add continue listener
-        mButtonTournamentContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainActivity)mContext).loadFragment(new MainMenuFragment());
-            }
-        });
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.add(0, 0, 0, "Close Results")
+                .setIcon(R.drawable.ic_quit)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
-        Log.d(TAG, "addListener: Listener added");
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 0:
+                ((MainActivity)mContext).loadFragment(new MainMenuFragment());
+
+                return true;
+            default:
+                // Invoke superclass to handle unrecognized action.
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void initView() {
