@@ -38,9 +38,6 @@ public class RoundResultsFragment extends Fragment {
     private TextView mTextRoundHumanEarned;
     private TextView mTextRoundHumanTotal;
 
-    private CardsRecyclerAdapter mComputerPileAdapter;
-    private CardsRecyclerAdapter mHumanPileAdapter;
-
     public RoundResultsFragment() {
         // Required empty public constructor
     }
@@ -91,8 +88,6 @@ public class RoundResultsFragment extends Fragment {
         setHasOptionsMenu(true);
 
         initView();
-
-        Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 
     @Override
@@ -127,14 +122,14 @@ public class RoundResultsFragment extends Fragment {
     private void initView() {
         // Init computer pile recycler
         final RecyclerView recyclerRoundComputerPile = mView.findViewById(R.id.recycler_round_computer_pile);
-        mComputerPileAdapter = new CardsRecyclerAdapter(mContext, mComputer.getPile().getCards());
-        recyclerRoundComputerPile.setAdapter(mComputerPileAdapter);
+        CardsRecyclerAdapter computerPileAdapter = new CardsRecyclerAdapter(mContext, mComputer.getPile().getCards());
+        recyclerRoundComputerPile.setAdapter(computerPileAdapter);
         recyclerRoundComputerPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
         // Init human pile recycler
         final RecyclerView recyclerRoundHumanPile = mView.findViewById(R.id.recycler_round_human_pile);
-        mHumanPileAdapter = new CardsRecyclerAdapter(mContext, mHuman.getPile().getCards());
-        recyclerRoundHumanPile.setAdapter(mHumanPileAdapter);
+        CardsRecyclerAdapter humanPileAdapter = new CardsRecyclerAdapter(mContext, mHuman.getPile().getCards());
+        recyclerRoundHumanPile.setAdapter(humanPileAdapter);
         recyclerRoundHumanPile.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
         HashMap<String, Integer> results = mRound.getResults();
@@ -148,5 +143,7 @@ public class RoundResultsFragment extends Fragment {
         mTextRoundHumanSpades.setText(String.valueOf(results.get("humanSpades").toString()));
         mTextRoundHumanEarned.setText(String.valueOf(results.get("humanScore").toString()));
         mTextRoundHumanTotal.setText(String.valueOf(mHuman.getScore()));
+
+        Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 }

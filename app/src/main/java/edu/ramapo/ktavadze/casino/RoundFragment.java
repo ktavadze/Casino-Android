@@ -105,8 +105,6 @@ public class RoundFragment extends Fragment {
         mRound.start(mComputer, mHuman);
 
         initView();
-
-        Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 
     @Override
@@ -341,6 +339,8 @@ public class RoundFragment extends Fragment {
 
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }
+
+        Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 
     private void updateView() {
@@ -352,6 +352,7 @@ public class RoundFragment extends Fragment {
         mHumanHandAdapter.notifyDataSetChanged();
         mHumanPileAdapter.notifyDataSetChanged();
 
+        // Display turn info
         if (mHuman.isNext()) {
             logMessage(mComputer.getMessage());
             logMessage("\nHuman");
@@ -365,6 +366,7 @@ public class RoundFragment extends Fragment {
             mButtonMakeMove.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
         }
 
+        // Clear move
         if (mMove.getPlayerCardView() != null) {
             mMove.getPlayerCardView().setBackgroundColor(0);
         }
@@ -387,8 +389,6 @@ public class RoundFragment extends Fragment {
         if (mMove.getPlayerCard().isJoker()) {
             logMessage("Please select which card to play");
 
-            Log.d(TAG, "validSelection: Please select which card to play");
-
             return false;
         }
 
@@ -398,16 +398,12 @@ public class RoundFragment extends Fragment {
                 if (mMove.getBuilds().size() != 1) {
                     logMessage("Please select which build to increase");
 
-                    Log.d(TAG, "validSelection: Please select which build to increase");
-
                     return false;
                 }
                 break;
             case "extend":
                 if (mMove.getBuilds().size() != 1) {
                     logMessage("Please select which build to extend");
-
-                    Log.d(TAG, "validSelection: Please select which build to extend");
 
                     return false;
                 }
@@ -416,16 +412,12 @@ public class RoundFragment extends Fragment {
                 if (mMove.getLooseSet().isEmpty()) {
                     logMessage("Please select loose card(s) to create");
 
-                    Log.d(TAG, "validSelection: Please select loose card(s) to create");
-
                     return false;
                 }
                 break;
             case "capture":
                 if (mMove.getLooseSet().isEmpty() && mMove.getBuilds().isEmpty()) {
                     logMessage("Please select something to capture");
-
-                    Log.d(TAG, "validSelection: Please select something to capture");
 
                     return false;
                 }

@@ -74,8 +74,6 @@ public class TournamentResultFragment extends Fragment {
         setHasOptionsMenu(true);
 
         initView();
-
-        Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 
     @Override
@@ -115,5 +113,7 @@ public class TournamentResultFragment extends Fragment {
         }
 
         mTextTournamentHumanTotal.setText(String.valueOf(mHuman.getScore()));
+
+        Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 }
