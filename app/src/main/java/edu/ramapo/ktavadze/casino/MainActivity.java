@@ -1,9 +1,9 @@
 /*
  ************************************************************
  * Name: Konstantine Tavadze                                *
- * Project: Casino - Milestone #2                           *
+ * Project: Casino                                          *
  * Class: Organization of Programming Languages             *
- * Date: 11/13/2018                                         *
+ * Date: 11/20/2018                                         *
  ************************************************************
  */
 package edu.ramapo.ktavadze.casino;
@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     Loads specified fragment into the main container.
+     @param fragment - Fragment instance to be loaded.
+     */
     public void loadFragment(Fragment fragment) {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frame_main_container);
         if (fragment != null && currentFragment != null) {
@@ -43,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
                         .replace(R.id.frame_main_container, fragment)
                         .commit();
 
-                Log.d(TAG, "loadFragment: Fragment was loaded");
+                Log.d(TAG, "loadFragment: Fragment loaded successfully");
             }
         }
 
-        Log.d(TAG, "loadFragment: Fragment was not loaded");
+        Log.d(TAG, "loadFragment: Fragment failed to load");
     }
 }

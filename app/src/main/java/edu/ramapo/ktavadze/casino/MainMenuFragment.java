@@ -54,6 +54,9 @@ public class MainMenuFragment extends Fragment {
         addListeners();
     }
 
+    /**
+     Adds listeners to essential UI components.
+     */
     private void addListeners() {
         // Add start game listener
         mButtonMenuStartGame.setOnClickListener(new View.OnClickListener() {

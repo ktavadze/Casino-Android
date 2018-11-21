@@ -98,6 +98,9 @@ public class TournamentResultFragment extends Fragment {
         }
     }
 
+    /**
+     Initializes the view with essential UI components.
+     */
     private void initView() {
         // Display result
         mTextTournamentComputerTotal.setText(String.valueOf(mComputer.getScore()));

@@ -57,6 +57,9 @@ public class DeckMenuFragment extends Fragment {
         addListeners();
     }
 
+    /**
+     Adds listeners to essential UI components.
+     */
     private void addListeners() {
         // Add new deck listener
         mButtonMenuNewDeck.setOnClickListener(new View.OnClickListener() {
@@ -79,10 +82,9 @@ public class DeckMenuFragment extends Fragment {
         Log.d(TAG, "addListeners: Listeners added");
     }
 
-    /**********************************************************************
-     Function Name: seedDeck
-     Purpose: To seed the deck
-     **********************************************************************/
+    /**
+     Allows the human to choose to seed the deck and responds accordingly.
+     */
     private void seedDeck() {
         try {
             InputStream inFile = mContext.getAssets().open("deck.txt");

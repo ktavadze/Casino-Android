@@ -129,6 +129,9 @@ public class RoundFragment extends Fragment {
         }
     }
 
+    /**
+     Adds listeners to essential UI components.
+     */
     private void addListeners() {
         // Add get help listener
         final Button buttonGetHelp = mView.findViewById(R.id.button_get_help);
@@ -277,10 +280,16 @@ public class RoundFragment extends Fragment {
         Log.d(TAG, "addListeners: Listeners added");
     }
 
+    /**
+     Appends the specified message to the in-game log.
+     */
     private void logMessage(String aMessage) {
         mEditMessageLog.append(aMessage + "\n");
     }
 
+    /**
+     Initializes the view with essential UI components.
+     */
     private void initView() {
         // Init deck recycler
         final RecyclerView recyclerDeck = mView.findViewById(R.id.recycler_deck);
@@ -326,9 +335,11 @@ public class RoundFragment extends Fragment {
 
         mEditMessageLog.setKeyListener(null);
 
+        // Display scores
         logMessage("Computer: " + mComputer.getScore());
         logMessage("Human: " + mHuman.getScore());
 
+        // Display turn info
         if (mHuman.isNext()) {
             logMessage("\nHuman");
 
@@ -343,6 +354,9 @@ public class RoundFragment extends Fragment {
         Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 
+    /**
+     Updates the essential UI components.
+     */
     private void updateView() {
         mDeckAdapter.notifyDataSetChanged();
         mComputerHandAdapter.notifyDataSetChanged();
@@ -384,6 +398,10 @@ public class RoundFragment extends Fragment {
         Log.d(TAG, "Game state: \n" + mRound.stringify(mComputer, mHuman));
     }
 
+    /**
+     Checks whether the current selection (move) is valid.
+     @return Boolean value representing the result of the check.
+     */
     private boolean validSelection() {
         // Check player card
         if (mMove.getPlayerCard().isJoker()) {
@@ -427,6 +445,9 @@ public class RoundFragment extends Fragment {
         return true;
     }
 
+    /**
+     Allows the player to save the game.
+     */
     private void actionSaveGame() {
         // Build save game dialog
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);

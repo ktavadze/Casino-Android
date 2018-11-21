@@ -55,6 +55,9 @@ public class CoinTossFragment extends Fragment {
         addListeners();
     }
 
+    /**
+     Adds listeners to essential UI components.
+     */
     private void addListeners() {
         // Add heads listener
         mButtonGuessHeads.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +78,9 @@ public class CoinTossFragment extends Fragment {
         Log.d(TAG, "addListeners: Listeners added");
     }
 
+    /**
+     Allows the human to guess heads/tails, simulates the toss and responds accordingly.
+     */
     private void processGuess(int guess) {
         Random rand = new Random();
 

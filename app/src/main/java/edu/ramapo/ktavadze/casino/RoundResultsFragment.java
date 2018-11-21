@@ -119,6 +119,9 @@ public class RoundResultsFragment extends Fragment {
         }
     }
 
+    /**
+     Initializes the view with essential UI components.
+     */
     private void initView() {
         // Init computer pile recycler
         final RecyclerView recyclerRoundComputerPile = mView.findViewById(R.id.recycler_round_computer_pile);

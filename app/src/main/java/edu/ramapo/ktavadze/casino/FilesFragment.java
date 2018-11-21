@@ -104,6 +104,9 @@ public class FilesFragment extends Fragment {
         }
     }
 
+    /**
+     Adds listeners to essential UI components.
+     */
     private void addListeners() {
         // Add cancel listener
         mButtonFilesCancel.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +127,9 @@ public class FilesFragment extends Fragment {
         Log.d(TAG, "addListeners: Listeners added");
     }
 
+    /**
+     Initializes the view with essential UI components.
+     */
     private void initView() {
         // Init files recycler
         final RecyclerView recyclerFiles = mView.findViewById(R.id.recycler_files);
@@ -132,12 +138,10 @@ public class FilesFragment extends Fragment {
         recyclerFiles.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
     }
 
-    /**********************************************************************
-     Function Name: actionLoadFile
-     Purpose: To load a file
-     Parameters:
-     aName, a String
-     **********************************************************************/
+    /**
+     Reads the state of the game from the specified file and passes it to loadState.
+     @param aName - String value representing the name of the file.
+     */
     public void actionLoadFile(String aName) {
         try {
             FileInputStream inFile = mContext.openFileInput(aName);
@@ -162,12 +166,10 @@ public class FilesFragment extends Fragment {
         }
     }
 
-    /**********************************************************************
-     Function Name: actionLoadAsset
-     Purpose: To load an asset
-     Parameters:
-     aName, a String
-     **********************************************************************/
+    /**
+     Reads the state of the game from the specified asset and passes it to loadState.
+     @param aName - String value representing the name of the asset.
+     */
     private void actionLoadAsset(String aName) {
         try {
             InputStream inFile = mContext.getAssets().open(aName);
@@ -192,6 +194,10 @@ public class FilesFragment extends Fragment {
         }
     }
 
+    /**
+     Loads the game matching the specified state.
+     @param aState - String representation of a state.
+     */
     private void loadState(String aState) {
         Scanner scanner = new Scanner(aState);
 
@@ -327,6 +333,9 @@ public class FilesFragment extends Fragment {
         ((MainActivity)mContext).loadFragment(new RoundFragment());
     }
 
+    /**
+     Clears the files in internal storage.
+     */
     private void clearFiles() {
         String [] list = mContext.fileList();
 
@@ -341,13 +350,10 @@ public class FilesFragment extends Fragment {
         mFilesAdapter.notifyDataSetChanged();
     }
 
-    /**********************************************************************
-     Function Name: generateSet
-     Purpose: To generate a set from tokens
-     Parameters:
-     aTokens, a ArrayList of strings passed by value
-     Return Value: Generated set, an Set instance
-     **********************************************************************/
+    /**
+     Generates a set to match the specified tokens (card names).
+     @param aTokens - Array of string tokens to match.
+     */
     private Set generateSet(String [] aTokens) {
         Set set = new Set();
 
@@ -358,13 +364,10 @@ public class FilesFragment extends Fragment {
         return set;
     }
 
-    /**********************************************************************
-     Function Name: generateBuild
-     Purpose: To generate a build from tokens
-     Parameters:
-     aString, a String
-     Return Value: Generated build, an Build instance
-     **********************************************************************/
+    /**
+     Generates a build to match the specified string.
+     @param aString - String representation of a build.
+     */
     private Build generateBuild(String aString) {
         Build build = new Build();
 
