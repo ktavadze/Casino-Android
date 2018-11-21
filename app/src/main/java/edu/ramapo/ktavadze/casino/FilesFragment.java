@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class FilesFragment extends Fragment {
     private static final String TAG = "FilesFragment";
@@ -132,149 +133,29 @@ public class FilesFragment extends Fragment {
     }
 
     /**********************************************************************
-     Function Name: actionLoadAsset
-     Purpose: To load an asset
+     Function Name: actionLoadFile
+     Purpose: To load a file
      Parameters:
      aName, a String
      **********************************************************************/
-    public void actionLoadAsset(String aName) {
-        // Load
+    public void actionLoadFile(String aName) {
         try {
-            InputStream inFile = mContext.getAssets().open(aName);
+            FileInputStream inFile = mContext.openFileInput(aName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inFile));
-
-            int roundNumber = 0;
-            int computerScore = 0;
-            Set computerHand = new Set();
-            Set computerPile = new Set();
-            int humanScore = 0;
-            Set humanHand = new Set();
-            Set humanPile = new Set();
-            Set looseSet = new Set();
-            ArrayList<Build> builds = new ArrayList<>();
-            ArrayList<Card> deckCards = new ArrayList<>();
-            boolean humanIsNext = true;
-
-            boolean readComputer = true;
+            StringBuilder stringBuilder = new StringBuilder();
 
             String line = reader.readLine();
 
             while (line != null) {
-                if (line.contains("Round")) {
-                    int index = line.indexOf(":");
-
-                    roundNumber = Integer.parseInt(line.substring(index + 2));
-                }
-                else if (line.contains("Score")) {
-                    int index = line.indexOf(":");
-
-                    if (readComputer) {
-                        computerScore = Integer.parseInt(line.substring(index + 2));
-                    }
-                    else {
-                        humanScore = Integer.parseInt(line.substring(index + 2));
-                    }
-                }
-                else if (line.contains("Hand")) {
-                    if (line.length() > 9) {
-                        int index = line.indexOf(":");
-
-                        if (readComputer) {
-                            String computerHandString = line.substring(index + 2);
-
-                            String [] computerHandTokens = computerHandString.split(" ");
-
-                            computerHand = generateSet(computerHandTokens);
-                        }
-                        else {
-                            String humanHandString = line.substring(index + 2);
-
-                            String [] humanHandTokens = humanHandString.split(" ");
-
-                            humanHand = generateSet(humanHandTokens);
-                        }
-                    }
-                }
-                else if (line.contains("Pile")) {
-                    int index = line.indexOf(":");
-
-                    if (readComputer) {
-                        if (line.length() > 9) {
-                            String computerPileString = line.substring(index + 2);
-
-                            String [] computerPileTokens = computerPileString.split(" ");
-
-                            computerPile = generateSet(computerPileTokens);
-                        }
-
-                        readComputer = false;
-                    }
-                    else {
-                        if (line.length() > 9) {
-                            String humanPileString = line.substring(index + 2);
-
-                            String [] humanPileTokens = humanPileString.split(" ");
-
-                            humanPile = generateSet(humanPileTokens);
-                        }
-                    }
-                }
-                else if (line.contains("Table")) {
-                    int looseSetStartIndex = 7;
-
-                    if (line.contains("[")) {
-                        looseSetStartIndex = line.lastIndexOf("]") + 2;
-                    }
-
-                    String looseSetString = line.substring(looseSetStartIndex);
-
-                    String [] looseSetTokens = looseSetString.split(" ");
-
-                    looseSet = generateSet(looseSetTokens);
-                }
-                else if (line.contains("Build Owner")) {
-                    Build build = generateBuild(line);
-
-                    builds.add(build);
-                }
-                else if (line.contains("Deck")) {
-                    if (line.length() > 6) {
-                        int index = line.indexOf(":");
-
-                        String deckString = line.substring(index + 2);
-
-                        String [] deckTokens = deckString.split(" ");
-
-                        for (String token : deckTokens) {
-                            deckCards.add(new Card(token));
-                        }
-                    }
-                }
-                else if (line.contains("Next Player")) {
-                    if (line.contains("Computer")) {
-                        humanIsNext = false;
-                    }
-                    else {
-                        humanIsNext = true;
-                    }
-                }
+                stringBuilder.append(line);
+                stringBuilder.append("\n");
 
                 line = reader.readLine();
             }
 
             reader.close();
 
-            Computer computer = new Computer(!humanIsNext, computerScore, computerHand, computerPile);
-            Human human = new Human(humanIsNext, humanScore, humanHand, humanPile);
-
-            Table table = new Table(looseSet, builds);
-            Deck deck = new Deck(deckCards);
-
-            Round round = new Round(roundNumber, table, deck);
-
-            ((MainActivity)mContext).mTournament = new Tournament(computer, human, round);
-
-            ((MainActivity)mContext).loadFragment(new RoundFragment());
+            loadState(stringBuilder.toString());
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -282,153 +163,168 @@ public class FilesFragment extends Fragment {
     }
 
     /**********************************************************************
-     Function Name: actionLoadFile
-     Purpose: To load a file
+     Function Name: actionLoadAsset
+     Purpose: To load an asset
      Parameters:
      aName, a String
      **********************************************************************/
-    public void actionLoadFile(String aName) {
-        // Load
+    private void actionLoadAsset(String aName) {
         try {
-            FileInputStream inFile = mContext.openFileInput(aName);
+            InputStream inFile = mContext.getAssets().open(aName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inFile));
-
-            int roundNumber = 0;
-            int computerScore = 0;
-            Set computerHand = new Set();
-            Set computerPile = new Set();
-            int humanScore = 0;
-            Set humanHand = new Set();
-            Set humanPile = new Set();
-            Set looseSet = new Set();
-            ArrayList<Build> builds = new ArrayList<>();
-            ArrayList<Card> deckCards = new ArrayList<>();
-            boolean humanIsNext = true;
-
-            boolean readComputer = true;
+            StringBuilder stringBuilder = new StringBuilder();
 
             String line = reader.readLine();
 
             while (line != null) {
-                if (line.contains("Round")) {
-                    int index = line.indexOf(":");
-
-                    roundNumber = Integer.parseInt(line.substring(index + 2));
-                }
-                else if (line.contains("Score")) {
-                    int index = line.indexOf(":");
-
-                    if (readComputer) {
-                        computerScore = Integer.parseInt(line.substring(index + 2));
-                    }
-                    else {
-                        humanScore = Integer.parseInt(line.substring(index + 2));
-                    }
-                }
-                else if (line.contains("Hand")) {
-                    if (line.length() > 9) {
-                        int index = line.indexOf(":");
-
-                        if (readComputer) {
-                            String computerHandString = line.substring(index + 2);
-
-                            String [] computerHandTokens = computerHandString.split(" ");
-
-                            computerHand = generateSet(computerHandTokens);
-                        }
-                        else {
-                            String humanHandString = line.substring(index + 2);
-
-                            String [] humanHandTokens = humanHandString.split(" ");
-
-                            humanHand = generateSet(humanHandTokens);
-                        }
-                    }
-                }
-                else if (line.contains("Pile")) {
-                    int index = line.indexOf(":");
-
-                    if (readComputer) {
-                        if (line.length() > 9) {
-                            String computerPileString = line.substring(index + 2);
-
-                            String [] computerPileTokens = computerPileString.split(" ");
-
-                            computerPile = generateSet(computerPileTokens);
-                        }
-
-                        readComputer = false;
-                    }
-                    else {
-                        if (line.length() > 9) {
-                            String humanPileString = line.substring(index + 2);
-
-                            String [] humanPileTokens = humanPileString.split(" ");
-
-                            humanPile = generateSet(humanPileTokens);
-                        }
-                    }
-                }
-                else if (line.contains("Table")) {
-                    int looseSetStartIndex = 7;
-
-                    if (line.contains("[")) {
-                        looseSetStartIndex = line.lastIndexOf("]") + 2;
-                    }
-
-                    String looseSetString = line.substring(looseSetStartIndex);
-
-                    String [] looseSetTokens = looseSetString.split(" ");
-
-                    looseSet = generateSet(looseSetTokens);
-                }
-                else if (line.contains("Build Owner")) {
-                    Build build = generateBuild(line);
-
-                    builds.add(build);
-                }
-                else if (line.contains("Deck")) {
-                    if (line.length() > 6) {
-                        int index = line.indexOf(":");
-
-                        String deckString = line.substring(index + 2);
-
-                        String [] deckTokens = deckString.split(" ");
-
-                        for (String token : deckTokens) {
-                            deckCards.add(new Card(token));
-                        }
-                    }
-                }
-                else if (line.contains("Next Player")) {
-                    if (line.contains("Computer")) {
-                        humanIsNext = false;
-                    }
-                    else {
-                        humanIsNext = true;
-                    }
-                }
+                stringBuilder.append(line);
+                stringBuilder.append("\n");
 
                 line = reader.readLine();
             }
 
             reader.close();
 
-            Computer computer = new Computer(!humanIsNext, computerScore, computerHand, computerPile);
-            Human human = new Human(humanIsNext, humanScore, humanHand, humanPile);
-
-            Table table = new Table(looseSet, builds);
-            Deck deck = new Deck(deckCards);
-
-            Round round = new Round(roundNumber, table, deck);
-
-            ((MainActivity)mContext).mTournament = new Tournament(computer, human, round);
-
-            ((MainActivity)mContext).loadFragment(new RoundFragment());
+            loadState(stringBuilder.toString());
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void loadState(String aState) {
+        Scanner scanner = new Scanner(aState);
+
+        int roundNumber = 0;
+        int computerScore = 0;
+        Set computerHand = new Set();
+        Set computerPile = new Set();
+        int humanScore = 0;
+        Set humanHand = new Set();
+        Set humanPile = new Set();
+        Set looseSet = new Set();
+        ArrayList<Build> builds = new ArrayList<>();
+        ArrayList<Card> deckCards = new ArrayList<>();
+        boolean humanIsNext = true;
+
+        boolean readComputer = true;
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+
+            if (line.contains("Round")) {
+                int index = line.indexOf(":");
+
+                roundNumber = Integer.parseInt(line.substring(index + 2));
+            }
+            else if (line.contains("Score")) {
+                int index = line.indexOf(":");
+
+                if (readComputer) {
+                    computerScore = Integer.parseInt(line.substring(index + 2));
+                }
+                else {
+                    humanScore = Integer.parseInt(line.substring(index + 2));
+                }
+            }
+            else if (line.contains("Hand")) {
+                if (line.length() > 9) {
+                    int index = line.indexOf(":");
+
+                    if (readComputer) {
+                        String computerHandString = line.substring(index + 2);
+
+                        String [] computerHandTokens = computerHandString.split(" ");
+
+                        computerHand = generateSet(computerHandTokens);
+                    }
+                    else {
+                        String humanHandString = line.substring(index + 2);
+
+                        String [] humanHandTokens = humanHandString.split(" ");
+
+                        humanHand = generateSet(humanHandTokens);
+                    }
+                }
+            }
+            else if (line.contains("Pile")) {
+                int index = line.indexOf(":");
+
+                if (readComputer) {
+                    if (line.length() > 9) {
+                        String computerPileString = line.substring(index + 2);
+
+                        String [] computerPileTokens = computerPileString.split(" ");
+
+                        computerPile = generateSet(computerPileTokens);
+                    }
+
+                    readComputer = false;
+                }
+                else {
+                    if (line.length() > 9) {
+                        String humanPileString = line.substring(index + 2);
+
+                        String [] humanPileTokens = humanPileString.split(" ");
+
+                        humanPile = generateSet(humanPileTokens);
+                    }
+                }
+            }
+            else if (line.contains("Table")) {
+                int looseSetStartIndex = 7;
+
+                if (line.contains("[")) {
+                    looseSetStartIndex = line.lastIndexOf("]") + 2;
+                }
+
+                String looseSetString = line.substring(looseSetStartIndex);
+
+                String [] looseSetTokens = looseSetString.split(" ");
+
+                looseSet = generateSet(looseSetTokens);
+            }
+            else if (line.contains("Build Owner")) {
+                Build build = generateBuild(line);
+
+                builds.add(build);
+            }
+            else if (line.contains("Deck")) {
+                if (line.length() > 6) {
+                    int index = line.indexOf(":");
+
+                    String deckString = line.substring(index + 2);
+
+                    String [] deckTokens = deckString.split(" ");
+
+                    for (String token : deckTokens) {
+                        deckCards.add(new Card(token));
+                    }
+                }
+            }
+            else if (line.contains("Next Player")) {
+                if (line.contains("Computer")) {
+                    humanIsNext = false;
+                }
+                else {
+                    humanIsNext = true;
+                }
+            }
+        }
+
+        scanner.close();
+
+        Computer computer = new Computer(!humanIsNext, computerScore, computerHand, computerPile);
+        Human human = new Human(humanIsNext, humanScore, humanHand, humanPile);
+
+        Table table = new Table(looseSet, builds);
+        Deck deck = new Deck(deckCards);
+
+        Round round = new Round(roundNumber, table, deck);
+
+        ((MainActivity)mContext).mTournament = new Tournament(computer, human, round);
+
+        ((MainActivity)mContext).loadFragment(new RoundFragment());
     }
 
     private void clearFiles() {
@@ -444,32 +340,6 @@ public class FilesFragment extends Fragment {
 
         mFilesAdapter.notifyDataSetChanged();
     }
-
-    /**********************************************************************
-     Function Name: seedDeck
-     Purpose: To seed deck cards
-     Parameters:
-     aDeck, a Deck instance passed by reference
-     Return Value: Whether the deck was successfully seeded, a boolean value
-     **********************************************************************/
-//    private void seedDeck(Deck & aDeck) {
-//        ifstream infile("../Data/deck.txt");
-//
-//        if (infile.isOpen()) {
-//            ArrayList<Card> cards;
-//
-//            String line;
-//
-//            while (getline(infile, line)) {
-//                cards.add(Card(line));
-//            }
-//
-//            aDeck = Deck(cards);
-//        }
-//        else {
-//            Console::displayMessage("ERROR: cannot seed deck!");
-//        }
-//    }
 
     /**********************************************************************
      Function Name: generateSet
