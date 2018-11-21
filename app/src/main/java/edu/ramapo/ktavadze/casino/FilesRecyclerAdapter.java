@@ -2,7 +2,6 @@ package edu.ramapo.ktavadze.casino;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,6 @@ import java.util.ArrayList;
  */
 
 public class FilesRecyclerAdapter extends RecyclerView.Adapter<FilesRecyclerAdapter.ViewHolder> {
-    private static final String TAG = "FilesRecycler";
-
     private FilesFragment mFilesFragment;
     private ArrayList<String> mFileNames;
 
@@ -52,12 +49,11 @@ public class FilesRecyclerAdapter extends RecyclerView.Adapter<FilesRecyclerAdap
         // Set text
         holder.textFileName.setText(fileName);
 
+        // Set on click listener
         holder.textFileName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mFilesFragment.actionLoadFile(fileName);
-
-                Log.d(TAG, "Clicked on: " + fileName);
             }
         });
     }

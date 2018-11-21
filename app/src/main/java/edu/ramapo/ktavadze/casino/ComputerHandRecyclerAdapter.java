@@ -15,8 +15,6 @@ import java.util.ArrayList;
  */
 
 public class ComputerHandRecyclerAdapter extends RecyclerView.Adapter<ComputerHandRecyclerAdapter.ViewHolder> {
-    private static final String TAG = "ComputerHandRecycler";
-
     private Context mContext;
     private ArrayList<Card> mCards;
 
@@ -38,7 +36,7 @@ public class ComputerHandRecyclerAdapter extends RecyclerView.Adapter<ComputerHa
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.recycler_player_card, parent, false);
 
         return new ViewHolder(view);

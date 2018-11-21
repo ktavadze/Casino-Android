@@ -15,8 +15,6 @@ import java.util.ArrayList;
  */
 
 public class CardsRecyclerAdapter extends RecyclerView.Adapter<CardsRecyclerAdapter.ViewHolder> {
-    private static final String TAG = "CardsRecycler";
-
     private Context mContext;
     private ArrayList<Card> mCards;
 
@@ -38,7 +36,7 @@ public class CardsRecyclerAdapter extends RecyclerView.Adapter<CardsRecyclerAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.recycler_card, parent, false);
 
         return new ViewHolder(view);

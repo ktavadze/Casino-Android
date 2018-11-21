@@ -3,7 +3,6 @@ package edu.ramapo.ktavadze.casino;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import java.util.ArrayList;
  */
 
 public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAdapter.ViewHolder> {
-    private static final String TAG = "BuildsRecycler";
-
     private Context mContext;
     private ArrayList<Build> mBuilds;
     private Move mMove;
@@ -42,7 +39,7 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.recycler_build, parent, false);
 
         return new ViewHolder(view);
@@ -55,6 +52,7 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
         // Get build
         final Build build = mBuilds.get(position);
 
+        // Construct build
         for (Set set : build.getSets()) {
             LinearLayout linearSet = new LinearLayout(mContext);
 
@@ -84,6 +82,7 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
             holder.linearBuildContainer.addView(linearSet);
         }
 
+        // Set background color
         if (build.isHuman()) {
             holder.linearBuildContainer.setBackgroundColor(mContext.getResources().getColor(R.color.colorGreen));
         }
@@ -91,6 +90,7 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
             holder.linearBuildContainer.setBackgroundColor(mContext.getResources().getColor(R.color.colorRed));
         }
 
+        // Set on click listener
         holder.linearBuildContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,8 +111,6 @@ public class BuildsRecyclerAdapter extends RecyclerView.Adapter<BuildsRecyclerAd
 
                     v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
                 }
-
-                Log.d(TAG, "Clicked on: " + build.toString());
             }
         });
 

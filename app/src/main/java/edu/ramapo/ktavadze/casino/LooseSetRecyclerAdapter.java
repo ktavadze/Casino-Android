@@ -3,7 +3,6 @@ package edu.ramapo.ktavadze.casino;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,6 @@ import java.util.ArrayList;
  */
 
 public class LooseSetRecyclerAdapter extends RecyclerView.Adapter<LooseSetRecyclerAdapter.ViewHolder> {
-    private static final String TAG = "LooseSetRecycler";
-
     private Context mContext;
     private ArrayList<Card> mCards;
     private Move mMove;
@@ -41,7 +38,7 @@ public class LooseSetRecyclerAdapter extends RecyclerView.Adapter<LooseSetRecycl
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.recycler_loose_card, parent, false);
 
         return new ViewHolder(view);
@@ -57,6 +54,7 @@ public class LooseSetRecyclerAdapter extends RecyclerView.Adapter<LooseSetRecycl
         holder.imageButtonLooseCard.setImageResource(mContext.getResources()
                 .getIdentifier(fileName, "drawable", mContext.getPackageName()));
 
+        // Set on click listener
         holder.imageButtonLooseCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,8 +70,6 @@ public class LooseSetRecyclerAdapter extends RecyclerView.Adapter<LooseSetRecycl
 
                     v.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
                 }
-
-                Log.d(TAG, "Clicked on: " + card.getName());
             }
         });
     }
