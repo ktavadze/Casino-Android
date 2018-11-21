@@ -67,6 +67,9 @@ public class Move {
         return mBuildViews;
     }
 
+    /**
+     Clears the move.
+     */
     public void clear() {
         mType = "";
 

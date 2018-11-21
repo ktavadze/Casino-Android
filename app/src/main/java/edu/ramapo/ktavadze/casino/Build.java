@@ -40,11 +40,10 @@ public class Build {
         return mSets;
     }
 
-    /**********************************************************************
-     Function Name: getValue
-     Purpose: To calculate the value of the build
-     Return Value: The value of the build, an integer value
-     **********************************************************************/
+    /**
+     Calculates the value of the build.
+     @return Integer value representing the value of the build.
+     */
     public int getValue() {
         int value = 0;
 
@@ -57,11 +56,10 @@ public class Build {
         return value;
     }
 
-    /**********************************************************************
-     Function Name: getWeight
-     Purpose: To calculate the weight of the build
-     Return Value: The weight of the build, an integer value
-     **********************************************************************/
+    /**
+     Calculates the weight of the build.
+     @return Integer value representing the weight of the build.
+     */
     public int getWeight() {
         int weight = 0;
 
@@ -72,44 +70,36 @@ public class Build {
         return weight;
     }
 
-    /**********************************************************************
-     Function Name: increase
-     Purpose: To increase the build
-     Parameters:
-     aCard, a Card instance passed by value
-     **********************************************************************/
+    /**
+     Increases the build with the specified card.
+     @param aCard - Card instance to increase with.
+     */
     public void increase(Card aCard) {
         mSets.get(0).addCard(aCard);
     }
 
-    /**********************************************************************
-     Function Name: extend
-     Purpose: To extend the build
-     Parameters:
-     aSet, a Set instance passed by value
-     **********************************************************************/
+    /**
+     Extends the build with the specified set.
+     @param aSet - Set instance to extend the build.
+     */
     public void extend(Set aSet) {
         mSets.add(aSet);
     }
 
-    /**********************************************************************
-     Function Name: contains
-     Purpose: To determine whether the Build contains another build
-     Parameters:
-     aBuild, a Build instance, passed by value
-     Return Value: Whether the build contains another build, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the build contains the specified build.
+     @param aBuild - Build instance to check for.
+     @return Boolean value representing the result of the check.
+     */
     public boolean contains(Build aBuild) {
         return mSets.containsAll(aBuild.getSets());
     }
 
-    /**********************************************************************
-     Function Name: equals
-     Purpose: To determine whether the build equals another build
-     Parameters:
-     aObject, an Object instance passed by value
-     Return Value: Whether the build equals another build, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the build equals the specified build.
+     @param aObject - Object instance to check.
+     @return Boolean value representing the result of the comparison.
+     */
     @Override
     public boolean equals(Object aObject) {
         // Check instance
@@ -137,6 +127,10 @@ public class Build {
         return mSets.containsAll(aBuild.getSets());
     }
 
+    /**
+     Generates a string representation of the build.
+     @return String value representing the build.
+     */
     public String stringify() {
         StringBuilder data = new StringBuilder();
 

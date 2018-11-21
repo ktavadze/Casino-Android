@@ -57,16 +57,20 @@ public class Player {
         return mMessage;
     }
 
+    /**
+     Allows the player to make a move (overridden by computer and human).
+     @param aTable - Table instance to reference.
+     @param aMove - Move instance to reference.
+     @return Integer value representing the type of move made.
+     */
     public int makeMove(Table aTable, Move aMove) {
         return 0;
     }
 
-    /**********************************************************************
-     Function Name: askForHelp
-     Purpose: To allow the player to ask for help
-     Parameters:
-     aTable, a Table instance passed by value
-     **********************************************************************/
+    /**
+     Allows the player to ask for help.
+     @param aTable - Table instance to reference.
+     */
     public void askForHelp(Table aTable) {
         if (canIncrease(aTable)) {
             findBestIncrease(aTable);
@@ -81,10 +85,14 @@ public class Player {
             findBestCapture(aTable);
         }
         else {
-            findBestTrail(aTable);
+            findBestTrail();
         }
     }
 
+    /**
+     Generates a string representation of the player.
+     @return String value representing the player.
+     */
     public String stringify() {
         String data = "";
 
@@ -97,13 +105,11 @@ public class Player {
         return data;
     }
 
-    /**********************************************************************
-     Function Name: captureLooseCard
-     Purpose: To capture a loose card
-     Parameters:
-     aTable, a Table instance passed by reference
-     aCard, a Card instance passed by value
-     **********************************************************************/
+    /**
+     Allows the player to capture the specified loose card.
+     @param aTable - Table instance to reference.
+     @param aCard - Card instance to capture.
+     */
     protected void captureLooseCard(Table aTable, Card aCard) {
         // Add loose card to pile
         mPile.addCard(aCard);
@@ -112,13 +118,11 @@ public class Player {
         aTable.removeLooseCard(aCard);
     }
 
-    /**********************************************************************
-     Function Name: captureBuild
-     Purpose: To capture a build
-     Parameters:
-     aTable, a Table instance passed by reference
-     aBuild, a Build instance passed by value
-     **********************************************************************/
+    /**
+     Allows the player to capture the specified build.
+     @param aTable - Table instance to reference.
+     @param aBuild - Build instance to capture.
+     */
     protected void captureBuild(Table aTable, Build aBuild) {
         // Add build to pile
         for (Set set : aBuild.getSets()) {
@@ -129,13 +133,11 @@ public class Player {
         aTable.removeBuild(aBuild);
     }
 
-    /**********************************************************************
-     Function Name: canIncrease
-     Purpose: To determine whether the player can increase any builds
-     Parameters:
-     aTable, a Table instance passed by value
-     Return Value: Whether the player can increase any builds, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the player can make any increase (build) moves.
+     @param aTable - Table instance to reference.
+     @return Boolean value representing the result of the check.
+     */
     protected boolean canIncrease(Table aTable) {
         for (Card playerCard : mHand.getCards()) {
             if (!reservedForCapture(aTable, playerCard)) {
@@ -153,13 +155,11 @@ public class Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: canExtend
-     Purpose: To determine whether the player can extend any builds
-     Parameters:
-     aTable, a Table instance passed by value
-     Return Value: Whether the player can extend any builds, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the player can make any extend (build) moves.
+     @param aTable - Table instance to reference.
+     @return Boolean value representing the result of the check.
+     */
     protected boolean canExtend(Table aTable) {
         Set tableLooseSet = aTable.getLooseSet();
         ArrayList<Set> tableLooseSets = generateSetCombinations(tableLooseSet);
@@ -207,13 +207,11 @@ public class Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: canCreate
-     Purpose: To determine whether the player create any builds
-     Parameters:
-     aTable, a Table instance passed by value
-     Return Value: Whether the player can create any builds, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the player can make any create (build) moves.
+     @param aTable - Table instance to reference.
+     @return Boolean value representing the result of the check.
+     */
     protected boolean canCreate(Table aTable) {
         Set tableLooseSet = aTable.getLooseSet();
         ArrayList<Set> tableLooseSets = generateSetCombinations(tableLooseSet);
@@ -239,13 +237,11 @@ public class Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: canCapture
-     Purpose: To determine whether the player can capture anything
-     Parameters:
-     aTable, a Table instance passed by value
-     Return Value: Whether the player can capture anything, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the player can make any capture moves.
+     @param aTable - Table instance to reference.
+     @return Boolean value representing the result of the check.
+     */
     protected boolean canCapture(Table aTable) {
         // Check loose set
         if (aTable.getLooseSet().getSize() > 0) {
@@ -283,14 +279,12 @@ public class Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: reservedForCapture
-     Purpose: To determine whether a card is reserved for capture
-     Parameters:
-     aTable, a Table instance passed by value
-     aCard, a Card instance passed by value
-     Return Value: Whether a card is reserved for capture, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the specified card is reserved for capture.
+     @param aTable - Table instance to reference.
+     @param aCard - Card instance to reference.
+     @return Boolean value representing the result of the check.
+     */
     protected boolean reservedForCapture(Table aTable, Card aCard) {
         for (Build build : aTable.getBuilds()) {
             if (build.getValue() == aCard.getValue() && build.isHuman() == mIsHuman) {
@@ -303,13 +297,11 @@ public class Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: ownsBuild
-     Purpose: To determine whether the player owns any builds
-     Parameters:
-     aTable, a Table instance passed by value
-     Return Value: Whether the player owns any builds, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the player owns any builds.
+     @param aTable - Table instance to reference.
+     @return Boolean value representing the result of the check.
+     */
     protected boolean ownsBuild(Table aTable) {
         for (Build build : aTable.getBuilds()) {
             if (build.isHuman() == mIsHuman) {
@@ -320,13 +312,11 @@ public class Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: countCardsHeld
-     Purpose: To calculate the number of cards of specified value in hand
-     Parameters:
-     aValue, an integer
-     Return Value: The number of cards of specified value in held, an integer value
-     **********************************************************************/
+    /**
+     Counts the number of cards held by the player matching the specified value.
+     @param aValue - Integer value representing the card value to match.
+     @return Integer value representing the result of the count.
+     */
     protected int countCardsHeld(int aValue) {
         int count = 0;
 
@@ -339,13 +329,11 @@ public class Player {
         return count;
     }
 
-    /**********************************************************************
-     Function Name: findBestIncrease
-     Purpose: To find the best increased build
-     Parameters:
-     aTable, a Table instance passed by value
-     Return Value: The best increased build, a Build instance
-     **********************************************************************/
+    /**
+     Finds the best increase (build) move the player can make.
+     @param aTable - Table instance to reference.
+     @return Build instance representing the best increased build.
+     */
     protected Build findBestIncrease(Table aTable) {
         // Find possible builds
         ArrayList<Build> possibleBuilds = new ArrayList<>();
@@ -381,13 +369,11 @@ public class Player {
         return bestBuild;
     }
 
-    /**********************************************************************
-     Function Name: findBestExtend
-     Purpose: To find the best extended build
-     Parameters:
-     aTable, a Table instance passed by value
-     Return Value: The best extended build, a Build instance
-     **********************************************************************/
+    /**
+     Finds the best extend (build) move the player can make.
+     @param aTable - Table instance to reference.
+     @return Build instance representing the best extended build.
+     */
     protected Build findBestExtend(Table aTable) {
         // Find possible builds
         ArrayList<Build> possibleBuilds = new ArrayList<>();
@@ -456,13 +442,11 @@ public class Player {
         return bestBuild;
     }
 
-    /**********************************************************************
-     Function Name: findBestCreate
-     Purpose: To find the best new build
-     Parameters:
-     aTable, a Table instance passed by value
-     Return Value: The best new build, a Build instance
-     **********************************************************************/
+    /**
+     Finds the best create (build) move the player can make.
+     @param aTable - Table instance to reference.
+     @return Build instance representing the best created build.
+     */
     protected Build findBestCreate(Table aTable) {
         // Find possible builds
         ArrayList<Build> possibleBuilds = new ArrayList<>();
@@ -515,13 +499,11 @@ public class Player {
         return bestBuild;
     }
 
-    /**********************************************************************
-     Function Name: findBestCapture
-     Purpose: To find the best capture set
-     Parameters:
-     aTable, a Table instance passed by value
-     Return Value: The best capture set, a Set instance
-     **********************************************************************/
+    /**
+     Finds the best capture move the player can make.
+     @param aTable - Table instance to reference.
+     @return Set instance representing the best captured set.
+     */
     protected Set findBestCapture(Table aTable) {
         // Find possible capture sets
         ArrayList<Set> possibleCaptureSets = new ArrayList<>();
@@ -597,14 +579,11 @@ public class Player {
         return bestCaptureSet;
     }
 
-    /**********************************************************************
-     Function Name: findBestTrail
-     Purpose: To find the best trail card
-     Parameters:
-     aTable, a Table instance passed by value
-     Return Value: The best trail card, a Card instance
-     **********************************************************************/
-    protected Card findBestTrail(Table aTable) {
+    /**
+     Finds the best trail move the player can make.
+     @return Card instance representing the best trail card.
+     */
+    protected Card findBestTrail() {
         // Find best trail card
         Card bestTrailCard = new Card();
 
@@ -623,13 +602,11 @@ public class Player {
         return bestTrailCard;
     }
 
-    /**********************************************************************
-     Function Name: generateSetCombinations
-     Purpose: To generate set combinations
-     Parameters:
-     aLooseSet, a Set instance passed by value
-     Return Value: The possible set combinations, a ArrayList of Set instances
-     **********************************************************************/
+    /**
+     Generates all unique loose set combinations.
+     @param aLooseSet - Set instance representing the loose set to reference.
+     @return ArrayList of generated set instances.
+     */
     private ArrayList<Set> generateSetCombinations(Set aLooseSet) {
         ArrayList<Set> looseSets = new ArrayList<>();
 

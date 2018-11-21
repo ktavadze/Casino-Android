@@ -86,23 +86,35 @@ public class Card {
         return mWeight;
     }
 
+    /**
+     Checks whether the card is an ace.
+     @return Boolean value representing the result of the check.
+     */
     public boolean isAce() {
         return mName.charAt(1) == 'A';
     }
 
+    /**
+     Checks whether the card is a spade.
+     @return Boolean value representing the result of the check.
+     */
     public boolean isSpade() {
         return mName.charAt(0) == 'S';
     }
 
-    public boolean isJoker() { return mName.equals("JK"); }
+    /**
+     Checks whether the card is a joker.
+     @return Boolean value representing the result of the check.
+     */
+    public boolean isJoker() {
+        return mName.equals("JK");
+    }
 
-    /**********************************************************************
-     Function Name: equals
-     Purpose: To determine whether the card equals another card
-     Parameters:
-     aObject, an Object instance passed by value
-     Return Value: Whether the card equals another card, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the card equals the specified card.
+     @param aObject - Object instance to check.
+     @return Boolean value representing the result of the comparison.
+     */
     @Override
     public boolean equals(Object aObject) {
         // Check instance

@@ -17,51 +17,90 @@ public class Set {
         return mCards;
     }
 
+    /**
+     Produces the card at the specified index in the set.
+     @param aIndex - Integer value representing the index.
+     @return Card instance at the specified index.
+     */
     public Card getCardAt(int aIndex) {
         return mCards.get(aIndex);
     }
 
+    /**
+     Produces the first card in the set.
+     @return Card instance at the front of the set.
+     */
     public Card getFirstCard() {
         return mCards.get(0);
     }
 
+    /**
+     Produces the last card in the set.
+     @return Card instance at the back of the set.
+     */
     public Card getLastCard() {
         return mCards.get(mCards.size() - 1);
     }
 
+    /**
+     Adds the specified card to the set.
+     @param aCard - Card instance to be added.
+     */
     public void addCard(Card aCard) {
         mCards.add(aCard);
     }
 
+    /**
+     Removes the specified card from the set.
+     @param aCard - Card instance to be removed.
+     */
     public void removeCard(Card aCard) {
         mCards.remove(aCard);
     }
 
+    /**
+     Adds the specified set to the set.
+     @param aSet - Set instance to be added.
+     */
     public void addSet(Set aSet) {
         mCards.addAll(aSet.getCards());
     }
 
+    /**
+     Removes the specified set to the set.
+     @param aSet - Set instance to be removed.
+     */
     public void removeSet(Set aSet) {
         mCards.removeAll(aSet.getCards());
     }
 
+    /**
+     Clears the set.
+     */
     public void clear() {
         mCards.clear();
     }
 
+    /**
+     Checks whether the set is empty.
+     @return Boolean value representing the result of the check.
+     */
     public boolean isEmpty() {
         return mCards.isEmpty();
     }
 
+    /**
+     Produces the set size.
+     @return Integer value representing the size of the set.
+     */
     public int getSize() {
         return mCards.size();
     }
 
-    /**********************************************************************
-     Function Name: getValue
-     Purpose: To calculate the value of a set
-     Return Value: The value of a set, an integer value
-     **********************************************************************/
+    /**
+     Calculates the value of the set.
+     @return Integer value representing the value of the set.
+     */
     public int getValue() {
         int value = 0;
 
@@ -72,11 +111,10 @@ public class Set {
         return value;
     }
 
-    /**********************************************************************
-     Function Name: getWeight
-     Purpose: To calculate the weight of a set
-     Return Value: The weight of a set, an integer value
-     **********************************************************************/
+    /**
+     Calculates the weight of the set.
+     @return Integer value representing the weight of the set.
+     */
     public int getWeight() {
         int weight = 0;
 
@@ -87,35 +125,29 @@ public class Set {
         return weight;
     }
 
-    /**********************************************************************
-     Function Name: contains
-     Purpose: To determine whether the set contains a card
-     Parameters:
-     aCard, a Card instance, passed by value
-     Return Value: Whether the set contains a card, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the set contains the specified card.
+     @param aCard - Card instance to check for.
+     @return Boolean value representing the result of the check.
+     */
     public boolean contains(Card aCard) {
         return mCards.contains(aCard);
     }
 
-    /**********************************************************************
-     Function Name: contains
-     Purpose: To determine whether the set contains another set
-     Parameters:
-     aSet, a Set instance, passed by value
-     Return Value: Whether the set contains another set, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the set contains the specified set.
+     @param aSet - Set instance to check for.
+     @return Boolean value representing the result of the check.
+     */
     public boolean contains(Set aSet) {
         return mCards.containsAll(aSet.getCards());
     }
 
-    /**********************************************************************
-     Function Name: contains
-     Purpose: To determine whether the set contains a build
-     Parameters:
-     aBuild, a Build instance, passed by value
-     Return Value: Whether the set contains a build, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the set contains the specified build.
+     @param aBuild - Build instance to check for.
+     @return Boolean value representing the result of the check.
+     */
     public boolean contains(Build aBuild) {
         for (Set set : aBuild.getSets()) {
             if (!mCards.containsAll(set.getCards())) {
@@ -126,13 +158,11 @@ public class Set {
         return true;
     }
 
-    /**********************************************************************
-     Function Name: equals
-     Purpose: To determine whether the set equals another set
-     Parameters:
-     aObject, an Object instance passed by value
-     Return Value: Whether the set equals another set, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the set equals the specified set.
+     @param aObject - Object instance to check.
+     @return Boolean value representing the result of the comparison.
+     */
     @Override
     public boolean equals(Object aObject) {
         // Check instance
@@ -155,6 +185,10 @@ public class Set {
         return mCards.containsAll(aSet.getCards());
     }
 
+    /**
+     Generates a string representation of the set.
+     @return String value representing the set.
+     */
     public String stringify() {
         StringBuilder data = new StringBuilder();
 

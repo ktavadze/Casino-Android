@@ -29,6 +29,9 @@ public class Tournament {
         return mRound;
     }
 
+    /**
+     Updates the tournament between rounds.
+     */
     public void update() {
         // Clear piles
         mHuman.getPile().clear();
@@ -47,11 +50,10 @@ public class Tournament {
         mRound = new Round(mRound.getNumber() + 1);
     }
 
-    /**********************************************************************
-     Function Name: isOver
-     Purpose: To determine whether the tournament is over
-     Return Value: Whether the tournament is over, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the tournament is over.
+     @return Boolean value representing the result of the check.
+     */
     public boolean isOver() {
         if (mComputer.getScore() >= 21 || mHuman.getScore() >= 21) {
             return true;

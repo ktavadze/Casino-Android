@@ -19,14 +19,12 @@ public class Human extends Player {
         mPile = aPile;
     }
 
-    /**********************************************************************
-     Function Name: makeMove
-     Purpose: To allow the human (virtual) to make a move
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: The move code associated with made move, an integer value
-     (1 = capture; 0 = build/trail; -1 = illegal)
-     **********************************************************************/
+    /**
+     Allows the human to make a move.
+     @param aTable - Table instance to reference.
+     @param aMove - Move instance to reference.
+     @return Integer value representing the type of move made (1 for capture, 0 for legal, -1 for illegal).
+     */
     @Override
     public int makeMove(Table aTable, Move aMove) {
         switch (aMove.getType()) {
@@ -60,13 +58,12 @@ public class Human extends Player {
         return -1;
     }
 
-    /**********************************************************************
-     Function Name: processIncreaseBuild
-     Purpose: To allow the human to increase a build
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal build was increased, a boolean value
-     **********************************************************************/
+    /**
+     Allows the human to make an increase (build) move.
+     @param aTable - Table instance to reference.
+     @param aMove - Move instance to reference.
+     @return Boolean value representing whether a legal move was made.
+     */
     private boolean processIncreaseBuild(Table aTable, Move aMove) {
         // Check builds
         if (aTable.getBuilds().isEmpty()) {
@@ -98,13 +95,12 @@ public class Human extends Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: processExtendBuild
-     Purpose: To allow the human to extend a build
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal build was extended, a boolean value
-     **********************************************************************/
+    /**
+     Allows the human to make an extend (build) move.
+     @param aTable - Table instance to reference.
+     @param aMove - Move instance to reference.
+     @return Boolean value representing whether a legal move was made.
+     */
     private boolean processExtendBuild(Table aTable, Move aMove) {
         // Check builds
         if (aTable.getBuilds().isEmpty()) {
@@ -149,13 +145,12 @@ public class Human extends Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: processCreateBuild
-     Purpose: To allow the human to create a build
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal build was created, a boolean value
-     **********************************************************************/
+    /**
+     Allows the human to make a create (build) move.
+     @param aTable - Table instance to reference.
+     @param aMove - Move instance to reference.
+     @return Boolean value representing whether a legal move was made.
+     */
     private boolean processCreateBuild(Table aTable, Move aMove) {
         // Check loose set
         if (aTable.getLooseSet().isEmpty()) {
@@ -197,13 +192,12 @@ public class Human extends Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: processCapture
-     Purpose: To allow the human to make a capture move
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal capture move was made, a boolean value
-     **********************************************************************/
+    /**
+     Allows the human to make a capture move.
+     @param aTable - Table instance to reference.
+     @param aMove - Move instance to reference.
+     @return Boolean value representing whether a legal move was made.
+     */
     private boolean processCapture(Table aTable, Move aMove) {
         // Check table
         if (aTable.getLooseSet().isEmpty() && aTable.getBuilds().isEmpty()) {
@@ -249,13 +243,12 @@ public class Human extends Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: processTrail
-     Purpose: To allow the human to make a trail move
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: Whether a legal trail move was made, a boolean value
-     **********************************************************************/
+    /**
+     Allows the human to make a trail move.
+     @param aTable - Table instance to reference.
+     @param aMove - Move instance to reference.
+     @return Boolean value representing whether a legal move was made.
+     */
     private boolean processTrail(Table aTable, Move aMove) {
         // Select trail card
         Card trailCard = aMove.getPlayerCard();
@@ -276,15 +269,13 @@ public class Human extends Player {
         return false;
     }
 
-    /**********************************************************************
-     Function Name: canIncreaseBuild
-     Purpose: To determine whether the human can increase specified build
-     Parameters:
-     aTable, a Table instance passed by value
-     aSelectedBuild, a Build instance passed by value
-     aBuildCard, a Card instance passed by value
-     Return Value: Whether the human can increase specified build, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the human can make the specified increase (build) move.
+     @param aTable - Table instance to reference.
+     @param aSelectedBuild - Build instance to increase.
+     @param aBuildCard - Card instance to increase with.
+     @return Boolean value representing whether the move is legal and can be made.
+     */
     private boolean canIncreaseBuild(Table aTable, Build aSelectedBuild, Card aBuildCard) {
         // Check build card
         if (reservedForCapture(aTable, aBuildCard)) {
@@ -317,16 +308,14 @@ public class Human extends Player {
         return true;
     }
 
-    /**********************************************************************
-     Function Name: canExtendBuild
-     Purpose: To determine whether the human can extend specified build
-     Parameters:
-     aTable, a Table instance passed by value
-     aSelectedBuild, a Build instance passed by value
-     aBuildCard, a Card instance passed by value
-     aLooseSet, a Set instance passed by value
-     Return Value: Whether the human can extend specified build, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the human can make the specified extend (build) move.
+     @param aTable - Table instance to reference.
+     @param aSelectedBuild - Build instance to extend.
+     @param aBuildCard - Card instance to extend with.
+     @param aLooseSet - Set instance to extend with.
+     @return Boolean value representing whether the move is legal and can be made.
+     */
     private boolean canExtendBuild(Table aTable, Build aSelectedBuild, Card aBuildCard, Set aLooseSet) {
         // Check build owner
         if (aSelectedBuild.isHuman() != mIsHuman) {
@@ -352,15 +341,13 @@ public class Human extends Player {
         return true;
     }
 
-    /**********************************************************************
-     Function Name: canCreateBuild
-     Purpose: To determine whether the human can create specified build
-     Parameters:
-     aTable, a Table instance passed by value
-     aBuildCard, a Card instance passed by value
-     aLooseSet, a Set instance passed by value
-     Return Value: Whether the human can create specified build, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the human can make the specified create (build) move.
+     @param aTable - Table instance to reference.
+     @param aBuildCard - Card instance to create with.
+     @param aLooseSet - Set instance to create with.
+     @return Boolean value representing whether the move is legal and can be made.
+     */
     private boolean canCreateBuild(Table aTable, Card aBuildCard, Set aLooseSet) {
         // Check build card
         if (reservedForCapture(aTable, aBuildCard)) {
@@ -379,16 +366,14 @@ public class Human extends Player {
         return true;
     }
 
-    /**********************************************************************
-     Function Name: canCaptureSelection
-     Purpose: To determine whether the human can capture specified selection
-     Parameters:
-     aTable, a Table instance passed by value
-     aCaptureCard, a Card instance passed by value
-     aLooseSet, a Set instance passed by value
-     aFirmSet, a Set instance passed by value
-     Return Value: Whether the human can extend specified build, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the human can make the specified capture move.
+     @param aTable - Table instance to reference.
+     @param aCaptureCard - Card instance to capture with.
+     @param aLooseSet - Set instance representing the loose set to capture.
+     @param aFirmSet - Set instance representing the firm set to capture.
+     @return Boolean value representing whether the move is legal and can be made.
+     */
     private boolean canCaptureSelection(Table aTable, Card aCaptureCard, Set aLooseSet, Set aFirmSet) {
         // Check loose set
         if (aLooseSet.getSize() > 0) {
@@ -463,14 +448,12 @@ public class Human extends Player {
         return true;
     }
 
-    /**********************************************************************
-     Function Name: canTrail
-     Purpose: To determine whether the human can trail specified card
-     Parameters:
-     aTable, a Table instance passed by value
-     aTrailCard, a Card instance passed by value
-     Return Value: Whether the human can extend specified build, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the human can make the specified trail move.
+     @param aTable - Table instance to reference.
+     @param aTrailCard - Card instance to trail with.
+     @return Boolean value representing whether the move is legal and can be made.
+     */
     private boolean canTrail(Table aTable, Card aTrailCard) {
         // Check trail card
         if (reservedForCapture(aTable, aTrailCard)) {
@@ -498,15 +481,13 @@ public class Human extends Player {
         return true;
     }
 
-    /**********************************************************************
-     Function Name: capture
-     Purpose: To allow the human to capture specified selection
-     Parameters:
-     aTable, a Table instance passed by reference
-     aCaptureCard, a Card instance passed by value
-     aLooseSet, a Set instance passed by value
-     aFirmSet, a Set instance passed by value
-     **********************************************************************/
+    /**
+     Allows the human to make the specified capture move.
+     @param aTable - Table instance to reference.
+     @param aCaptureCard - Card instance to capture with.
+     @param aLooseSet - Set instance representing the loose set to capture.
+     @param aFirmSet - Set instance representing the firm set to capture.
+     */
     private void capture(Table aTable, Card aCaptureCard, Set aLooseSet, Set aFirmSet) {
         // Add capture card to pile
         mPile.addCard(aCaptureCard);

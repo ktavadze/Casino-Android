@@ -40,14 +40,11 @@ public class Round {
         return mResults;
     }
 
-
-    /**********************************************************************
-     Function Name: start
-     Purpose: To start the round
-     Parameters:
-     aComputer, a Player instance passed by reference
-     aHuman, a Player instance passed by reference
-     **********************************************************************/
+    /**
+     Starts the round.
+     @param aComputer - Player (computer) instance to reference.
+     @param aHuman - Player (human) instance to reference.
+     */
     public void start(Player aComputer, Player aHuman) {
         if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
             // Deal players
@@ -63,14 +60,13 @@ public class Round {
         }
     }
 
-    /**********************************************************************
-     Function Name: makeMove
-     Purpose: To allow players to make a move
-     Parameters:
-     aComputer, a Player instance passed by reference
-     aHuman, a Player instance passed by reference
-     Return Value: Whether a legal move was made, a boolean value
-     **********************************************************************/
+    /**
+     Allows the players to make a move.
+     @param aComputer - Player (computer) instance to reference.
+     @param aHuman - Player (human) instance to reference.
+     @param aMove - Move instance to reference.
+     @return Boolean value representing whether a legal move was made.
+     */
     public boolean processMove(Player aComputer, Player aHuman, Move aMove) {
         if (aHuman.isNext()) {
             int moveCode = aHuman.makeMove(mTable, aMove);
@@ -110,14 +106,12 @@ public class Round {
         }
     }
 
-    /**********************************************************************
-     Function Name: isOver
-     Purpose: To determine whether the round is over
-     Parameters:
-     aComputer, a Player instance passed by value
-     aHuman, a Player instance passed by value
-     Return Value: Whether the round is over, a boolean value
-     **********************************************************************/
+    /**
+     Checks whether the round is over.
+     @param aComputer - Player (computer) instance to reference.
+     @param aHuman - Player (human) instance to reference.
+     @return Boolean value representing the result of the check.
+     */
     public boolean isOver(Player aComputer, Player aHuman) {
         if (mDeck.isEmpty()) {
             if (aComputer.getHand().isEmpty() && aHuman.getHand().isEmpty()) {
@@ -128,6 +122,12 @@ public class Round {
         return false;
     }
 
+    /**
+     Generates a string representation of the deck.
+     @param aComputer - Player (computer) instance to reference.
+     @param aHuman - Player (human) instance to reference.
+     @return String value representing the round.
+     */
     public String stringify(Player aComputer, Player aHuman) {
         String data = "";
 
@@ -162,6 +162,11 @@ public class Round {
         return data;
     }
 
+    /**
+     Updates the round between turns.
+     @param aComputer - Player (computer) instance to reference.
+     @param aHuman - Player (human) instance to reference.
+     */
     private void update(Player aComputer, Player aHuman) {
         if (isOver(aComputer, aHuman)) {
             // Clear loose set
@@ -186,13 +191,11 @@ public class Round {
         }
     }
 
-    /**********************************************************************
-     Function Name: updateScores
-     Purpose: To update player scores
-     Parameters:
-     aComputer, a Player instance passed by reference
-     aHuman, a Player instance passed by reference
-     **********************************************************************/
+    /**
+     Updates the scores between rounds.
+     @param aComputer - Player (computer) instance to reference.
+     @param aHuman - Player (human) instance to reference.
+     */
     private void updateScores(Player aComputer, Player aHuman) {
         int computerScore = 0;
         int humanScore = 0;

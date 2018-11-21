@@ -39,15 +39,18 @@ public class Deck {
         return mCards;
     }
 
+    /**
+     Checks whether the deck is empty.
+     @return Boolean value representing the result of the check.
+     */
     public boolean isEmpty() {
         return mCards.isEmpty();
     }
 
-    /**********************************************************************
-     Function Name: drawSet
-     Purpose: To draw a set of four cards from the deck
-     Return Value: The set of cards, a Set instance
-     **********************************************************************/
+    /**
+     Draws a set of four cards from the deck.
+     @return Set instance representing the drawn set.
+     */
     public Set drawSet() {
         Set set = new Set();
 
@@ -61,6 +64,10 @@ public class Deck {
         return set;
     }
 
+    /**
+     Generates a string representation of the deck.
+     @return String value representing the deck.
+     */
     public String stringify() {
         StringBuilder data = new StringBuilder();
 

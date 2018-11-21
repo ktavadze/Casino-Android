@@ -19,14 +19,12 @@ public class Computer extends Player {
         mPile = aPile;
     }
 
-    /**********************************************************************
-     Function Name: makeMove
-     Purpose: To allow the computer (virtual) to make a move
-     Parameters:
-     aTable, a Table instance passed by reference
-     Return Value: The move code associated with made move, an integer value
-     (1 = capture; 0 = build/trail)
-     **********************************************************************/
+    /**
+     Allows the computer to make a move.
+     @param aTable - Table instance to reference.
+     @param aMove - Move instance to reference.
+     @return Integer value representing the type of move made (1 for capture, 0 for legal).
+     */
     @Override
     public int makeMove(Table aTable, Move aMove) {
         if (canIncrease(aTable)) {
@@ -50,73 +48,61 @@ public class Computer extends Player {
         return 0;
     }
 
-    /**********************************************************************
-     Function Name: processIncreaseBuild
-     Purpose: To allow the computer to increase the best existing build
-     Parameters:
-     aTable, a Table instance passed by reference
-     **********************************************************************/
+    /**
+     Allows the computer to make best increase (build) move.
+     @param aTable - Table instance to reference.
+     */
     private void processIncreaseBuild(Table aTable) {
         Build bestBuild = findBestIncrease(aTable);
 
         increaseBuild(aTable, bestBuild);
     }
 
-    /**********************************************************************
-     Function Name: processExtendBuild
-     Purpose: To allow the computer to extend the best existing build
-     Parameters:
-     aTable, a Table instance passed by reference
-     **********************************************************************/
+    /**
+     Allows the computer to make best extend (build) move.
+     @param aTable - Table instance to reference.
+     */
     private void processExtendBuild(Table aTable) {
         Build bestBuild = findBestExtend(aTable);
 
         extendBuild(aTable, bestBuild);
     }
 
-    /**********************************************************************
-     Function Name: processExtendBuild
-     Purpose: To allow the computer to create the best new build
-     Parameters:
-     aTable, a Table instance passed by reference
-     **********************************************************************/
+    /**
+     Allows the computer to make best create (build) move.
+     @param aTable - Table instance to reference.
+     */
     private void processCreateBuild(Table aTable) {
         Build bestBuild = findBestCreate(aTable);
 
         createBuild(aTable, bestBuild);
     }
 
-    /**********************************************************************
-     Function Name: processCapture
-     Purpose: To allow the computer to capture the best set
-     Parameters:
-     aTable, a Table instance passed by reference
-     **********************************************************************/
+    /**
+     Allows the computer to make best capture move.
+     @param aTable - Table instance to reference.
+     */
     private void processCapture(Table aTable) {
         Set bestCaptureSet = findBestCapture(aTable);
 
         capture(aTable, bestCaptureSet);
     }
 
-    /**********************************************************************
-     Function Name: processTrail
-     Purpose: To allow the computer to trail the best card
-     Parameters:
-     aTable, a Table instance passed by reference
-     **********************************************************************/
+    /**
+     Allows the computer to make best trail move.
+     @param aTable - Table instance to reference.
+     */
     private void processTrail(Table aTable) {
-        Card bestTrailCard = findBestTrail(aTable);
+        Card bestTrailCard = findBestTrail();
 
         trail(aTable, bestTrailCard);
     }
 
-    /**********************************************************************
-     Function Name: increaseBuild
-     Purpose: To allow the computer to increase specified build
-     Parameters:
-     aTable, a Table instance passed by reference
-     aBuild, a Build instance passed by value. Represents the increased build
-     **********************************************************************/
+    /**
+     Allows the computer to increase the specified build.
+     @param aTable - Table instance to reference.
+     @param aBuild - Build instance representing the increased build.
+     */
     private void increaseBuild(Table aTable, Build aBuild) {
         Set buildSet = aBuild.getSets().get(0);
 
@@ -133,13 +119,11 @@ public class Computer extends Player {
         }
     }
 
-    /**********************************************************************
-     Function Name: extendBuild
-     Purpose: To allow the computer to extend specified build
-     Parameters:
-     aTable, a Table instance passed by reference
-     aBuild, a Build instance passed by value. Represents the extended build
-     **********************************************************************/
+    /**
+     Allows the computer to extend the specified build.
+     @param aTable - Table instance to reference.
+     @param aBuild - Build instance representing the extended build.
+     */
     private void extendBuild(Table aTable, Build aBuild) {
         Set buildSet = aBuild.getSets().get(aBuild.getSets().size() - 1);
 
@@ -159,13 +143,11 @@ public class Computer extends Player {
         }
     }
 
-    /**********************************************************************
-     Function Name: createBuild
-     Purpose: To allow the computer to create specified build
-     Parameters:
-     aTable, a Table instance passed by reference
-     aBuild, a Build instance passed by value. Represents the created build
-     **********************************************************************/
+    /**
+     Allows the computer to create the specified build.
+     @param aTable - Table instance to reference.
+     @param aBuild - Build instance representing the created build.
+     */
     private void createBuild(Table aTable, Build aBuild) {
         Set buildSet = aBuild.getSets().get(0);
 
@@ -179,13 +161,11 @@ public class Computer extends Player {
         aTable.addBuild(aBuild);
     }
 
-    /**********************************************************************
-     Function Name: capture
-     Purpose: To allow the computer to capture specified set
-     Parameters:
-     aTable, a Table instance passed by reference
-     aCaptureSet, a Set instance passed by value
-     **********************************************************************/
+    /**
+     Allows the computer to capture the specified set.
+     @param aTable - Table instance to reference.
+     @param aCaptureSet - Set instance representing the captured set.
+     */
     private void capture(Table aTable, Set aCaptureSet) {
         // Add capture card to pile
         mPile.addCard(aCaptureSet.getFirstCard());
@@ -220,13 +200,11 @@ public class Computer extends Player {
         }
     }
 
-    /**********************************************************************
-     Function Name: trail
-     Purpose: To allow the computer to trail specified card
-     Parameters:
-     aTable, a Table instance passed by reference
-     aTrailCard, a Card instance passed by value
-     **********************************************************************/
+    /**
+     Allows the computer to trail the specified card.
+     @param aTable - Table instance to reference.
+     @param aTrailCard - Card instance representing the trailed card.
+     */
     private void trail(Table aTable, Card aTrailCard) {
         // Remove trail card from hand
         mHand.removeCard(aTrailCard);
