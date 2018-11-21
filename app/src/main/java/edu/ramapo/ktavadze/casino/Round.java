@@ -32,6 +32,10 @@ public class Round {
         return mDeck;
     }
 
+    public void setDeck(Deck aDeck) {
+        mDeck = aDeck;
+    }
+
     public HashMap<String, Integer> getResults() {
         return mResults;
     }
