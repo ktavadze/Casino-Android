@@ -3,8 +3,6 @@ package edu.ramapo.ktavadze.casino;
 import java.util.ArrayList;
 
 public class Computer extends Player {
-    private static final String TAG = "Computer";
-
     public Computer(boolean aIsNext) {
         mIsHuman = false;
         mIsNext = aIsNext;

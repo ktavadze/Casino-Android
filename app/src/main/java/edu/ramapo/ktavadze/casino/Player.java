@@ -1,12 +1,8 @@
 package edu.ramapo.ktavadze.casino;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 public class Player {
-    private static final String TAG = "Player";
-
     protected boolean mIsHuman;
     protected boolean mIsNext;
     protected boolean mCapturedLast;
@@ -354,9 +350,6 @@ public class Player {
         // Find possible builds
         ArrayList<Build> possibleBuilds = new ArrayList<>();
 
-        Set tableLooseSet = aTable.getLooseSet();
-        ArrayList<Set> tableLooseSets = generateSetCombinations(tableLooseSet);
-
         for (Card playerCard : mHand.getCards()) {
             if (!reservedForCapture(aTable, playerCard)) {
                 // Find possible increased builds
@@ -384,8 +377,6 @@ public class Player {
 
         mMessage = "Increase: " + bestBuild.stringify();
         mMessage += "\nHeuristic: " + bestBuild.getWeight();
-
-        Log.d(TAG, "findBestIncrease: " + bestBuild.stringify());
 
         return bestBuild;
     }
@@ -462,8 +453,6 @@ public class Player {
         mMessage = "Extend: " + bestBuild.stringify();
         mMessage += "\nHeuristic: " + bestBuild.getWeight();
 
-        Log.d(TAG, "findBestExtend: " + bestBuild.stringify());
-
         return bestBuild;
     }
 
@@ -522,8 +511,6 @@ public class Player {
 
         mMessage = "Create: " + bestBuild.stringify();
         mMessage += "\nHeuristic: " + bestBuild.getWeight();
-
-        Log.d(TAG, "findBestCreate: " + bestBuild.stringify());
 
         return bestBuild;
     }
@@ -607,8 +594,6 @@ public class Player {
         mMessage = "Capture: " + bestCaptureSet.stringify();
         mMessage += "\nHeuristic: " + bestCaptureSet.getWeight();
 
-        Log.d(TAG, "findBestCapture: " + bestCaptureSet.stringify());
-
         return bestCaptureSet;
     }
 
@@ -634,8 +619,6 @@ public class Player {
 
         mMessage = "Trail: " + bestTrailCard.getName();
         mMessage += "\nHeuristic: " + bestTrailCard.getWeight();
-
-        Log.d(TAG, "findBestTrail: " + bestTrailCard.getName());
 
         return bestTrailCard;
     }

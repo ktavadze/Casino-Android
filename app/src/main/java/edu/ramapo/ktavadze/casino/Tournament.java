@@ -48,35 +48,6 @@ public class Tournament {
     }
 
     /**********************************************************************
-     Function Name: start
-     Purpose: To start the tournament
-     **********************************************************************/
-//    public void start() {
-//        while (!isOver()) {
-//            mRound.start(mComputer, mHuman);
-//
-//            // Console::displayTournamentScores(mComputer.getScore(), mHuman.getScore());
-//
-//            if (!isOver()) {
-//                int roundNumber = mRound.getNumber() + 1;
-//
-//                if (mHuman.capturedLast()) {
-//                    mHuman.isNext(true);
-//                    mComputer.isNext(false);
-//                }
-//                else {
-//                    mHuman.isNext(false);
-//                    mComputer.isNext(true);
-//                }
-//
-//                mRound = new Round(roundNumber);
-//            }
-//        }
-//
-//        // Console::displayTournamentResult(mComputer.getScore(), mHuman.getScore());
-//    }
-
-    /**********************************************************************
      Function Name: isOver
      Purpose: To determine whether the tournament is over
      Return Value: Whether the tournament is over, a boolean value

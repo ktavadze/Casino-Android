@@ -94,34 +94,6 @@ public class Build {
 
     /**********************************************************************
      Function Name: contains
-     Purpose: To determine whether the Build contains a card
-     Parameters:
-     aCard, a Card instance, passed by value
-     Return Value: Whether the build contains a card, a boolean value
-     **********************************************************************/
-    public boolean contains(Card aCard) {
-        for (Set set : mSets) {
-            if (set.contains(aCard)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**********************************************************************
-     Function Name: contains
-     Purpose: To determine whether the Build contains a set
-     Parameters:
-     aSet, a Set instance, passed by value
-     Return Value: Whether the build contains a set, a boolean value
-     **********************************************************************/
-    public boolean contains(Set aSet) {
-        return mSets.contains(aSet);
-    }
-
-    /**********************************************************************
-     Function Name: contains
      Purpose: To determine whether the Build contains another build
      Parameters:
      aBuild, a Build instance, passed by value
