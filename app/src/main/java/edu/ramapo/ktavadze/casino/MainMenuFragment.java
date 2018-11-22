@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+/**
+ * MainMenuFragment Class to implement the main menu view.
+ */
+
 public class MainMenuFragment extends Fragment {
     private static final String TAG = "MainMenuFragment";
 

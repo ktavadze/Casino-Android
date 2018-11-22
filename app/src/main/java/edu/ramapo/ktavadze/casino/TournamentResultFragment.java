@@ -14,6 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+/**
+ * TournamentResultFragment Class to implement the tournament result view.
+ */
+
 public class TournamentResultFragment extends Fragment {
     private static final String TAG = "TournamentResult";
 

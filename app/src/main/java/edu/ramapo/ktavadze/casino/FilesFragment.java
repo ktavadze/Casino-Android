@@ -24,6 +24,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * FilesFragment Class to implement the files view.
+ */
+
 public class FilesFragment extends Fragment {
     private static final String TAG = "FilesFragment";
 

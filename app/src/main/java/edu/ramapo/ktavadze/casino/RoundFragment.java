@@ -23,6 +23,10 @@ import android.widget.LinearLayout;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
+/**
+ * RoundFragment Class to implement the round view.
+ */
+
 public class RoundFragment extends Fragment {
     private static final String TAG = "RoundFragment";
 

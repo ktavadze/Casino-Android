@@ -14,6 +14,10 @@ import android.widget.Button;
 
 import java.util.Random;
 
+/**
+ * CoinTossFragment Class to implement the coin toss view.
+ */
+
 public class CoinTossFragment extends Fragment {
     private static final String TAG = "CoinTossFragment";
 

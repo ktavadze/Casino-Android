@@ -18,6 +18,10 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
+/**
+ * RoundResultsFragment Class to implement the round results view.
+ */
+
 public class RoundResultsFragment extends Fragment {
     private static final String TAG = "RoundResults";
 

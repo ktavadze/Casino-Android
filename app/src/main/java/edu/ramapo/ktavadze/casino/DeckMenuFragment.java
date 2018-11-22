@@ -16,6 +16,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ * DeckMenuFragment Class to implement the deck menu view.
+ */
+
 public class DeckMenuFragment extends Fragment {
     private static final String TAG = "DeckMenuFragment";
 
