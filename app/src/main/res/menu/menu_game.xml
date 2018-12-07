@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_help"
+        android:icon="@drawable/ic_help"
+        android:title="Help"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_save_game"
         android:icon="@drawable/ic_save"
         android:title="Save"

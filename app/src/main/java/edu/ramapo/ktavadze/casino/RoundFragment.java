@@ -119,6 +119,10 @@ public class RoundFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_help:
+                actionHelp();
+
+                return true;
             case R.id.action_save_game:
                 actionSaveGame();
 
@@ -447,6 +451,29 @@ public class RoundFragment extends Fragment {
         }
 
         return true;
+    }
+
+    /**
+     Displays help dialog.
+     */
+    private void actionHelp() {
+        // Build help dialog
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_help, null);
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.setTitle("Help Algorithm");
+
+        // Define responses
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // TODO
+            }
+        });
+
+        // Show help dialog
+        AlertDialog dialogHelp = dialogBuilder.create();
+        dialogHelp.show();
     }
 
     /**
