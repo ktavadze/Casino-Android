@@ -86,8 +86,8 @@ public class Human extends Player {
             // Remove build card from hand
             mHand.removeCard(buildCard);
 
-            mMessage = "Increase: " + selectedBuild.stringify();
-            mMessage += "\nHeuristic: " + selectedBuild.getWeight();
+            mMessage = "Increase " + selectedBuild.stringify();
+            mMessage += " for " + selectedBuild.getWeight();
 
             return true;
         }
@@ -136,8 +136,8 @@ public class Human extends Player {
             // Remove build card from hand
             mHand.removeCard(buildCard);
 
-            mMessage = "Extend: " + selectedBuild.stringify();
-            mMessage += "\nHeuristic: " + selectedBuild.getWeight();
+            mMessage = "Extend " + selectedBuild.stringify();
+            mMessage += " for " + selectedBuild.getWeight();
 
             return true;
         }
@@ -183,8 +183,8 @@ public class Human extends Player {
             // Remove build card from hand
             mHand.removeCard(buildCard);
 
-            mMessage = "Create: " + build.stringify();
-            mMessage += "\nHeuristic: " + build.getWeight();
+            mMessage = "Create " + build.stringify();
+            mMessage += " for " + build.getWeight();
 
             return true;
         }
@@ -225,7 +225,7 @@ public class Human extends Player {
         if (canCaptureSelection(aTable, captureCard, looseSet, firmSet)) {
             capture(aTable, captureCard, looseSet, firmSet);
 
-            mMessage = "Capture: " + captureCard.getName();
+            mMessage = "Capture " + captureCard.getName();
 
             if (!looseSet.isEmpty()) {
                 mMessage += " " + looseSet.stringify();
@@ -235,7 +235,7 @@ public class Human extends Player {
                 mMessage += " " + firmSet.stringify();
             }
 
-            mMessage += "\nHeuristic: " + (captureCard.getWeight() + looseSet.getWeight() + firmSet.getWeight());
+            mMessage += " for " + (captureCard.getWeight() + looseSet.getWeight() + firmSet.getWeight());
 
             return true;
         }
@@ -260,8 +260,8 @@ public class Human extends Player {
             // Remove trail card from hand
             mHand.removeCard(trailCard);
 
-            mMessage = "Trail: " + trailCard.getName();
-            mMessage += "\nHeuristic: " + trailCard.getWeight();
+            mMessage = "Trail " + trailCard.getName();
+            mMessage += " for " + trailCard.getWeight();
 
             return true;
         }

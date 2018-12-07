@@ -344,8 +344,8 @@ public class RoundFragment extends Fragment {
         mEditMessageLog.setKeyListener(null);
 
         // Display scores
-        logMessage("Computer: " + mComputer.getScore());
-        logMessage("Human: " + mHuman.getScore());
+        logMessage("Computer score is " + mComputer.getScore());
+        logMessage("Human score is " + mHuman.getScore());
 
         // Display turn info
         if (mHuman.isNext()) {

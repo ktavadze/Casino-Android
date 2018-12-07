@@ -363,8 +363,9 @@ public class Player {
             }
         }
 
-        mMessage = "Increase: " + bestBuild.stringify();
-        mMessage += "\nHeuristic: " + bestBuild.getWeight();
+        mMessage = "Can increase";
+        mMessage += "\nIncrease " + bestBuild.stringify();
+        mMessage += " for " + bestBuild.getWeight();
 
         return bestBuild;
     }
@@ -436,8 +437,9 @@ public class Player {
             }
         }
 
-        mMessage = "Extend: " + bestBuild.stringify();
-        mMessage += "\nHeuristic: " + bestBuild.getWeight();
+        mMessage = "Can't increase, but can extend";
+        mMessage += "\nExtend " + bestBuild.stringify();
+        mMessage += " for " + bestBuild.getWeight();
 
         return bestBuild;
     }
@@ -493,8 +495,9 @@ public class Player {
             }
         }
 
-        mMessage = "Create: " + bestBuild.stringify();
-        mMessage += "\nHeuristic: " + bestBuild.getWeight();
+        mMessage = "Can't increase or extend, but can create";
+        mMessage += "\nCreate " + bestBuild.stringify();
+        mMessage += " for " + bestBuild.getWeight();
 
         return bestBuild;
     }
@@ -573,8 +576,9 @@ public class Player {
             }
         }
 
-        mMessage = "Capture: " + bestCaptureSet.stringify();
-        mMessage += "\nHeuristic: " + bestCaptureSet.getWeight();
+        mMessage = "Can't build, but can capture";
+        mMessage += "\nCapture " + bestCaptureSet.stringify();
+        mMessage += " for " + bestCaptureSet.getWeight();
 
         return bestCaptureSet;
     }
@@ -596,8 +600,9 @@ public class Player {
             }
         }
 
-        mMessage = "Trail: " + bestTrailCard.getName();
-        mMessage += "\nHeuristic: " + bestTrailCard.getWeight();
+        mMessage = "Can't build or capture, so just trail";
+        mMessage += "\nTrail " + bestTrailCard.getName();
+        mMessage += " for " + bestTrailCard.getWeight();
 
         return bestTrailCard;
     }
